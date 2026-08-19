@@ -4,6 +4,7 @@
 Thumbs.db
 logs/
 test-results/
+dist/
 *.log
 *.backup
 *.backup2

@@ -1,8 +1,8 @@
 # Productivity Tool
 
-一个无需注册、无需登录、可以直接在本机运行的个人生产力工作台。它以四象限任务管理为核心，把任务、日历、专注、习惯、复盘和 AI 辅助整合到同一个静态 PWA 中。
+一个无需注册、无需登录、可以直接在本机运行的个人生产力工作台。它以四象限任务管理为核心，把任务、日历、专注、习惯、复盘和 AI 辅助整合到同一个应用中。
 
-数据默认只保存在当前浏览器。项目不包含云端账号系统，也不会把你的 API Key 写入源码。
+项目同时提供 macOS 常驻桌面小组件和浏览器 PWA。数据默认只保存在当前运行环境，项目不包含云端账号系统，也不会把你的 API Key 写入源码。
 
 ## 功能
 
@@ -15,6 +15,7 @@
 - 复盘与模板：记录每日复盘，保存和复用任务模板。
 - 本机备份：导出、恢复和迁移浏览器中的数据。
 - BYOK AI：使用自己的 CSTCloud API Key 完成任务分析和 AI 内容生成。
+- macOS 小组件：独立于浏览器运行，可置顶、记忆窗口位置、收起到菜单栏并设置开机启动。
 - PWA：支持安装到桌面，并缓存核心资源供离线使用。
 
 ## 实现思路
@@ -27,15 +28,17 @@
 
 任务、设置、日历、专注记录等数据通过统一的存储模块写入浏览器。IndexedDB 用于持久化和恢复，localStorage 兼容原有数据格式。清除站点数据前应先导出备份。
 
-### 3. 静态模块化前端
+### 3. 静态模块化前端与桌面壳
 
-项目不需要构建工具或后端服务：
+网页模式不需要构建工具或后端服务。桌面模式使用 Electron 加载同一套前端与本地数据层：
 
 ```text
 index.html                  主工作台
 script.js                   任务与应用运行时
 js/                         日历、复盘、专注、AI 和存储模块
 css/studio-theme.css        工作台视觉系统与响应式布局
+css/desktop-widget.css      macOS 紧凑小组件布局
+desktop/                    独立窗口、菜单栏与置顶控制
 partials/                   延迟加载的功能视图
 sw.js                       PWA 离线缓存
 ```
@@ -48,9 +51,43 @@ AI 请求使用 OpenAI-compatible 的 `chat/completions` 协议。接口固定�
 https://uni-api.cstcloud.cn/v1/chat/completions
 ```
 
-模型名称可在界面修改。API Key 通过本机设置保存，并由浏览器端安全存储模块加密保存；请求时由浏览器直接发送给 CSTCloud。
+模型名称可在界面修改。API Key 通过本机设置保存，并由前端安全存储模块加密保存；请求时由应用直接发送给 CSTCloud。
 
-## 本机运行
+## macOS 桌面小组件（推荐）
+
+需要 Git 和 Node.js 20+：
+
+```bash
+cd ~
+git clone https://github.com/SunnyXi925/productivity-tool.git
+cd productivity-tool
+npm install
+npm run desktop
+```
+
+它会打开一个独立的窄屏小组件，不依赖 Safari、Chrome 或其他浏览器窗口。关闭普通浏览器不会影响它。
+
+- “已固定”：切换是否始终显示在其他窗口前面。
+- “—”：收起到 macOS 菜单栏；点击菜单栏中的 P 图标可恢复。
+- 菜单栏右键：可以开启“登录 Mac 后自动启动”或彻底退出应用。
+- 拖动顶部标题区可以移动；位置和尺寸会自动记住。
+
+生成可以放进“应用程序”文件夹的 `.app`：
+
+```bash
+npm run desktop:pack
+open "dist/mac-arm64/Productivity Tool.app"
+```
+
+生成可分享的未签名 DMG：
+
+```bash
+npm run desktop:build
+```
+
+本地自行构建的应用未做 Apple 开发者签名。首次启动如被 macOS 拦截，可在“系统设置 → 隐私与安全性”中选择仍要打开。
+
+## 浏览器模式
 
 需要 Git、Node.js 20+ 和 Python 3。
 
@@ -89,13 +126,13 @@ npm run serve
 
 ## 配置 API Key
 
-1. 启动应用并打开 `http://localhost:8080`。
-2. 点击页面顶部或今日行动台中的“AI 设置”。
+1. 启动桌面小组件，或打开浏览器模式的 `http://localhost:8080`。
+2. 点击顶部的“AI”。
 3. 确认接口地址为 `https://uni-api.cstcloud.cn/v1`。
 4. 填写 CSTCloud 账号可用的模型名称。默认值为 `deepseek-v3`；如果账号使用其他模型，以 CSTCloud 控制台显示的模型 ID 为准。
 5. 填写 API Key，点击“保存设置”。
 
-API Key 只保存在当前浏览器，不应写进 `.env`、JavaScript 文件、README 或提交到 GitHub。更换浏览器后需要重新配置。
+API Key 只保存在当前运行环境，不应写进 `.env`、JavaScript 文件、README 或提交到 GitHub。桌面小组件与普通浏览器的数据目录彼此独立，因此首次切换时需要重新配置。
 
 ## 检查代码
 

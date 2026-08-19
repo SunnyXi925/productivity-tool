@@ -6,6 +6,12 @@ The project follows pragmatic release notes rather than strict semantic versioni
 
 ## [Unreleased]
 
+### Desktop widget
+
+- Added an independent macOS Electron widget with a compact four-quadrant layout.
+- Added always-on-top control, remembered window bounds, menu-bar restore, and launch-at-login support.
+- Added macOS `.app` and DMG packaging commands with a neutral Productivity Tool app icon.
+
 ### Documentation
 
 - Clarified that Daily Fortune AI and AI task analysis share the same admin AI configuration.

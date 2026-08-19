@@ -31,7 +31,8 @@ class AISmartReminder {
 
     init() {
         console.log('🔔 AI智能提醒系统初始化');
-        this.requestNotificationPermission();
+        const desktopWidget = new URLSearchParams(window.location.search).get('desktop') === '1';
+        if (!desktopWidget) this.requestNotificationPermission();
         this.startMonitoring();
     }
 

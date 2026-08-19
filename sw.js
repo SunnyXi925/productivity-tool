@@ -62,6 +62,8 @@ const APP_SHELL = [
   './js/page-event-bindings.js',
   './quadrant-calendar-sync.js',
   './js/api-sync-bootstrap.js',
+  './js/desktop-widget.js',
+  './css/desktop-widget.css',
   './assets/images/reward-wechat.png',
   './favicon.svg'
 ];
