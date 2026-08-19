@@ -1,6 +1,6 @@
 (function () {
     const ZH_TO_EN = {
-        '象限时光': 'Quadrant Time',
+        '本机生产力工具': 'Productivity Tool',
         '输入任务标题...': 'Enter task title...',
         'AI分析': 'AI Analysis',
         '提交': 'Submit',

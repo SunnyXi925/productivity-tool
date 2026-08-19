@@ -4,19 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="pageTitle">象限时光 XXSG - 本地优先的四象限生产力 PWA</title>
-    <meta name="description" content="象限时光 XXSG 是一个本地优先的开源生产力 PWA，提供四象限任务、日历、习惯打卡、番茄钟、每日一签和 BYOK AI 功能。">
-    <meta name="application-name" content="象限时光 XXSG">
+    <title data-translate="pageTitle">Productivity Tool - 本机生产力工作台</title>
+    <meta name="description" content="无需登录的本机生产力工作台，提供四象限任务、日历、习惯打卡、番茄钟、复盘和 BYOK AI 功能。">
+    <meta name="application-name" content="Productivity Tool">
     <meta name="robots" content="index,follow">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="象限时光 XXSG">
+    <meta property="og:title" content="Productivity Tool">
     <meta property="og:description" content="本地优先的开源四象限生产力 PWA，支持自托管和 BYOK AI。">
     <meta property="og:url" content="https://sunnyxi925.github.io/productivity-tool/">
     <meta name="twitter:card" content="summary">
     <!-- Favicon 配置 - 多格式兼容 -->
-    <link rel="icon" type="image/svg+xml" href="logo-icon.svg?v=20260526-1">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="logo-icon.svg?v=20260526-1">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="shortcut icon" href="favicon.svg">
     <script src="js/session-sanitize-boot.js?v=1.0.0"></script>
     <script src="js/indexeddb-storage.js?v=20260619-1"></script>
@@ -79,7 +78,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="象限时光">
+    <meta name="apple-mobile-web-app-title" content="Productivity Tool">
     <meta name="msapplication-TileColor" content="#2563eb">
     <meta name="msapplication-config" content="browserconfig.xml">
 
@@ -104,10 +103,11 @@
 
     <div class="container">
         <header>
-            <!-- Logo区域 -->
+            <!-- 产品标识 -->
             <div class="logo-section">
-                <div class="main-logo">
-                    <img src="logo-text.svg?v=20260526-1" alt="象限时光" class="main-logo-image">
+                <div class="main-logo" aria-label="Productivity Tool">
+                    <span class="product-wordmark">PRODUCTIVITY</span>
+                    <span class="product-wordmark-tag">LOCAL WORKBENCH</span>
                 </div>
                 <div class="header-controls">
                     <button id="language-toggle-btn" title="语言切换" aria-label="语言切换" class="language-toggle">
@@ -129,7 +129,7 @@
                     <span class="time-time" id="time-time"></span>
                 </div>
                 <div class="main-title" data-translate="mainTitle">"四格见天地，一步定乾坤"</div>
-                <div class="sub-title" id="help-link" data-translate="subTitle">象限时光，让重要的事不再匆忙，让匆忙的事不再重要。</div>
+                <div class="sub-title" id="help-link" data-translate="subTitle">先判断轻重缓急，再开始工作。</div>
             </div>
 
             <div class="tabs" role="tablist" aria-label="主要功能导航">
@@ -508,7 +508,7 @@
                                 </div>
                                 <div class="feature-info">
                                     <h3 class="feature-title">随喜赞赏</h3>
-                                    <p class="feature-description">如果象限时光对你有帮助，可以随喜支持项目继续开源维护</p>
+                                    <p class="feature-description">如果本机生产力工具对你有帮助，可以随喜支持项目继续开源维护</p>
                                 </div>
                                 <div class="feature-stats">
                                     <div class="stat-item">
@@ -2071,7 +2071,7 @@
         <div class="modal-content help-modal-content">
             <span class="modal-close" data-page-click="closeHelpModal">&times;</span>
             <div class="modal-body help-modal-body">
-                <h2 class="help-title">象限时光使用说明</h2>
+                <h2 class="help-title">本机生产力工具使用说明</h2>
                 <div class="help-subtitle">把复杂的任务简单化</div>
                 <div class="help-img-placeholder">
                     <div class="placeholder-icon">📋</div>
@@ -2172,7 +2172,7 @@
 
                         <div class="form-group full-width">
                             <label for="profile-bio">个人简介</label>
-                            <textarea id="profile-bio" rows="3" placeholder="介绍一下自己...">象限时光的忠实用户，致力于高效时间管理</textarea>
+                            <textarea id="profile-bio" rows="3" placeholder="介绍一下自己...">本机生产力工具的忠实用户，致力于高效时间管理</textarea>
                         </div>
 
                         <div class="form-group">

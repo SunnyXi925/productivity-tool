@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>导出数据 - 象限时光</title>
+    <title>导出数据 - 本机生产力工具</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1197,7 +1197,7 @@
         function generatePDFPreviewText(tasks, includeNotes, includeDates, includePriority) {
             let preview = 'PDF 文档预览\n';
             preview += '='.repeat(50) + '\n\n';
-            preview += `象限时光任务列表\n`;
+            preview += `本机生产力工具任务列表\n`;
             preview += `导出时间: ${new Date().toLocaleString()}\n`;
             preview += `任务总数: ${tasks.length}\n\n`;
             
@@ -1219,7 +1219,7 @@
         
         // 生成Word预览文本
         function generateWordPreviewText(tasks, includeNotes, includeDates, includePriority) {
-            let preview = '象限时光任务列表\n';
+            let preview = '本机生产力工具任务列表\n';
             preview += '='.repeat(50) + '\n\n';
             preview += `导出时间: ${new Date().toLocaleString()}\n`;
             preview += `任务总数: ${tasks.length}\n\n`;
@@ -1252,7 +1252,7 @@
         
         // 生成Markdown预览文本
         function generateMarkdownPreviewText(tasks, includeNotes, includeDates, includePriority) {
-            let md = '# 象限时光任务列表\n\n';
+            let md = '# 本机生产力工具任务列表\n\n';
             md += `**导出时间:** ${new Date().toLocaleString()}\n`;
             md += `**任务总数:** ${tasks.length}\n\n`;
             md += '| 序号 | 任务标题 | 优先级 | 状态';
@@ -1282,9 +1282,9 @@
         function generateHTMLPreviewText(tasks, includeNotes, includeDates, includePriority) {
             let html = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n';
             html += '<meta charset="UTF-8">\n';
-            html += '<title>象限时光任务列表</title>\n';
+            html += '<title>本机生产力工具任务列表</title>\n';
             html += '</head>\n<body>\n';
-            html += '<h1>象限时光任务列表</h1>\n';
+            html += '<h1>本机生产力工具任务列表</h1>\n';
             html += `<p>导出时间: ${new Date().toLocaleString()}</p>\n`;
             html += `<p>任务总数: ${tasks.length}</p>\n`;
             html += '<table border="1">\n<tr><th>序号</th><th>任务标题</th><th>优先级</th><th>状态</th>';
@@ -1378,7 +1378,7 @@
             let csv = '\uFEFF'; // BOM for UTF-8
             
             // 添加标题和统计信息
-            csv += '象限时光任务列表\n';
+            csv += '本机生产力工具任务列表\n';
             csv += `导出时间,${new Date().toLocaleString()}\n`;
             csv += `任务总数,${tasks.length}\n`;
             csv += `已完成,${tasks.filter(t => t.completed).length}\n`;
@@ -1410,7 +1410,7 @@
                 csv += '\n';
             });
             
-            const fileName = `象限时光任务列表_${new Date().toISOString().slice(0, 10)}.csv`;
+            const fileName = `本机生产力工具任务列表_${new Date().toISOString().slice(0, 10)}.csv`;
             downloadFile(csv, fileName, 'text/csv');
         }
         
@@ -1451,7 +1451,7 @@
             // 生成HTML内容
             let htmlContent = `
                 <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #2563eb; padding-bottom: 20px;">
-                    <h1 style="color: #2563eb; font-size: 28px; margin: 0 0 10px 0; font-weight: bold;">象限时光任务列表</h1>
+                    <h1 style="color: #2563eb; font-size: 28px; margin: 0 0 10px 0; font-weight: bold;">本机生产力工具任务列表</h1>
                     <p style="color: #666; font-size: 16px; margin: 5px 0;">导出时间: ${new Date().toLocaleString()}</p>
                     <p style="color: #666; font-size: 16px; margin: 5px 0;">任务总数: ${tasks.length}</p>
                 </div>
@@ -1571,7 +1571,7 @@
                 }
                 
                 // 保存文件
-                const fileName = `象限时光任务列表_${new Date().toISOString().slice(0, 10)}.pdf`;
+                const fileName = `本机生产力工具任务列表_${new Date().toISOString().slice(0, 10)}.pdf`;
                 pdf.save(fileName);
                 console.log('PDF导出成功，文件名:', fileName);
             }).catch(error => {
@@ -1651,7 +1651,7 @@
             let html = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n';
             html += '<meta charset="UTF-8">\n';
             html += '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n';
-            html += '<title>象限时光任务列表</title>\n';
+            html += '<title>本机生产力工具任务列表</title>\n';
             html += '<style>\n';
             html += '* { margin: 0; padding: 0; box-sizing: border-box; }\n';
             html += 'body { \n';
@@ -1708,7 +1708,7 @@
             html += '<body>\n';
             html += '<div class="container">\n';
             html += '<div class="header">\n';
-            html += '<h1>📋 象限时光任务列表</h1>\n';
+            html += '<h1>📋 本机生产力工具任务列表</h1>\n';
             html += '<div class="subtitle">导出时间: ' + new Date().toLocaleString() + '</div>\n';
             html += '</div>\n';
             html += '<div class="content">\n';
@@ -1759,16 +1759,16 @@
             html += '</html>';
             
             const fileName = fileExtension === 'doc' ? 
-                `象限时光任务列表_${new Date().toISOString().slice(0, 10)}.doc` : 
-                `象限时光任务列表_${new Date().toISOString().slice(0, 10)}.html`;
+                `本机生产力工具任务列表_${new Date().toISOString().slice(0, 10)}.doc` :
+                `本机生产力工具任务列表_${new Date().toISOString().slice(0, 10)}.html`;
             const mimeType = fileExtension === 'doc' ? 'application/msword' : 'text/html';
             
             downloadFile(html, fileName, mimeType);
         }
         
         function exportToMarkdown(tasks, includeNotes, includeDates, includePriority) {
-            let md = '# 📋 象限时光任务列表\n\n';
-            md += '> **Quadrant Time Management System**  \n';
+            let md = '# 📋 本机生产力工具任务列表\n\n';
+            md += '> **Productivity Tool Management System**  \n';
             md += `> 导出时间: ${new Date().toLocaleString()}\n\n`;
             
             // 统计信息
@@ -1805,9 +1805,9 @@
             });
             
             md += '\n---\n\n';
-            md += `*此文档由象限时光任务管理系统自动生成于 ${new Date().toLocaleString()}*\n`;
+            md += `*此文档由本机生产力工具任务管理系统自动生成于 ${new Date().toLocaleString()}*\n`;
             
-            const fileName = `象限时光任务列表_${new Date().toISOString().slice(0, 10)}.md`;
+            const fileName = `本机生产力工具任务列表_${new Date().toISOString().slice(0, 10)}.md`;
             downloadFile(md, fileName, 'text/markdown');
         }
         

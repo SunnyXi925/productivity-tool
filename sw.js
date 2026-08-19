@@ -63,10 +63,7 @@ const APP_SHELL = [
   './quadrant-calendar-sync.js',
   './js/api-sync-bootstrap.js',
   './assets/images/reward-wechat.png',
-  './logo.svg',
-  './logo-icon.svg',
-  './logo-text.svg',
-  './logo-text-dark.svg'
+  './favicon.svg'
 ];
 
 self.addEventListener('install', event => {

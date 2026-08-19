@@ -410,7 +410,7 @@ function createInstallBannerContent() {
     text.className = 'install-banner-text';
     const title = document.createElement('div');
     title.className = 'install-banner-title';
-    title.textContent = '安装象限时光';
+    title.textContent = '安装本机生产力工具';
     const desc = document.createElement('div');
     desc.className = 'install-banner-desc';
     desc.textContent = '添加到主屏幕，获得更好的使用体验';

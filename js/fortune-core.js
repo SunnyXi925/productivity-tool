@@ -2809,7 +2809,7 @@ class FortuneSystem {
         ctx.font = 'bold 28px "Noto Sans SC", sans-serif';
         ctx.shadowColor = 'rgba(255, 215, 0, 0.3)';
         ctx.shadowBlur = 6;
-        ctx.fillText('象限时光', width / 2, brandY + 50);
+        ctx.fillText('本机生产力工具', width / 2, brandY + 50);
 
         // 重置阴影
         ctx.shadowColor = 'transparent';

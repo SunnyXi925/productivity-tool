@@ -71,16 +71,24 @@ body.local-workspace .logo-section {
 
 body.local-workspace .main-logo {
     position: static !important;
-    display: block !important;
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 9px !important;
     width: auto !important;
     height: auto !important;
     margin: 0 !important;
 }
 
-body.local-workspace .main-logo-image {
-    display: block;
-    width: 142px !important;
-    max-height: 40px;
+.product-wordmark {
+    color: var(--studio-ink);
+    font: 800 15px/1 Inter, sans-serif;
+    letter-spacing: 0.14em;
+}
+
+.product-wordmark-tag {
+    color: var(--studio-blue);
+    font: 700 9px/1 Inter, sans-serif;
+    letter-spacing: 0.12em;
 }
 
 body.local-workspace .header-controls {
@@ -610,6 +618,10 @@ body.modal-open {
     body.local-workspace .container > header {
         padding: 10px 12px 0;
         border-radius: 17px;
+    }
+
+    .product-wordmark-tag {
+        display: none;
     }
 
     .header-ai-button span:not(.material-icons),

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to XXSG OpenSource will be documented in this file.
+All notable changes to Local Productivity Tool will be documented in this file.
 
 The project follows pragmatic release notes rather than strict semantic versioning while it is still being prepared as a local-first open-source application.
 

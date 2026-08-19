@@ -147,7 +147,7 @@
 
     function generatePDFPreview(tasks, includeNotes, includeDates) {
         let preview = 'PDF格式预览:\n\n';
-        preview += '象限时光 - 任务管理报告\n';
+        preview += '本机生产力工具 - 任务管理报告\n';
         preview += '='.repeat(30) + '\n\n';
         preview += `导出时间: ${new Date().toLocaleString()}\n`;
         preview += `任务总数: ${tasks.length}\n\n`;
@@ -176,7 +176,7 @@
 
     function generateWordPreview(tasks, includeNotes, includeDates) {
         let preview = 'Word格式预览:\n\n';
-        preview += '象限时光任务管理文档\n';
+        preview += '本机生产力工具任务管理文档\n';
         preview += '='.repeat(25) + '\n\n';
 
         preview += '目录\n';
@@ -207,7 +207,7 @@
 
     function generateMarkdownPreview(tasks, includeNotes, includeDates) {
         let preview = 'Markdown格式预览:\n\n';
-        preview += '# 象限时光任务管理\n\n';
+        preview += '# 本机生产力工具任务管理\n\n';
         preview += `**导出时间:** ${new Date().toLocaleString()}\n`;
         preview += `**任务总数:** ${tasks.length}\n\n`;
 
@@ -303,7 +303,7 @@
             csvContent += row.join(',') + '\n';
         });
 
-        downloadFile(csvContent, '象限时光任务列表.csv', 'text/csv');
+        downloadFile(csvContent, '本机生产力工具任务列表.csv', 'text/csv');
     }
 
     function exportToPDF(tasks, includeNotes, includeDates) {
@@ -332,7 +332,7 @@
 
         // 标题
         doc.setFontSize(20);
-        doc.text('象限时光 - 任务管理报告', 20, 30);
+        doc.text('本机生产力工具 - 任务管理报告', 20, 30);
 
         // 基本信息
         doc.setFontSize(12);
@@ -380,7 +380,7 @@
             }
         });
 
-        doc.save('象限时光任务列表.pdf');
+        doc.save('本机生产力工具任务列表.pdf');
     }
 
     function exportToWord(tasks, includeNotes, includeDates) {
@@ -390,7 +390,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>象限时光任务管理</title>
+            <title>本机生产力工具任务管理</title>
             <style>
                 body { font-family: 'Microsoft YaHei', Arial, sans-serif; margin: 40px; }
                 h1 { color: #6366f1; border-bottom: 2px solid #6366f1; padding-bottom: 10px; }
@@ -406,7 +406,7 @@
             </style>
         </head>
         <body>
-            <h1>象限时光任务管理报告</h1>
+            <h1>本机生产力工具任务管理报告</h1>
             <p><strong>导出时间:</strong> ${new Date().toLocaleString()}</p>
             <p><strong>任务总数:</strong> ${tasks.length}</p>
             <p><strong>已完成:</strong> ${tasks.filter(t => t.completed).length}</p>
@@ -447,11 +447,11 @@
         </html>
         `;
 
-        downloadFile(htmlContent, '象限时光任务列表.doc', 'application/msword');
+        downloadFile(htmlContent, '本机生产力工具任务列表.doc', 'application/msword');
     }
 
     function exportToMarkdown(tasks, includeNotes, includeDates) {
-        let markdown = `# 象限时光任务管理\n\n`;
+        let markdown = `# 本机生产力工具任务管理\n\n`;
         markdown += `**导出时间:** ${new Date().toLocaleString()}\n`;
         markdown += `**任务总数:** ${tasks.length}\n`;
         markdown += `**已完成:** ${tasks.filter(t => t.completed).length}\n`;
@@ -481,7 +481,7 @@
             }
         });
 
-        downloadFile(markdown, '象限时光任务列表.md', 'text/markdown');
+        downloadFile(markdown, '本机生产力工具任务列表.md', 'text/markdown');
     }
 
     function getQuadrantText(priority) {

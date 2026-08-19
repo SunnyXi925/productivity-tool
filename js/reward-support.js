@@ -238,7 +238,7 @@
         const title = document.createElement('h2');
         title.id = 'reward-support-title';
         title.className = 'reward-support-title';
-        title.textContent = '随喜赞赏，支持象限时光继续开源';
+        title.textContent = '随喜赞赏，支持本机生产力工具继续开源';
 
         const closeButton = document.createElement('button');
         closeButton.type = 'button';
@@ -254,7 +254,7 @@
 
         const text = document.createElement('p');
         text.className = 'reward-support-text';
-        text.textContent = '象限时光开源版会持续保持本地优先、免费可用。如果它帮你理清优先级、节省时间，欢迎自愿扫码支持维护。赞赏完全随喜，不影响任何功能使用。';
+        text.textContent = '本机生产力工具开源版会持续保持本地优先、免费可用。如果它帮你理清优先级、节省时间，欢迎自愿扫码支持维护。赞赏完全随喜，不影响任何功能使用。';
 
         const qrCard = document.createElement('div');
         qrCard.className = 'reward-support-qr-card';

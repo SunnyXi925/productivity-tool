@@ -1,4 +1,4 @@
-// 象限时光 v2.9.3 - 英文两行导航栏优化 + 登录系统 + 权限控制 + AI功能增强
+// 本机生产力工具 v2.9.3 - 本地工作区 + 四象限管理 + AI 功能
 
 // ==================== 调试配置 ====================
 // 设置为 false 可关闭调试日志，保留错误和警告
@@ -18,7 +18,7 @@ function infoLog(...args) {
 }
 
 if (DEBUG_MODE) {
-    console.log('🚀 象限时光 v2.9.3 已加载 - 英文两行导航栏优化 + 登录系统 + 权限控制 + AI功能增强');
+    console.log('🚀 本机生产力工具 v2.9.3 已加载 - 本地工作区 + 四象限管理 + AI 功能');
     console.log('🐛 调试模式已启用');
 }
 
@@ -170,6 +170,7 @@ setTimeout(() => {
 
 // 🔧 添加权限同步函数（尊重管理员设置）
 window.syncPermissionsFromStorage = function() {
+    if (window.localWorkspaceMode) return true;
     console.log('🚨 === 同步权限设置（尊重管理员配置） ===');
 
     try {
@@ -231,6 +232,7 @@ window.syncPermissionsFromStorage = function() {
 
 // 页面加载时自动同步权限（尊重管理员设置）
 window.autoSyncPermissions = function() {
+    if (window.localWorkspaceMode) return;
     console.log('🔍 === 自动同步权限（尊重管理员配置） ===');
 
     // 检查所有用户权限设置
@@ -264,6 +266,10 @@ function checkUserMenuPermissions() {
     if (!currentUser) {
         console.log('❌ 用户未登录');
         return [];
+    }
+
+    if (window.localWorkspaceMode || currentUser.id === 'local-workspace') {
+        return [...LOCAL_WORKSPACE_PERMISSIONS];
     }
 
     // 🔧 强制修复：直接从localStorage获取最新的用户数据
@@ -554,6 +560,7 @@ function updateMenuVisibility() {
 
 // 🔧 强制权限同步函数
 function forcePermissionSyncFromStorage() {
+    if (window.localWorkspaceMode) return;
     // 减少控制台输出频率
     if (!window._lastSyncTime || Date.now() - window._lastSyncTime > 5000) {
         console.log('🔧 强制权限同步中...');
@@ -4791,7 +4798,7 @@ function updateProfileInfo() {
     // 更新个人简介
     const bioInput = document.getElementById('profile-bio');
     if (bioInput) {
-        bioInput.value = currentUser.bio || '象限时光的忠实用户，致力于高效时间管理';
+        bioInput.value = currentUser.bio || '本机生产力工具的忠实用户，致力于高效时间管理';
     }
 
     // 更新注册时间 - 支持手动编辑

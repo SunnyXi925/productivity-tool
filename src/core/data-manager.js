@@ -30,7 +30,7 @@ export function exportUserData(format = 'json') {
                 success: true,
                 data: exportData,
                 blob: new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' }),
-                filename: `XXSG_数据备份_${new Date().toISOString().split('T')[0]}.json`
+                filename: `productivity-tool_数据备份_${new Date().toISOString().split('T')[0]}.json`
             };
         } else if (format === 'csv') {
             // 简化的CSV导出（仅任务）
@@ -45,7 +45,7 @@ export function exportUserData(format = 'json') {
                 success: true,
                 data: csvContent,
                 blob: new Blob([csvContent], { type: 'text/csv;charset=utf-8;' }),
-                filename: `XXSG_任务数据_${new Date().toISOString().split('T')[0]}.csv`
+                filename: `productivity-tool_任务数据_${new Date().toISOString().split('T')[0]}.csv`
             };
         }
 

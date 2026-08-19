@@ -4,10 +4,10 @@
 window.XXSG_TRANSLATIONS = {
     zh: {
         // 页面标题和导航
-        pageTitle: '象限时光 - 四象限时间管理工具',
-        logo: '象限时光',
+        pageTitle: '本机生产力工具 - 四象限时间管理工具',
+        logo: '本机生产力工具',
         mainTitle: '"四格见天地，一步定乾坤"',
-        subTitle: '象限时光，让重要的事不再匆忙，让匆忙的事不再重要。',
+        subTitle: '本机生产力工具，让重要的事不再匆忙，让匆忙的事不再重要。',
 
         // 标签页
         listTab: '添加任务',
@@ -303,7 +303,7 @@ window.XXSG_TRANSLATIONS = {
         confirmClear: '确定要清空这次复盘吗？',
 
         // 导出页面相关翻译
-        exportPageTitle: '导出任务数据 - 象限时光',
+        exportPageTitle: '导出任务数据 - 本机生产力工具',
         exportTaskData: '导出任务数据',
         exportDescription: '选择格式和设置，导出您的任务数据',
         back: '返回',
@@ -334,7 +334,7 @@ window.XXSG_TRANSLATIONS = {
         htmlFormat: '网页格式，适合在线查看',
 
         // 导出文件名
-        exportFileName: '象限时光任务列表',
+        exportFileName: '本机生产力工具任务列表',
 
         // 任务状态
         taskStatusCompleted: '已完成',
@@ -380,10 +380,10 @@ window.XXSG_TRANSLATIONS = {
     },
     en: {
         // Page titles and navigation
-        pageTitle: 'Quadrant Time - Four Quadrant Time Management Tool',
-        logo: 'Quadrant Time',
+        pageTitle: 'Productivity Tool - Four Productivity Tool Management Tool',
+        logo: 'Productivity Tool',
         mainTitle: '"Four grids see the world, one step determines the universe"',
-        subTitle: 'Quadrant Time, making important things less urgent, urgent things less important.',
+        subTitle: 'Productivity Tool, making important things less urgent, urgent things less important.',
 
         // Tabs
         listTab: 'Add\nTask',
@@ -680,7 +680,7 @@ window.XXSG_TRANSLATIONS = {
         confirmClear: 'Are you sure you want to clear this review?',
 
         // Export page related translations
-        exportPageTitle: 'Export Task Data - Quadrant Time',
+        exportPageTitle: 'Export Task Data - Productivity Tool',
         exportTaskData: 'Export Task Data',
         exportDescription: 'Select format and settings to export your task data',
         back: 'Back',
@@ -711,7 +711,7 @@ window.XXSG_TRANSLATIONS = {
         htmlFormat: 'Web format, suitable for online viewing',
 
         // Export file names
-        exportFileName: 'Quadrant Time Task List',
+        exportFileName: 'Productivity Tool Task List',
 
         // Task status
         taskStatusCompleted: 'Completed',

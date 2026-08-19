@@ -1,6 +1,6 @@
 # 部署指南
 
-XXSG 开源版是一个静态优先的 PWA，可以部署到 GitHub Pages、Vercel、Netlify、Cloudflare Pages 或任意静态文件服务器。
+本机生产力工具是一个静态优先的 PWA，可以部署到 GitHub Pages、Vercel、Netlify、Cloudflare Pages 或任意静态文件服务器。
 
 ## 部署前检查
 

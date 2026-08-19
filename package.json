@@ -46,7 +46,7 @@
     "check:admin-storage": "node tools/check-admin-storage.mjs",
     "check:data-sync-storage": "node tools/check-data-sync-storage.mjs",
     "audit:project": "node tools/project-audit.mjs",
-    "serve": "python -m http.server 8080",
+    "serve": "python3 -m http.server 8080",
     "check:manifest": "node tools/check-manifest.mjs",
     "check:sw-cache": "node tools/check-sw-cache.mjs",
     "check:production-boundary": "node tools/check-production-boundary.mjs"
