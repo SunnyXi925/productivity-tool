@@ -1,43 +1,52 @@
-src/features/ai/ai-service.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 5,19,42,52,54-56
 script.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 58,62-67,736-752,1040,1128
-sw.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 1,6,29,69
-js/workbench-enhancements.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 242-273
-src/core/security.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 688-689
-docs/FIRST_USE.md
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 1,3,5,11,13,15-18,20,22,24,26,28
-js/ai-core.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 4-9,25,101-106,120,122,124-126,133,137-139,160-161
-vercel.json
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 8
-tools/check-no-sensitive-console.mjs
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 2,7
-data-sync.html
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 307-309,316,318,333
-css/studio-theme.css
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 28-38,43-83,86-95,134-147,174-175,177-181,603-687
-package.json
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 2-3,5,7-8,11,14
-tools/check-sensitive-field-categories.mjs
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 2,52
+  s_ca0f6669f6bddc::t_d05d3b0001fa53 58,62-67,736-752,1040,1128
 manifest.json
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 5
-tools/check-js-syntax.mjs
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 2,9
+  s_ca0f6669f6bddc::t_d05d3b0001fa53 5
+data-sync.html
+  s_ca0f6669f6bddc::t_7fd48e53fdb614 307-309,316,318,333
+js/ai-core.js
+  s_ca0f6669f6bddc::t_51b7b62087cc0f 4-9,25,101-105,160-161
+  s_ca0f6669f6bddc::t_6268454f5fdbd2 106
+  s_ca0f6669f6bddc::t_875a2b167cc972 120,122,124-126,133,137-139
+tools/check-no-sensitive-console.mjs
+  s_ca0f6669f6bddc::t_17d28aa1ef6d8e 2,7
 tools/check-max-file-size-soft.mjs
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 2,13
+  s_ca0f6669f6bddc::t_f111d4c40fed86 2,13
+src/core/security.js
+  s_ca0f6669f6bddc::t_7fe7969b6070b4 688-689
 index.html
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 14,36,90,2819-2820
-js/pwa-update-core.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 11
+  s_ca0f6669f6bddc::t_de71fbfc82d114 14,36,90,2819-2820
+css/studio-theme.css
+  s_ca0f6669f6bddc::t_5664bae43b8060 621-624,627-631
+  s_ca0f6669f6bddc::t_de187f21ca36ca 152-153
+  s_ca0f6669f6bddc::t_8459fc6145b2a9 2-26,28-34,38,41,43-48,52-54,78-80,83,98-99,102-104,107-116,119-121,124-126,129-131,134,140-146,150-151,154-161,164-166,169-171,174,184,186-188,190-197,200-209,212-215,218,221-226,229-234,237-242,244-248,250-254,257,260-268,270,273-274,277-280,282-286,289-290,292-297,300-303,307,309-315,317-318,321-330,333-335,338-340,342-345,348-349,353-357,360-363,366-370,373-376,379-393,396-399,402-405,408-415,418,420-424,427-428,431-438,441-445,448-449,452-456,459-460,463-468,471-474,476-483,485-488,490-492,495-498,500-503,505-512,514-516,520,523-526,529-530,533-536,539-546,549-554,558,560-566,569-571,573-577,579-582,585-586,588-601,603-620,625-626,632-687,690-696
+  s_ca0f6669f6bddc::t_6b6e7339c0897d 35-37,49-51,55-62,65-77,81-82,86-95,135-139,147,175,177-181
+  s_ca0f6669f6bddc::t_b3a9df0b7d8b11 63-64
 js/fortune-core.js
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 668,673-674,677-678,681-682,720,733,735,829,838,858,864
+  s_ca0f6669f6bddc::t_ef6d0f55094c12 673
+  s_ca0f6669f6bddc::t_875a2b167cc972 668,674,677-678,681-682,720,733,735,829,838,858,864,1028
+js/workbench-enhancements.js
+  s_ca0f6669f6bddc::t_8459fc6145b2a9 2-17,20-24,27-28,31-37,39-63,65-67,69-83,85-100,103-107,109-112,114-117,119-128,130-146,148-154,156-165,168-191,195-208,210,213-219,221-227,229-238,242-255,257-268,270-273,275,277-287,289-308,310-318,320-325,327-336,339-340
+  s_ca0f6669f6bddc::t_875a2b167cc972 256,269
+package.json
+  s_ca0f6669f6bddc::t_ee1e6e27f140e2 2-3,5,7-8,11,14
 tools/project-audit.mjs
-  s_ca0f6669f6bddc::t_b4eae15f3ef8fe 2,68,79
+  s_ca0f6669f6bddc::t_f111d4c40fed86 68,79
+  s_ca0f6669f6bddc::t_63456fa9b40937 2
+vercel.json
+  s_ca0f6669f6bddc::t_35f8fc62a43c49 8
+tools/check-sensitive-field-categories.mjs
+  s_ca0f6669f6bddc::t_f111d4c40fed86 2,52
+sw.js
+  s_ca0f6669f6bddc::t_8dc55ecb383927 1,6,29
+  s_ca0f6669f6bddc::t_824b5844d89a4d 69
+tools/check-js-syntax.mjs
+  s_ca0f6669f6bddc::t_e6919b433ed53e 2,9
+src/features/ai/ai-service.js
+  s_ca0f6669f6bddc::t_51b7b62087cc0f 5,19,42
+  s_ca0f6669f6bddc::t_875a2b167cc972 52,54-56
+js/pwa-update-core.js
+  s_ca0f6669f6bddc::t_6dd35aae9d2581 11
 ---
 {
   "schema_version": "authorship/3.0.0",
@@ -51,9 +60,10 @@ tools/project-audit.mjs
         "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
         "model": "gpt-5.6-sol"
       },
-      "human_author": "Xi Feng <73228447+SunnyXi925@users.noreply.github.com>",
+      "human_author": null,
       "total_additions": 323,
-      "accepted_lines": 323
+      "total_deletions": 51,
+      "accepted_lines": 908
     }
   }
 }
