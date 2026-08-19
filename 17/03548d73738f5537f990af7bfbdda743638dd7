@@ -1,0 +1,49 @@
+desktop/preload.cjs
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 1-9
+desktop/main.cjs
+  s_ca0f6669f6bddc::t_978699cd75d58e 154-170,173,188,253,266
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 1-153,171-172,174-187,189-231,235-252,254-265,267-275
+  s_ca0f6669f6bddc::t_366bf0d02f4846 232-234
+sw.js
+  s_ca0f6669f6bddc::t_8bbe1213714ab4 65-66
+index.html
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 100-102,2822
+package.json
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 6,30-32,60-84
+  s_ca0f6669f6bddc::t_7ad269be7484c5 85-88
+js/smart-reminder-system.js
+  s_ca0f6669f6bddc::t_afd6f83822de6c 34-35
+css/desktop-widget.css
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 1-10,13-17,19-33,36-39,41-43,45-50,52-91,93-154,156-183,185-204,207-211,213-216,221-225,233-420
+  s_ca0f6669f6bddc::t_8bbe1213714ab4 11-12,44,184
+  s_ca0f6669f6bddc::t_1af224d11381e5 155
+  s_ca0f6669f6bddc::t_afd6f83822de6c 18,51,92
+  s_ca0f6669f6bddc::t_ceae99e0dea8fe 34-35,40,205-206,212,217-220,226-232
+.gitignore
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 7
+js/desktop-widget.js
+  s_ca0f6669f6bddc::t_1af224d11381e5 95-98
+  s_ca0f6669f6bddc::t_de7e1f8cf1e2f4 1-94,99-103
+CHANGELOG.md
+  s_ca0f6669f6bddc::t_7ad269be7484c5 9-14
+README.md
+  s_ca0f6669f6bddc::t_7ad269be7484c5 3,5,18,31,33,40-41,54,56-90,129-130,135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "1703548d73738f5537f990af7bfbdda743638dd7",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Xi Feng <73228447+SunnyXi925@users.noreply.github.com>",
+      "total_additions": 56,
+      "accepted_lines": 56
+    }
+  }
+}
