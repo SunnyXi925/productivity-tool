@@ -1,0 +1,59 @@
+js/ai-core.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 4-9,25,101-106,120,122,124-126,133,137-139,160-161
+tools/check-sensitive-field-categories.mjs
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 2,52
+js/workbench-enhancements.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 242-273
+data-sync.html
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 307-309,316,318,333
+tools/project-audit.mjs
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 2,68,79
+manifest.json
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 5
+vercel.json
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 8
+js/pwa-update-core.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 11
+tools/check-no-sensitive-console.mjs
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 2,7
+index.html
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 14,36,90,2819-2820
+sw.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 1,6,29,69
+js/fortune-core.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 668,673-674,677-678,681-682,720,733,735,829,838,858,864
+tools/check-max-file-size-soft.mjs
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 2,13
+tools/check-js-syntax.mjs
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 2,9
+css/studio-theme.css
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 28-38,43-83,86-95,134-147,174-175,177-181,603-687
+src/features/ai/ai-service.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 5,19,42,52,54-56
+src/core/security.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 688-689
+script.js
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 58,62-67,736-752,1040,1128
+docs/FIRST_USE.md
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 1,3,5,11,13,15-18,20,22,24,26,28
+package.json
+  s_ca0f6669f6bddc::t_ed5106d8975ff4 2-3,5,7-8,11,14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "abd1d2f366c79102f7514fa630f090c08e55e290",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Xi Feng <73228447+SunnyXi925@users.noreply.github.com>",
+      "total_additions": 323,
+      "accepted_lines": 323
+    }
+  }
+}
