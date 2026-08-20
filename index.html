@@ -1454,13 +1454,18 @@
                 <div class="dashboard-header">
                     <h3 class="dashboard-title">📊 数据可视化看板</h3>
                     <div class="dashboard-actions">
-                        <button class="refresh-btn" data-page-click="refreshAllCharts" title="刷新所有图表">
-                            <i class="fas fa-sync-alt"></i>
-                            <span>刷新</span>
+                        <button class="refresh-btn" data-page-click="refreshAllCharts" title="刷新所有图表" aria-label="刷新所有图表">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M20 6v5h-5"></path>
+                                <path d="M18.2 9A7 7 0 1 0 19 15"></path>
+                            </svg>
                         </button>
-                        <button class="export-btn" data-page-click="exportAllCharts" title="导出图表">
-                            <i class="fas fa-download"></i>
-                            <span>导出</span>
+                        <button class="export-btn" data-page-click="exportAllCharts" title="导出图表" aria-label="导出图表">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 3v12"></path>
+                                <path d="m8 11 4 4 4-4"></path>
+                                <path d="M5 19h14"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -1600,11 +1605,13 @@
                     <span class="material-icons">chevron_right</span>
                 </button>
                 <div class="date-picker-container">
-                    <button id="today-review-btn" class="today-btn">
-                        <span class="material-icons">today</span>
-                        <span data-translate="selectDate">选择日期</span>
+                    <button id="today-review-btn" class="today-btn" type="button" title="选择日期" aria-label="选择日期">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="4" y="5.5" width="16" height="14" rx="2"></rect>
+                            <path d="M8 3.5v4M16 3.5v4M4 9.5h16"></path>
+                        </svg>
                     </button>
-                    <input type="datetime-local" id="date-time-picker" class="date-time-input" style="display: none;">
+                    <input type="date" id="date-time-picker" class="date-time-input" aria-label="选择复盘日期">
                 </div>
             </div>
 

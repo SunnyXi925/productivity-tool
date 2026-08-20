@@ -966,13 +966,18 @@
             <div class="dashboard-header">
                 <h3 class="dashboard-title">📊 数据可视化看板</h3>
                 <div class="dashboard-actions">
-                    <button class="refresh-btn" data-page-click="refreshAllCharts" title="刷新所有图表">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>刷新</span>
+                    <button class="refresh-btn" data-page-click="refreshAllCharts" title="刷新所有图表" aria-label="刷新所有图表">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 6v5h-5"></path>
+                            <path d="M18.2 9A7 7 0 1 0 19 15"></path>
+                        </svg>
                     </button>
-                    <button class="export-btn" data-page-click="exportAllCharts" title="导出图表">
-                        <i class="fas fa-download"></i>
-                        <span>导出</span>
+                    <button class="export-btn" data-page-click="exportAllCharts" title="导出图表" aria-label="导出图表">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3v12"></path>
+                            <path d="m8 11 4 4 4-4"></path>
+                            <path d="M5 19h14"></path>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -1096,7 +1101,7 @@
 
                 <!-- 个性化建议 -->
                 <div class="recommendations-section">
-                    <h4>💡 个性化建议</h4>
+                    <h4>个性化建议</h4>
                     <div id="personalized-recommendations" class="recommendations-list">
                         <div class="recommendation-item">
                             <span class="recommendation-icon">🔍</span>

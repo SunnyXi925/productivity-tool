@@ -209,12 +209,6 @@ class ReviewSystem {
             dateTimePicker.addEventListener('change', (e) => {
                 this.setCustomDateTime(e.target.value);
             });
-
-            dateTimePicker.addEventListener('blur', () => {
-                setTimeout(() => {
-                    dateTimePicker.style.display = 'none';
-                }, 200);
-            });
         }
 
         // 心情选择 - 修复类名匹配问题
@@ -344,30 +338,34 @@ class ReviewSystem {
     showDateTimePicker() {
         const dateTimePicker = document.getElementById('date-time-picker');
         if (dateTimePicker) {
-            // 设置当前日期时间为默认值
-            const now = new Date();
-            const localDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+            // 使用当前复盘日期作为默认值，避免打开选择器时跳回今天。
+            const selectedDate = this.currentDate || new Date();
+            const localDate = new Date(selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000)
                 .toISOString()
-                .slice(0, 16);
-            dateTimePicker.value = localDateTime;
+                .slice(0, 10);
+            dateTimePicker.value = localDate;
 
-            // 显示日期选择器
-            dateTimePicker.style.display = 'block';
             dateTimePicker.focus();
+            try {
+                if (typeof dateTimePicker.showPicker === 'function') {
+                    dateTimePicker.showPicker();
+                } else {
+                    dateTimePicker.click();
+                }
+            } catch (error) {
+                dateTimePicker.click();
+            }
         }
     }
 
     setCustomDateTime(dateTimeString) {
         if (dateTimeString) {
-            this.currentDate = new Date(dateTimeString);
+            const [datePart, timePart = '00:00'] = dateTimeString.split('T');
+            const [year, month, day] = datePart.split('-').map(Number);
+            const [hour, minute] = timePart.split(':').map(Number);
+            this.currentDate = new Date(year, month - 1, day, hour || 0, minute || 0);
             this.updateDateDisplay();
             this.loadCurrentReview();
-
-            // 隐藏日期选择器
-            const dateTimePicker = document.getElementById('date-time-picker');
-            if (dateTimePicker) {
-                dateTimePicker.style.display = 'none';
-            }
         }
     }
 

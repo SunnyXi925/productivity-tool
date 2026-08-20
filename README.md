@@ -90,7 +90,21 @@ open "dist/mac-arm64/Productivity Tool.app"
 npm run desktop:build
 ```
 
-本地自行构建的应用未做 Apple 开发者签名。首次启动如被 macOS 拦截，可在“系统设置 → 隐私与安全性”中选择仍要打开。
+当前机器会生成 Apple 芯片版安装包：
+
+```text
+dist/Productivity Tool-2.0.0-arm64.dmg
+```
+
+将这个 DMG 发给使用 M1/M2/M3/M4 Mac 的用户即可。Intel Mac 需要单独构建：
+
+```bash
+npx electron-builder --mac dmg --x64
+```
+
+接收者打开 DMG 后，把应用拖进“应用程序”文件夹即可。安装包不会携带你的 API Key，接收者需要在应用顶部“AI”设置中填写自己的 Key。
+
+本地自行构建的应用未做 Apple 开发者签名。首次启动如被 macOS 拦截，可右键应用选择“打开”；如果仍被阻止，再到“系统设置 → 隐私与安全性”选择“仍要打开”。公开面向大量用户分发时，应使用 Apple Developer ID 签名并完成 notarization 公证。
 
 ## 浏览器模式
 
