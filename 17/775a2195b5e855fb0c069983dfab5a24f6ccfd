@@ -1,0 +1,39 @@
+desktop/main.cjs
+  s_ca0f6669f6bddc::t_116707128353ac 195
+js/task-template-system.js
+  s_ca0f6669f6bddc::t_16f66280409ffb 430-431,435-436,440-441,445-446,450-451,455-456,491-492
+package.json
+  s_ca0f6669f6bddc::t_16f66280409ffb 3
+js/desktop-widget.js
+  s_ca0f6669f6bddc::t_16f66280409ffb 69-73,82-86,88,188-189
+js/pomodoro-habit-core.js
+  s_ca0f6669f6bddc::t_16f66280409ffb 984-988,1003-1008
+css/desktop-widget-redesign.css
+  s_ca0f6669f6bddc::t_ce016bee4b9dd0 2260-2305,2307,2309-2665,2814
+  s_ca0f6669f6bddc::t_166dee144bf5ca 1450-1452
+  s_ca0f6669f6bddc::t_57fe018c0a45fe 2306,2308,2666-2813
+favicon.svg
+  s_ca0f6669f6bddc::t_f9c26ac71b9953 1-21
+package-lock.json
+  s_ca0f6669f6bddc::t_f9c26ac71b9953 3,9
+README.md
+  s_ca0f6669f6bddc::t_f9c26ac71b9953 96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "17775a2195b5e855fb0c069983dfab5a24f6ccfd",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 24,
+      "accepted_lines": 24
+    }
+  }
+}
