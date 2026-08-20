@@ -1,0 +1,31 @@
+css/desktop-widget-redesign.css
+  s_ca0f6669f6bddc::t_2189804349603c 2023-2031
+  s_ca0f6669f6bddc::t_f0c6397a84086d 1952-1955
+  s_ca0f6669f6bddc::t_f40a9a286cc674 1972-1975
+  s_ca0f6669f6bddc::t_92b76d93563b0b 1946-1951,1956-1971
+  s_ca0f6669f6bddc::t_c8063d7ef939f6 1492-1945
+  s_ca0f6669f6bddc::t_8b3c11e2064415 1976-2022
+css/review-textarea-resize.css
+  s_ca0f6669f6bddc::t_f0c6397a84086d 8-9
+js/review-system-core.js
+  s_ca0f6669f6bddc::t_f0c6397a84086d 82-83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "ba5363e3288782044aee69b869c7c2c2e4f7f83c",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 466,
+      "total_deletions": 4,
+      "accepted_lines": 466
+    }
+  }
+}
