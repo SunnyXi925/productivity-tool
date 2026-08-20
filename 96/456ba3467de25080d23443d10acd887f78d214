@@ -1,0 +1,47 @@
+package.json
+  s_ca0f6669f6bddc::t_3f881d7690618a 25
+sw.js
+  s_ca0f6669f6bddc::t_b00fb019980019 1,65
+index.html
+  s_ca0f6669f6bddc::t_b00fb019980019 102,311,314,316,327-329,333,358-360,364,389-391,395,415,449-451,454-455,475
+script.js
+  s_ca0f6669f6bddc::t_9a2cceb4a3d8dc 64,388,528,1378,1751,1779
+css/desktop-widget-redesign.css
+  s_ca0f6669f6bddc::t_301c5be2dba58c 602,633-634,636,645-672,716,1205-1210,1280-1281,1327-1328,1331-1368
+  s_ca0f6669f6bddc::t_205019541657ae 1424,1426-1437,1439-1443,1461-1482
+  s_ca0f6669f6bddc::t_9fec3292999373 245,269,283,366,368
+  s_ca0f6669f6bddc::t_48ce43c9286274 1-244,246-268,270-282,284-365,367,369-601,603-632,635,637-644,673-715,717-1204,1211-1279,1282-1326,1329-1330,1369-1423,1483-1491
+  s_ca0f6669f6bddc::t_1c44d7157918b5 1425,1438,1444-1460
+js/app-feature-view-loader.js
+  s_ca0f6669f6bddc::t_b00fb019980019 23
+js/desktop-widget.js
+  s_ca0f6669f6bddc::t_b54c7e9920e1f8 135-136,139
+  s_ca0f6669f6bddc::t_35ae3829ddc85f 111-115
+  s_ca0f6669f6bddc::t_5f4c4d6864969a 104-105,108-110,122-134,137-138,140-142,170,219,221,233
+  s_ca0f6669f6bddc::t_6d980523819aa7 106-107
+  s_ca0f6669f6bddc::t_b00fb019980019 54,58,169
+  s_ca0f6669f6bddc::t_6bca7026686057 220,222-232
+  s_ca0f6669f6bddc::t_01d79efeee7f49 116-121
+CHANGELOG.md
+  s_ca0f6669f6bddc::t_eed581fc4d79c2 11-14,19-20
+README.md
+  s_ca0f6669f6bddc::t_eed581fc4d79c2 3,13,19-20,40,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "96456ba3467de25080d23443d10acd887f78d214",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 12,
+      "accepted_lines": 12
+    }
+  }
+}
