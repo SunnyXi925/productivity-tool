@@ -1,0 +1,37 @@
+css/desktop-widget.css
+  s_ca0f6669f6bddc::t_fbba27c3afd71e 127
+  s_ca0f6669f6bddc::t_9b5b10da9b5167 46,117,123-126,128-134,412,419
+js/desktop-widget.js
+  s_ca0f6669f6bddc::t_9b5b10da9b5167 156-159,162-175,180,182
+css/desktop-widget-pages.css
+  s_ca0f6669f6bddc::t_81b02d36adc32a 1826,1836
+sw.js
+  s_ca0f6669f6bddc::t_3ce5d6049d11e3 1
+desktop/preload.cjs
+  s_ca0f6669f6bddc::t_9b5b10da9b5167 6-8
+desktop/main.cjs
+  s_ca0f6669f6bddc::t_3ce5d6049d11e3 249
+  s_ca0f6669f6bddc::t_21d3b01e03e374 10,35,60,62-63,65-68,130-140,142,147,174,176-177,179,207,212-213,216-217,227,235,247-248,252-256
+README.md
+  s_ca0f6669f6bddc::t_5dda8b6b9c395b 18,43,72-75
+CHANGELOG.md
+  s_ca0f6669f6bddc::t_5dda8b6b9c395b 12,35-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "40d61f1d37291e8a869e9109d02e217f71486203",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 11,
+      "accepted_lines": 11
+    }
+  }
+}
