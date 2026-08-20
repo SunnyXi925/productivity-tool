@@ -79,8 +79,8 @@ class ReviewSystem {
             textarea.dataset.customResize = 'true';
 
             // 基础样式
-            textarea.style.setProperty('height', '140px', 'important');
-            textarea.style.setProperty('min-height', '90px', 'important');
+            textarea.style.setProperty('height', '88px', 'important');
+            textarea.style.setProperty('min-height', '88px', 'important');
             textarea.style.setProperty('overflow', 'auto', 'important');
 
             // 创建手柄元素（作为 textarea 的兄弟，绝对定位）

@@ -5,8 +5,8 @@
 }
 .review-textarea-wrapper textarea {
     width: 100% !important;
-    min-height: 90px !important;
-    height: 140px !important;
+    min-height: 88px !important;
+    height: 88px !important;
     overflow: auto !important;
     box-sizing: border-box !important;
     display: block !important;
