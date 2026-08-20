@@ -1,0 +1,45 @@
+css/desktop-widget-redesign.css
+  s_ca0f6669f6bddc::t_583607ba175321 1452
+  s_ca0f6669f6bddc::t_335ef021b7cc4a 2816-3173
+desktop/preload.cjs
+  s_ca0f6669f6bddc::t_2d4e04c6673aab 8
+package.json
+  s_ca0f6669f6bddc::t_2d4e04c6673aab 3
+js/workbench-enhancements.js
+  s_ca0f6669f6bddc::t_be07404210ab8e 121-122,127,130,152,210,255-256,269,271-277,279
+  s_ca0f6669f6bddc::t_c621cdcca2552d 226
+desktop/main.cjs
+  s_ca0f6669f6bddc::t_2d4e04c6673aab 1,10,12,37,66,149,151,178,205,212,233-237,239,265-295,298,300
+  s_ca0f6669f6bddc::t_be07404210ab8e 296
+  s_ca0f6669f6bddc::t_583607ba175321 54-55
+js/ai-core.js
+  s_ca0f6669f6bddc::t_2d4e04c6673aab 311-317,369-382,788
+  s_ca0f6669f6bddc::t_c621cdcca2552d 343
+js/desktop-widget.js
+  s_ca0f6669f6bddc::t_335ef021b7cc4a 202
+  s_ca0f6669f6bddc::t_2d4e04c6673aab 49,58,97-108,200-201,208-212,216-218,220-223,227,238
+js/fortune-core.js
+  s_ca0f6669f6bddc::t_2d4e04c6673aab 1028-1061
+package-lock.json
+  s_ca0f6669f6bddc::t_02ee71a6c1c9b0 3,9
+README.md
+  s_ca0f6669f6bddc::t_02ee71a6c1c9b0 18,58,75-77,96,105,149,152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "92ee61d4b4a712623bebb7fca52ffcd22116cb0a",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 11,
+      "accepted_lines": 11
+    }
+  }
+}
