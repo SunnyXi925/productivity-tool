@@ -1,0 +1,31 @@
+js/review-system-core.js
+  s_ca0f6669f6bddc::t_f57f266380f399 341-343,345-346,356-357,363-366
+  s_ca0f6669f6bddc::t_bf7eaa74d3c980 349-355
+index.html
+  s_ca0f6669f6bddc::t_f57f266380f399 1457-1461,1463-1468,1608-1612,1614
+css/desktop-widget-redesign.css
+  s_ca0f6669f6bddc::t_2679511be03e1f 2032-2034,2036,2049-2256
+  s_ca0f6669f6bddc::t_301d8dde195e9b 2035,2037-2048
+partials/app-feature-views.html
+  s_ca0f6669f6bddc::t_f57f266380f399 969-973,975-980,1104,1380
+README.md
+  s_ca0f6669f6bddc::t_b960ddad428b4c 93-107
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "51e9eb29b0ee3326db17464be17af8a6417d6092",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 15,
+      "accepted_lines": 15
+    }
+  }
+}
