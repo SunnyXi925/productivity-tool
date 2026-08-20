@@ -64,6 +64,7 @@ const APP_SHELL = [
   './js/api-sync-bootstrap.js',
   './js/desktop-widget.js',
   './css/desktop-widget.css',
+  './css/desktop-widget-pages.css',
   './assets/images/reward-wechat.png',
   './favicon.svg'
 ];

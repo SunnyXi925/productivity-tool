@@ -210,6 +210,10 @@ function switchView(view) {
 
     // 更新视图模式切换按钮的可见性
     updateViewModeToggleButtonVisibility();
+
+    window.dispatchEvent(new CustomEvent('productivity:viewchange', {
+        detail: { view }
+    }));
 }
 
 // 模态框相关函数

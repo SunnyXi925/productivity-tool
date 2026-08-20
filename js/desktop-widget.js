@@ -45,7 +45,97 @@
         });
     }
 
+    const pageMeta = {
+        list: { title: '任务', subtitle: '收集今天要完成的事', action: ['+', '新建任务', 'initial-add-btn'] },
+        quadrant: { title: '四象限', subtitle: '判断轻重缓急', action: ['+', '新建任务', 'initial-add-btn'] },
+        dashboard: { title: '看板', subtitle: '看见进度与节奏' },
+        review: { title: '复盘', subtitle: '回看并收束一天', action: ['保存', '保存复盘', 'save-review-btn'] },
+        templates: { title: '模板', subtitle: '重复工作，一次设置', action: ['+', '创建模板', 'create-template-btn'] },
+        'more-features': { title: '工具', subtitle: '专注、习惯与日程' },
+        fortune: { title: '每日一签', subtitle: '为今天留一句提醒', child: true },
+        pomodoro: { title: '番茄专注', subtitle: '把注意力留在当下', child: true },
+        'habit-tracker': { title: '习惯打卡', subtitle: '让行动留下连续记录', child: true, action: ['+', '添加习惯', 'ht-addHabitBtn'] },
+        countdown: { title: '倒数日', subtitle: '记住值得等待的日子', child: true, action: ['+', '添加纪念日', 'add-countdown-btn'] },
+        'time-tracker': { title: '时间记录', subtitle: '看见时间去了哪里', child: true, action: ['+', '添加时间记录', 'add-time-record-btn'] },
+        calendar: { title: '日历', subtitle: '安排接下来的时间', child: true, action: ['+', '创建日程', 'calendar-sidebar-create'] }
+    };
+
+    function createViewHeader() {
+        const header = document.querySelector('.logo-section');
+        if (!header || header.querySelector('.widget-view-header')) return;
+
+        const shell = element('div', 'widget-view-header');
+        const back = button('‹', 'widget-view-back');
+        back.setAttribute('aria-label', '返回工具');
+        back.hidden = true;
+        back.addEventListener('click', () => window.switchView?.('more-features'));
+
+        const copy = element('div', 'widget-view-copy');
+        const title = element('strong', 'widget-view-title', '四象限');
+        const subtitle = element('span', 'widget-view-subtitle', '判断轻重缓急');
+        copy.append(title, subtitle);
+
+        const action = button('+', 'widget-view-action');
+        action.hidden = true;
+        action.addEventListener('click', () => {
+            const target = action.dataset.target;
+            if (target === 'initial-add-btn') window.switchView?.('list');
+            window.setTimeout(() => document.getElementById(target)?.click(), 0);
+        });
+
+        shell.append(back, copy, action);
+        header.appendChild(shell);
+    }
+
+    function normalizeViewHierarchy() {
+        const main = document.querySelector('.container > main');
+        if (!main) return;
+
+        [
+            'fortune-view',
+            'habit-tracker-view',
+            'countdown-view',
+            'dashboard-view',
+            'review-view',
+            'templates-view'
+        ].forEach(id => {
+            const view = document.getElementById(id);
+            if (view && view.parentElement !== main) main.appendChild(view);
+        });
+    }
+
+    function updateViewHeader(view) {
+        const meta = pageMeta[view] || pageMeta['more-features'];
+        document.body.dataset.widgetView = view;
+        const back = document.querySelector('.widget-view-back');
+        const title = document.querySelector('.widget-view-title');
+        const subtitle = document.querySelector('.widget-view-subtitle');
+        const action = document.querySelector('.widget-view-action');
+        if (back) back.hidden = !meta.child;
+        if (title) title.textContent = meta.title;
+        if (subtitle) subtitle.textContent = meta.subtitle;
+        if (action) {
+            action.hidden = !meta.action;
+            if (meta.action) {
+                action.textContent = meta.action[0];
+                action.title = meta.action[1];
+                action.setAttribute('aria-label', meta.action[1]);
+                action.dataset.target = meta.action[2];
+            } else {
+                action.removeAttribute('data-target');
+            }
+        }
+
+        if (view === 'calendar' && !document.body.dataset.widgetCalendarPrepared) {
+            document.body.dataset.widgetCalendarPrepared = 'true';
+            window.setTimeout(() => document.querySelector('[data-calendar-view="month"]')?.click(), 120);
+        }
+
+        document.querySelector('.container > main')?.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
     function init() {
+        normalizeViewHierarchy();
         document.documentElement.classList.add('desktop-widget-shell');
         document.body.classList.add('desktop-widget');
         document.title = 'Productivity Widget';
@@ -87,12 +177,16 @@
         });
 
         relabelNavigation();
+        createViewHeader();
+        window.addEventListener('productivity:viewchange', event => updateViewHeader(event.detail?.view));
         setInterval(() => {
             const clock = document.querySelector('.desktop-widget-clock');
             if (clock) clock.textContent = formatClock();
         }, 30_000);
 
-        const showPreferredView = () => window.switchView?.(params.get('view') || 'quadrant');
+        const preferredView = params.get('view') || 'quadrant';
+        const showPreferredView = () => window.switchView?.(preferredView);
+        updateViewHeader(preferredView);
         requestAnimationFrame(showPreferredView);
         window.addEventListener('load', () => setTimeout(showPreferredView, 120), { once: true });
         setTimeout(showPreferredView, 700);

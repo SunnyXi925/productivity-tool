@@ -1,0 +1,1921 @@
+/* Unified 430 × 720 desktop-widget layout. Loaded after every legacy stylesheet. */
+body.desktop-widget,
+body.desktop-widget * {
+    box-sizing: border-box;
+}
+
+body.desktop-widget {
+    --widget-canvas: #f6f8fc;
+    --widget-paper-solid: #ffffff;
+    --widget-ink-soft: #3f4a5d;
+    --widget-red: #ef5b55;
+    --widget-amber: #e89a24;
+    --widget-green: #22a47a;
+    --widget-radius: 12px;
+    --widget-card-shadow: 0 8px 24px rgba(29, 42, 68, 0.055);
+}
+
+body.desktop-widget .main-logo {
+    display: none !important;
+}
+
+body.desktop-widget.local-workspace .logo-section {
+    min-height: 48px !important;
+    max-height: 48px !important;
+    padding: 0 9px !important;
+}
+
+.widget-view-header {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+    gap: 8px;
+}
+
+.widget-view-copy {
+    display: grid;
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 1px;
+}
+
+.widget-view-title {
+    overflow: hidden;
+    color: var(--widget-ink);
+    font: 750 13px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+    letter-spacing: 0.01em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.widget-view-subtitle {
+    overflow: hidden;
+    color: var(--widget-muted);
+    font: 520 9px/1.2 -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.widget-view-back,
+.widget-view-action {
+    display: inline-grid;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid var(--widget-line);
+    border-radius: 9px;
+    background: var(--widget-paper-solid);
+    color: var(--widget-blue);
+    box-shadow: none;
+    font: 750 12px/1 -apple-system, BlinkMacSystemFont, sans-serif;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+}
+
+.widget-view-back {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.widget-view-action:not([hidden]) {
+    display: inline-grid !important;
+}
+
+.widget-view-back:not([hidden]) {
+    display: inline-grid !important;
+}
+
+.widget-view-back[hidden],
+.widget-view-action[hidden] {
+    display: none !important;
+}
+
+.widget-view-back:hover,
+.widget-view-action:hover,
+.widget-view-back:focus-visible,
+.widget-view-action:focus-visible {
+    border-color: rgba(49, 92, 234, 0.38);
+    background: rgba(49, 92, 234, 0.08);
+    outline: none;
+}
+
+body.desktop-widget.local-workspace .container > main {
+    overflow: hidden !important;
+    background: var(--widget-canvas);
+}
+
+body.desktop-widget.local-workspace .container > main > .view,
+body.desktop-widget.local-workspace .container > main > .quadrant-view {
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(116, 128, 148, 0.34) transparent;
+}
+
+body.desktop-widget.local-workspace .container > main > .view::-webkit-scrollbar,
+body.desktop-widget.local-workspace .container > main > .quadrant-view::-webkit-scrollbar,
+body.desktop-widget .view *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+body.desktop-widget.local-workspace .container > main > .view::-webkit-scrollbar-thumb,
+body.desktop-widget.local-workspace .container > main > .quadrant-view::-webkit-scrollbar-thumb,
+body.desktop-widget .view *::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(116, 128, 148, 0.34);
+}
+
+body.desktop-widget .view button,
+body.desktop-widget .view input,
+body.desktop-widget .view select,
+body.desktop-widget .view textarea {
+    max-width: 100%;
+    font-family: inherit;
+}
+
+body.desktop-widget .view input,
+body.desktop-widget .view select,
+body.desktop-widget .view textarea {
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 9px !important;
+    background: var(--widget-paper-solid) !important;
+    color: var(--widget-ink) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget .view input:focus,
+body.desktop-widget .view select:focus,
+body.desktop-widget .view textarea:focus {
+    border-color: rgba(49, 92, 234, 0.56) !important;
+    outline: 2px solid rgba(49, 92, 234, 0.12) !important;
+}
+
+/* Task list */
+body.desktop-widget.local-workspace #list-view {
+    padding: 9px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #initial-add-container {
+    display: grid;
+    min-height: 76px !important;
+    place-items: center;
+}
+
+body.desktop-widget #initial-add-btn {
+    width: 100%;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    border-radius: 11px !important;
+    box-shadow: none !important;
+    font-size: 13px !important;
+}
+
+body.desktop-widget #task-form-container {
+    width: 100%;
+    min-width: 0;
+}
+
+body.desktop-widget #task-form-container form,
+body.desktop-widget #task-form-container .task-form {
+    display: grid !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 11px !important;
+    gap: 9px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+    grid-template-columns: 1fr !important;
+}
+
+body.desktop-widget #task-actions {
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 6px !important;
+    gap: 5px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 10px !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #task-actions .task-selection {
+    display: none !important;
+}
+
+body.desktop-widget #task-actions .task-actions-buttons {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px !important;
+}
+
+body.desktop-widget #task-actions button {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 34px !important;
+    padding: 0 4px !important;
+    border-radius: 8px !important;
+    font-size: 0 !important;
+}
+
+body.desktop-widget #task-actions button .material-icons {
+    margin: 0 !important;
+    font-size: 16px !important;
+}
+
+body.desktop-widget #task-list {
+    display: grid;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 6px;
+}
+
+body.desktop-widget #task-list .task-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 9px 10px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 11px !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+/* Quadrants */
+body.desktop-widget.local-workspace #quadrant-view.quadrant-view {
+    overflow: hidden !important;
+}
+
+body.desktop-widget #quadrant-view .quadrant:nth-child(1) { border-top: 3px solid var(--widget-red) !important; }
+body.desktop-widget #quadrant-view .quadrant:nth-child(2) { border-top: 3px solid var(--widget-amber) !important; }
+body.desktop-widget #quadrant-view .quadrant:nth-child(3) { border-top: 3px solid var(--widget-blue) !important; }
+body.desktop-widget #quadrant-view .quadrant:nth-child(4) { border-top: 3px solid var(--widget-green) !important; }
+
+/* Shared analytics cards */
+body.desktop-widget #dashboard-view,
+body.desktop-widget #templates-view,
+body.desktop-widget #review-view,
+body.desktop-widget #more-features-view,
+body.desktop-widget #pomodoro-view,
+body.desktop-widget #time-tracker-view,
+body.desktop-widget #calendar-pro-view,
+body.desktop-widget #fortune-view,
+body.desktop-widget #habit-tracker-view,
+body.desktop-widget #countdown-view {
+    padding: 8px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget.local-workspace #fortune-view {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+body.desktop-widget .view,
+body.desktop-widget .view *,
+body.desktop-widget .quadrant-view,
+body.desktop-widget .quadrant-view * {
+    animation: none !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 0 !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item {
+    min-width: 0 !important;
+    padding: 10px 4px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-top: 3px solid var(--widget-blue) !important;
+    border-radius: 10px !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+    text-align: center;
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item:nth-child(1) { border-top-color: var(--widget-red) !important; }
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item:nth-child(2) { border-top-color: var(--widget-green) !important; }
+
+body.desktop-widget #dashboard-view .stat-number {
+    font: 750 19px/1.1 "SF Mono", Menlo, monospace !important;
+}
+
+body.desktop-widget #dashboard-view .stat-label {
+    margin-top: 4px !important;
+    color: var(--widget-muted) !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-section,
+body.desktop-widget #dashboard-view .visualization-dashboard,
+body.desktop-widget #dashboard-view .behavior-analysis-section,
+body.desktop-widget #dashboard-view .smart-health-section,
+body.desktop-widget #dashboard-view .smart-reminder-section,
+body.desktop-widget #dashboard-view .smart-schedule-section {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 7px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-grid,
+body.desktop-widget #dashboard-view .charts-row,
+body.desktop-widget #dashboard-view .charts-row-double,
+body.desktop-widget #dashboard-view .charts-row-single,
+body.desktop-widget #dashboard-view .behavior-grid {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-card,
+body.desktop-widget #dashboard-view .chart-card,
+body.desktop-widget #dashboard-view .behavior-card,
+body.desktop-widget #dashboard-view .recommendations-section,
+body.desktop-widget #dashboard-view .smart-health-section,
+body.desktop-widget #dashboard-view .smart-reminder-section,
+body.desktop-widget #dashboard-view .smart-schedule-section {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 11px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: var(--widget-card-shadow) !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-header,
+body.desktop-widget #dashboard-view .section-header,
+body.desktop-widget #dashboard-view .card-header,
+body.desktop-widget #dashboard-view .chart-header {
+    display: flex !important;
+    min-height: 28px !important;
+    margin: 0 0 7px !important;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+}
+
+body.desktop-widget #dashboard-view h3,
+body.desktop-widget #dashboard-view h4,
+body.desktop-widget #dashboard-view .dashboard-title,
+body.desktop-widget #dashboard-view .chart-title {
+    margin: 0 !important;
+    color: var(--widget-ink) !important;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-actions,
+body.desktop-widget #dashboard-view .chart-actions,
+body.desktop-widget #dashboard-view .analysis-actions,
+body.desktop-widget #dashboard-view .health-actions {
+    display: flex !important;
+    gap: 4px !important;
+}
+
+body.desktop-widget #dashboard-view button,
+body.desktop-widget #dashboard-view select {
+    min-width: 0 !important;
+    min-height: 28px !important;
+    padding: 4px 7px !important;
+    border-radius: 7px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #dashboard-view .chart-container {
+    width: 100% !important;
+    height: 170px !important;
+    min-height: 170px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.desktop-widget #dashboard-view .chart-container canvas {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 170px !important;
+}
+
+body.desktop-widget #dashboard-view .chart-footer {
+    display: none !important;
+}
+
+body.desktop-widget #dashboard-view .metrics-grid,
+body.desktop-widget #dashboard-view .health-status,
+body.desktop-widget #dashboard-view .reminder-status,
+body.desktop-widget #dashboard-view .schedule-status {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+}
+
+/* Review */
+body.desktop-widget #review-view .review-container,
+body.desktop-widget #review-view .review-history-view,
+body.desktop-widget #review-view .review-content,
+body.desktop-widget #review-view .review-template {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #review-view .review-type-selector {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 4px !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 3px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 10px !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #review-view .review-type-btn {
+    display: grid !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 42px !important;
+    padding: 3px !important;
+    place-items: center;
+    gap: 0 !important;
+    border: 0 !important;
+    border-radius: 7px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #review-view .review-type-btn .material-icons {
+    font-size: 15px !important;
+}
+
+body.desktop-widget #review-view .review-date-selector {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 7px !important;
+    grid-template-columns: 30px minmax(0, 1fr) 30px auto !important;
+    align-items: center;
+    gap: 5px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 10px !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #review-view .review-date-display {
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+    order: 0 !important;
+    text-align: center;
+}
+
+body.desktop-widget #review-view .date-picker-container {
+    min-width: 0 !important;
+    margin: 0 !important;
+    order: 0 !important;
+}
+
+body.desktop-widget #review-view .review-date-display span {
+    display: block;
+    overflow: hidden;
+    font-size: 10px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.desktop-widget #review-view .date-nav-btn,
+body.desktop-widget #review-view .today-btn {
+    min-width: 30px !important;
+    height: 30px !important;
+    padding: 0 6px !important;
+    border-radius: 8px !important;
+}
+
+body.desktop-widget #review-view .today-btn span:not(.material-icons) {
+    display: none !important;
+}
+
+body.desktop-widget #review-view .review-grid {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #review-view .review-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 9px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-left: 3px solid var(--widget-blue) !important;
+    border-radius: 10px !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #review-view .review-card:nth-child(4n + 1) { border-left-color: var(--widget-red) !important; }
+body.desktop-widget #review-view .review-card:nth-child(4n + 2) { border-left-color: var(--widget-amber) !important; }
+body.desktop-widget #review-view .review-card:nth-child(4n + 4) { border-left-color: var(--widget-green) !important; }
+
+body.desktop-widget #review-view .review-card-header {
+    min-height: 22px !important;
+    margin: 0 0 6px !important;
+    padding: 0 !important;
+}
+
+body.desktop-widget #review-view .review-card-header h3 {
+    margin: 0 !important;
+    font-size: 11px !important;
+}
+
+body.desktop-widget #review-view .review-card-header .material-icons {
+    font-size: 16px !important;
+}
+
+body.desktop-widget #review-view .review-card-content {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+body.desktop-widget #review-view textarea {
+    width: 100% !important;
+    min-height: 78px !important;
+    height: 78px !important;
+    padding: 8px !important;
+    resize: vertical !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+}
+
+body.desktop-widget #review-view .mood-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 3px !important;
+}
+
+body.desktop-widget #review-view .mood-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 34px !important;
+    padding: 0 !important;
+    font-size: 17px !important;
+}
+
+body.desktop-widget #review-view .mood-text {
+    font-size: 8px !important;
+}
+
+body.desktop-widget #review-view .review-actions {
+    display: grid !important;
+    width: 100% !important;
+    margin: 7px 0 0 !important;
+    padding: 0 0 4px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #review-view .review-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 34px !important;
+    padding: 5px 7px !important;
+    border-radius: 8px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #review-view .review-history-header,
+body.desktop-widget #review-view .history-filters {
+    display: flex !important;
+    width: 100% !important;
+    flex-wrap: wrap;
+    gap: 6px !important;
+}
+
+/* Templates */
+body.desktop-widget #templates-view .templates-container,
+body.desktop-widget #templates-view .templates-content {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #templates-view .templates-header {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 10px !important;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #templates-view .templates-header h2,
+body.desktop-widget #templates-view .templates-header p {
+    display: none !important;
+}
+
+body.desktop-widget #templates-view #create-template-btn {
+    width: 100% !important;
+    min-height: 38px !important;
+    margin: 0 !important;
+    border-radius: 9px !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #templates-view .templates-filters {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 8px !important;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #templates-view .filter-group {
+    display: grid !important;
+    grid-template-columns: 86px minmax(0, 1fr) !important;
+    align-items: center;
+    gap: 6px !important;
+}
+
+body.desktop-widget #templates-view .filter-group label {
+    font-size: 9px !important;
+}
+
+body.desktop-widget #templates-view .filter-group input,
+body.desktop-widget #templates-view .filter-group select {
+    width: 100% !important;
+    height: 32px !important;
+    padding: 4px 7px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #templates-view .templates-grid {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #templates-view .template-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 11px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-left: 3px solid var(--widget-blue) !important;
+    border-radius: 11px !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #templates-view .templates-empty {
+    padding: 44px 18px !important;
+    border: 1px dashed rgba(116, 128, 148, 0.32) !important;
+    border-radius: var(--widget-radius) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.desktop-widget #templates-view .templates-empty h3 {
+    font-size: 14px !important;
+}
+
+body.desktop-widget #templates-view .templates-empty p {
+    font-size: 10px !important;
+}
+
+/* Tool launcher */
+body.desktop-widget #more-features-view .more-features-header,
+body.desktop-widget #more-features-view .features-bg-decoration {
+    display: none !important;
+}
+
+body.desktop-widget #more-features-view .more-features-container {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #more-features-view .features-grid {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #more-features-view .feature-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: var(--widget-card-shadow) !important;
+    animation: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-card:hover {
+    border-color: rgba(49, 92, 234, 0.28) !important;
+    transform: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-card .card-content {
+    display: grid !important;
+    min-height: 76px !important;
+    padding: 10px !important;
+    grid-template-columns: 44px minmax(0, 1fr) 32px !important;
+    align-items: center;
+    gap: 9px !important;
+}
+
+body.desktop-widget #more-features-view .feature-icon-wrapper {
+    width: 42px !important;
+    height: 42px !important;
+    margin: 0 !important;
+}
+
+body.desktop-widget #more-features-view .feature-icon {
+    font-size: 21px !important;
+}
+
+body.desktop-widget #more-features-view .feature-info {
+    min-width: 0;
+    margin: 0 !important;
+}
+
+body.desktop-widget #more-features-view .feature-title {
+    margin: 0 0 3px !important;
+    color: var(--widget-ink) !important;
+    font-size: 12px !important;
+}
+
+body.desktop-widget #more-features-view .feature-description {
+    display: -webkit-box;
+    margin: 0 !important;
+    overflow: hidden;
+    color: var(--widget-muted) !important;
+    font-size: 9px !important;
+    line-height: 1.35 !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+body.desktop-widget #more-features-view .feature-stats,
+body.desktop-widget #more-features-view .card-glow,
+body.desktop-widget #more-features-view .icon-bg {
+    display: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-btn {
+    display: grid !important;
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    place-items: center;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 9px !important;
+    background: var(--widget-paper-solid) !important;
+    color: var(--widget-blue) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-btn .btn-text {
+    display: none !important;
+}
+
+/* Shared secondary-page containers */
+body.desktop-widget #pomodoro-view .pomodoro-container,
+body.desktop-widget #time-tracker-view .time-tracker-container,
+body.desktop-widget #fortune-view .fortune-container,
+body.desktop-widget #countdown-view .countdown-container,
+body.desktop-widget #habit-tracker-view .ht-container {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget .pomodoro-bg-decoration,
+body.desktop-widget .fortune-bg-decoration,
+body.desktop-widget .countdown-bg-decoration,
+body.desktop-widget .countdown-header,
+body.desktop-widget .time-tracker-header,
+body.desktop-widget .ht-welcome-badge,
+body.desktop-widget .ht-welcome-card > .ht-page-title,
+body.desktop-widget .ht-welcome-card > .ht-page-subtitle,
+body.desktop-widget .card-glow,
+body.desktop-widget .stars-container {
+    display: none !important;
+}
+
+body.desktop-widget #pomodoro-view .pomodoro-header,
+body.desktop-widget #fortune-view .fortune-header {
+    display: none !important;
+}
+
+/* Pomodoro */
+body.desktop-widget #pomodoro-view .pomodoro-main {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #pomodoro-view .pomodoro-timer-section,
+body.desktop-widget #pomodoro-view .pomodoro-stats-section {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-card,
+body.desktop-widget #pomodoro-view .stat-card,
+body.desktop-widget #pomodoro-view .trends-card,
+body.desktop-widget #pomodoro-view .records-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-card > .card-content,
+body.desktop-widget #pomodoro-view .trends-card > .card-content,
+body.desktop-widget #pomodoro-view .records-card > .card-content {
+    padding: 11px !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-mode-selector {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 4px !important;
+}
+
+body.desktop-widget #pomodoro-view .mode-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 34px !important;
+    padding: 4px !important;
+    border-radius: 8px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-display {
+    margin: 10px 0 !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-circle,
+body.desktop-widget #pomodoro-view .timer-svg {
+    width: 164px !important;
+    height: 164px !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-text span {
+    font: 750 32px/1 "SF Mono", Menlo, monospace !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-controls,
+body.desktop-widget #pomodoro-view .timer-settings {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #pomodoro-view .control-btn,
+body.desktop-widget #pomodoro-view .settings-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 34px !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #pomodoro-view .focus-task-section {
+    margin: 7px 0 !important;
+    padding: 7px !important;
+    border-radius: 8px !important;
+}
+
+body.desktop-widget #pomodoro-view .stats-header {
+    margin: 3px 0 6px !important;
+}
+
+body.desktop-widget #pomodoro-view .stats-title,
+body.desktop-widget #pomodoro-view .trends-title,
+body.desktop-widget #pomodoro-view .records-title {
+    font-size: 12px !important;
+}
+
+body.desktop-widget #pomodoro-view .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-card > .card-content {
+    display: flex !important;
+    min-height: 54px !important;
+    padding: 8px !important;
+    align-items: center;
+    gap: 7px !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-icon {
+    font-size: 18px !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-value {
+    font: 700 13px/1.2 "SF Mono", Menlo, monospace !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-label {
+    font-size: 9px !important;
+}
+
+body.desktop-widget #pomodoro-view .focus-trends,
+body.desktop-widget #pomodoro-view .focus-records {
+    margin-top: 7px !important;
+}
+
+body.desktop-widget #pomodoro-view .pomodoro-container,
+body.desktop-widget #pomodoro-view .pomodoro-main,
+body.desktop-widget #pomodoro-view .pomodoro-stats-section,
+body.desktop-widget #pomodoro-view .focus-records,
+body.desktop-widget #pomodoro-view .records-card,
+body.desktop-widget #pomodoro-view .records-card > .card-content,
+body.desktop-widget #pomodoro-view .records-header {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+body.desktop-widget #pomodoro-view .records-header {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+body.desktop-widget #pomodoro-view .trend-chart {
+    height: 120px !important;
+    min-height: 120px !important;
+}
+
+/* Time tracker */
+body.desktop-widget #time-tracker-view .time-tracker-date-controls {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 7px !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 6px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #time-tracker-view .date-selector {
+    display: grid !important;
+    grid-template-columns: 28px minmax(0, 1fr) 28px !important;
+    align-items: center;
+    gap: 3px !important;
+}
+
+body.desktop-widget #time-tracker-view .current-date-display {
+    overflow: hidden;
+    font-size: 9px !important;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.desktop-widget #time-tracker-view .date-nav-btn,
+body.desktop-widget #time-tracker-view .add-record-btn {
+    min-width: 28px !important;
+    min-height: 30px !important;
+    padding: 3px 6px !important;
+    border-radius: 8px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #time-tracker-view .add-record-btn .btn-text {
+    display: none !important;
+}
+
+body.desktop-widget #time-tracker-view .time-tracker-main,
+body.desktop-widget #time-tracker-view .time-tracker-left,
+body.desktop-widget #time-tracker-view .time-tracker-right {
+    display: grid !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #time-tracker-view .time-record-card,
+body.desktop-widget #time-tracker-view .category-manage-card,
+body.desktop-widget #time-tracker-view .chart-card,
+body.desktop-widget #time-tracker-view .goal-tracker-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #time-tracker-view .card-content {
+    padding: 10px !important;
+}
+
+body.desktop-widget #time-tracker-view .card-title {
+    margin: 0 0 7px !important;
+    font-size: 12px !important;
+}
+
+body.desktop-widget #time-tracker-view .time-summary {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #time-tracker-view .chart-container {
+    display: grid !important;
+    width: 100% !important;
+    min-height: 170px !important;
+    grid-template-columns: 1fr !important;
+}
+
+body.desktop-widget #time-tracker-view canvas {
+    max-width: 100% !important;
+    max-height: 180px !important;
+}
+
+/* Countdown */
+body.desktop-widget #countdown-view .countdown-toolbar,
+body.desktop-widget #countdown-view .countdown-controls {
+    width: 100% !important;
+    margin: 0 0 7px !important;
+}
+
+body.desktop-widget #countdown-view .add-countdown-btn {
+    width: 100% !important;
+    min-height: 38px !important;
+    padding: 6px 10px !important;
+    border-radius: 9px !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #countdown-view .controls-card,
+body.desktop-widget #countdown-view .controls-card .card-content {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 7px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #countdown-view .controls-card .card-content {
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+body.desktop-widget #countdown-view .search-and-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #countdown-view .search-box {
+    min-width: 0 !important;
+}
+
+body.desktop-widget #countdown-view .search-box input {
+    width: 100% !important;
+    height: 32px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #countdown-view .data-management {
+    display: flex !important;
+    gap: 3px !important;
+}
+
+body.desktop-widget #countdown-view .data-btn {
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+}
+
+body.desktop-widget #countdown-view .data-btn .btn-text {
+    display: none !important;
+}
+
+body.desktop-widget #countdown-view .filter-buttons {
+    display: flex !important;
+    width: 100% !important;
+    margin-top: 6px !important;
+    gap: 4px !important;
+    overflow-x: auto;
+}
+
+body.desktop-widget #countdown-view .filter-btn {
+    min-width: max-content !important;
+    height: 30px !important;
+    padding: 4px 7px !important;
+    border-radius: 8px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #countdown-view .countdown-grid {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #countdown-view .countdown-card,
+body.desktop-widget #countdown-view .empty-countdown {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 13px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+/* Habit tracker */
+body.desktop-widget #habit-tracker-view {
+    color: var(--widget-ink) !important;
+    font-size: 11px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-main-page,
+body.desktop-widget #habit-tracker-view .ht-page {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-main-page {
+    display: block;
+}
+
+body.desktop-widget #habit-tracker-view .ht-page {
+    display: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-page.active {
+    display: block !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-welcome-card,
+body.desktop-widget #habit-tracker-view .ht-progress-card,
+body.desktop-widget #habit-tracker-view .ht-habits-container,
+body.desktop-widget #habit-tracker-view .ht-calendar-wrapper,
+body.desktop-widget #habit-tracker-view .ht-chart-container,
+body.desktop-widget #habit-tracker-view .ht-achievement-section,
+body.desktop-widget #habit-tracker-view .ht-ranking-section,
+body.desktop-widget #habit-tracker-view .ht-settings-section {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 7px !important;
+    padding: 10px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-navbar,
+body.desktop-widget #habit-tracker-view .ht-page-navbar {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 34px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-welcome-card {
+    text-align: left !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-nav-brand,
+body.desktop-widget #habit-tracker-view .ht-page-title-inline {
+    font-size: 12px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-nav-actions {
+    display: grid !important;
+    grid-template-columns: repeat(4, 30px) !important;
+    gap: 3px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-nav-btn,
+body.desktop-widget #habit-tracker-view .ht-back-btn,
+body.desktop-widget #habit-tracker-view .ht-month-nav {
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-back-btn span {
+    display: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-header h2,
+body.desktop-widget #habit-tracker-view .ht-section-title {
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-header {
+    display: flex !important;
+    margin-bottom: 8px !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-date,
+body.desktop-widget #habit-tracker-view .ht-stat-label,
+body.desktop-widget #habit-tracker-view .ht-empty-desc {
+    color: var(--widget-muted) !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-stats,
+body.desktop-widget #habit-tracker-view .ht-stats-cards,
+body.desktop-widget #habit-tracker-view .ht-calendar-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-bar-wrapper {
+    display: grid !important;
+    min-width: 0 !important;
+    align-items: center;
+    gap: 4px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-bar {
+    height: 6px !important;
+    overflow: hidden;
+    border-radius: 999px !important;
+    background: #e8edf6 !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-fill {
+    height: 100% !important;
+    border-radius: inherit;
+    background: var(--widget-blue) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-stat-value,
+body.desktop-widget #habit-tracker-view .ht-progress-percent {
+    color: var(--widget-ink) !important;
+    font: 700 13px/1.2 "SF Mono", Menlo, monospace !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-stat-box {
+    min-width: 0 !important;
+    text-align: center;
+}
+
+body.desktop-widget #habit-tracker-view .ht-quick-actions {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-action-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 34px !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-filter-dropdown {
+    position: relative;
+    min-width: 0;
+}
+
+body.desktop-widget #habit-tracker-view .ht-filter-menu {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 4px);
+    right: 0;
+    display: none !important;
+    width: 150px;
+    padding: 5px;
+    gap: 2px;
+    border: 1px solid var(--widget-line);
+    border-radius: 9px;
+    background: var(--widget-paper-solid);
+    box-shadow: var(--widget-card-shadow);
+}
+
+body.desktop-widget #habit-tracker-view .ht-filter-menu.show {
+    display: grid !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-filter-option {
+    display: flex;
+    min-height: 28px;
+    align-items: center;
+    padding: 4px 7px;
+    gap: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+body.desktop-widget #habit-tracker-view .ht-filter-option.active {
+    background: rgba(49, 92, 234, 0.09);
+    color: var(--widget-blue);
+}
+
+body.desktop-widget #habit-tracker-view .ht-habit-card,
+body.desktop-widget #habit-tracker-view .ht-stat-card,
+body.desktop-widget #habit-tracker-view .ht-achievement-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 6px !important;
+    padding: 9px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 10px !important;
+    background: var(--widget-paper-solid) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-empty-state {
+    display: none;
+    min-height: 150px;
+    place-items: center;
+    align-content: center;
+    gap: 5px;
+    text-align: center;
+}
+
+body.desktop-widget #habit-tracker-view .ht-empty-state.show {
+    display: grid;
+}
+
+body.desktop-widget #habit-tracker-view .ht-empty-icon {
+    color: var(--widget-blue);
+    font-size: 24px;
+}
+
+body.desktop-widget #habit-tracker-view .ht-empty-title {
+    margin: 0 !important;
+    font-size: 13px !important;
+    font-weight: 700;
+}
+
+body.desktop-widget #habit-tracker-view .ht-charts-row,
+body.desktop-widget #habit-tracker-view .ht-achievements-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #habit-tracker-view canvas {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 180px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal {
+    display: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal.show {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: rgba(23, 32, 51, 0.42);
+    backdrop-filter: blur(3px);
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(100%, 382px);
+    max-height: calc(100vh - 32px);
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--widget-line);
+    border-radius: 14px;
+    background: var(--widget-paper-solid);
+    box-shadow: 0 20px 55px rgba(23, 32, 51, 0.22);
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-header,
+body.desktop-widget #habit-tracker-view .ht-modal-footer {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px;
+    border-bottom: 1px solid var(--widget-line);
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-footer {
+    justify-content: flex-end;
+    gap: 6px;
+    border-top: 1px solid var(--widget-line);
+    border-bottom: 0;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-body {
+    min-height: 0;
+    padding: 11px;
+    overflow-y: auto;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-title {
+    margin: 0 !important;
+    font-size: 14px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-close,
+body.desktop-widget #habit-tracker-view .ht-btn {
+    min-height: 32px;
+    padding: 5px 10px;
+    border: 1px solid var(--widget-line);
+    border-radius: 8px;
+    background: var(--widget-paper-solid);
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-close {
+    width: 32px;
+    padding: 0;
+}
+
+body.desktop-widget #habit-tracker-view .ht-btn-primary {
+    border-color: var(--widget-blue);
+    background: var(--widget-blue);
+    color: white;
+}
+
+body.desktop-widget #habit-tracker-view .ht-form-group {
+    display: grid;
+    margin-bottom: 9px;
+    gap: 5px;
+}
+
+body.desktop-widget #habit-tracker-view .ht-form-group input,
+body.desktop-widget #habit-tracker-view .ht-form-group select,
+body.desktop-widget #habit-tracker-view .ht-form-group textarea {
+    width: 100%;
+    min-height: 34px;
+    padding: 7px;
+}
+
+body.desktop-widget #habit-tracker-view .ht-icon-picker {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 4px;
+}
+
+body.desktop-widget #habit-tracker-view .ht-icon-option {
+    display: grid;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid var(--widget-line);
+    border-radius: 7px;
+}
+
+body.desktop-widget #habit-tracker-view .ht-icon-option.selected {
+    border-color: var(--widget-blue);
+    background: rgba(49, 92, 234, 0.09);
+    color: var(--widget-blue);
+}
+
+/* Calendar */
+body.desktop-widget #calendar-pro-view .calendar-view,
+body.desktop-widget #calendar-pro-view .calendar-shell,
+body.desktop-widget #calendar-pro-view .calendar-main {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-bg,
+body.desktop-widget #calendar-pro-view .calendar-overlay,
+body.desktop-widget #calendar-pro-view .calendar-header,
+body.desktop-widget #calendar-pro-view .calendar-sidebar,
+body.desktop-widget #calendar-pro-view .ai-assistant-toast,
+body.desktop-widget #calendar-pro-view #calendar-week-grid {
+    display: none !important;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-toolbar {
+    display: grid !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 8px !important;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-toolbar > div {
+    display: flex !important;
+    min-width: 0 !important;
+    align-items: center;
+    justify-content: center;
+    gap: 4px !important;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-toolbar button {
+    min-width: 30px !important;
+    height: 30px !important;
+    padding: 3px 6px !important;
+    border-radius: 8px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #calendar-pro-view #calendar-current-range {
+    min-width: 0 !important;
+    overflow: hidden;
+    font-size: 10px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-toolbar button,
+body.desktop-widget #calendar-pro-view #calendar-current-range {
+    border-color: var(--widget-line) !important;
+    background: #f2f5fa !important;
+    color: var(--widget-ink) !important;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-toolbar .calendar-primary,
+body.desktop-widget #calendar-pro-view .calendar-toolbar .calendar-chip-active {
+    border-color: var(--widget-blue) !important;
+    background: var(--widget-blue) !important;
+    color: white !important;
+}
+
+body.desktop-widget #calendar-pro-view .sync-tasks-btn span:not(.material-icons) {
+    display: none !important;
+}
+
+body.desktop-widget #calendar-pro-view #calendar-month-grid {
+    display: grid !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 390px !important;
+    padding: 6px !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    grid-auto-rows: minmax(24px, auto) !important;
+    gap: 3px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #calendar-pro-view .calendar-month-grid .weekday {
+    padding: 4px 0 !important;
+    color: var(--widget-muted) !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+}
+
+body.desktop-widget #calendar-pro-view #calendar-month-grid[hidden] {
+    display: none !important;
+}
+
+body.desktop-widget #calendar-pro-view .month-cell,
+body.desktop-widget #calendar-pro-view .calendar-month-cell {
+    min-width: 0 !important;
+    min-height: 52px !important;
+    padding: 3px !important;
+    font-size: 9px !important;
+    gap: 2px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: 7px !important;
+    background: var(--widget-paper-solid) !important;
+    color: var(--widget-ink) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+body.desktop-widget #calendar-pro-view .month-cell.other-month {
+    opacity: 0.42 !important;
+}
+
+body.desktop-widget #calendar-pro-view .month-cell.today {
+    border-color: var(--widget-blue) !important;
+    background: rgba(49, 92, 234, 0.07) !important;
+}
+
+body.desktop-widget #calendar-pro-view .date-number {
+    color: inherit !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #calendar-pro-view .month-event {
+    max-width: 100%;
+    padding: 2px 3px !important;
+    overflow: hidden;
+    border: 0 !important;
+    border-radius: 4px !important;
+    background: rgba(49, 92, 234, 0.1) !important;
+    color: var(--widget-blue) !important;
+    font-size: 7px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+body.desktop-widget #calendar-pro-view .event-modal .dialog {
+    width: calc(100% - 16px) !important;
+    max-width: 390px !important;
+    max-height: calc(100vh - 32px) !important;
+    overflow-y: auto !important;
+}
+
+/* Daily fortune */
+body.desktop-widget #fortune-view .fortune-main-card {
+    display: grid !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 240px !important;
+    margin: 0 0 7px !important;
+    padding: 12px !important;
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-top: 3px solid var(--widget-amber) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #fortune-view .fortune-left-section,
+body.desktop-widget #fortune-view .fortune-right-section {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #fortune-view .fortune-envelope {
+    min-height: 190px !important;
+}
+
+body.desktop-widget #fortune-view .fortune-type-selector {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 0 7px !important;
+    padding: 8px !important;
+    align-items: center;
+    gap: 7px !important;
+    border: 1px solid var(--widget-line) !important;
+    border-radius: var(--widget-radius) !important;
+    background: var(--widget-panel) !important;
+}
+
+body.desktop-widget #fortune-view .selector-label {
+    display: none !important;
+}
+
+body.desktop-widget #fortune-view .type-options {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #fortune-view .option-content {
+    min-height: 34px !important;
+    padding: 5px !important;
+    border-radius: 8px !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #fortune-view .fortune-actions,
+body.desktop-widget #fortune-view .action-buttons-group {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #fortune-view .fortune-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 38px !important;
+    padding: 6px 8px !important;
+    border-radius: 9px !important;
+    box-shadow: none !important;
+    font-size: 10px !important;
+}
+
+/* Dialogs shared by widget pages */
+body.desktop-widget .time-tracker-modal,
+body.desktop-widget .countdown-modal,
+body.desktop-widget .ht-modal,
+body.desktop-widget .notification-permission-modal,
+body.desktop-widget .reward-modal {
+    position: fixed !important;
+    inset: 8px !important;
+    z-index: 100100 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+body.desktop-widget .time-tracker-modal .modal-content,
+body.desktop-widget .countdown-modal .modal-content,
+body.desktop-widget .ht-modal .modal-content,
+body.desktop-widget .reward-modal .modal-content {
+    position: absolute !important;
+    inset: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+    border-radius: 15px !important;
+}
+
+body.desktop-widget .modal-header,
+body.desktop-widget .modal-body,
+body.desktop-widget .modal-actions,
+body.desktop-widget .modal-footer {
+    padding: 11px !important;
+}
+
+body.desktop-widget .form-group {
+    min-width: 0 !important;
+    margin-bottom: 9px !important;
+}
+
+body.desktop-widget .form-input,
+body.desktop-widget .form-select,
+body.desktop-widget .form-textarea {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+/* Keep runtime notices useful without letting them cover an entire widget page. */
+body.desktop-widget #error-notifications {
+    inset: auto 16px 76px 16px !important;
+    width: auto !important;
+    max-width: none !important;
+    pointer-events: none;
+}
+
+body.desktop-widget #error-notifications .error-notification {
+    max-width: 100% !important;
+    margin: 0 0 6px !important;
+    padding: 9px 10px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 28px rgba(29, 42, 68, 0.16) !important;
+    pointer-events: auto;
+}
+
+body.desktop-widget #error-notifications .error-notification-header {
+    margin-bottom: 2px !important;
+}
+
+body.desktop-widget #error-notifications .error-notification-title,
+body.desktop-widget #error-notifications .error-notification-message {
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+}
+
+body.desktop-widget #error-notifications .error-notification-close {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 15px !important;
+}
+
+body.desktop-widget.dark-mode {
+    --widget-canvas: #131925;
+    --widget-paper-solid: #1f2736;
+    --widget-ink-soft: #c4ccda;
+}
+
+body.desktop-widget.dark-mode .widget-view-title,
+body.desktop-widget.dark-mode .view h1,
+body.desktop-widget.dark-mode .view h2,
+body.desktop-widget.dark-mode .view h3,
+body.desktop-widget.dark-mode .view h4 {
+    color: var(--widget-ink) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.desktop-widget .feature-card,
+    body.desktop-widget .view * {
+        animation: none !important;
+    }
+}

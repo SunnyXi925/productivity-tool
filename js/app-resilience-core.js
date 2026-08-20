@@ -602,7 +602,9 @@ function initGlobalErrorHandling() {
             }
 
             // 只对重要的资源加载失败显示警告
-            if (!disableErrorNotifications) {
+            const isDesktopWidget = window.desktopWidget?.isDesktop
+                || new URLSearchParams(window.location.search).get('desktop') === '1';
+            if (!disableErrorNotifications && !isDesktopWidget) {
                 showErrorNotification('某些资源加载失败，可能影响功能使用', 'warning');
             }
             logError('Resource Load Error', resourceUrl);

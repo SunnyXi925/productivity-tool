@@ -11,6 +11,9 @@ The project follows pragmatic release notes rather than strict semantic versioni
 - Added an independent macOS Electron widget with a compact four-quadrant layout.
 - Added always-on-top control, remembered window bounds, menu-bar restore, and launch-at-login support.
 - Added macOS `.app` and DMG packaging commands with a neutral Productivity Tool app icon.
+- Unified every primary and secondary feature into the 430×720 widget shell with a shared page header, single-column scrolling content, and persistent bottom navigation.
+- Fixed deferred dashboard, review, template, fortune, countdown, and habit views rendering outside the desktop widget container.
+- Added compact layouts for charts, review forms, templates, Pomodoro, habits, countdowns, time records, the month calendar, Daily Fortune, and their dialogs.
 
 ### Documentation
 
