@@ -1025,28 +1025,40 @@ class FortuneSystem {
             this.recordApiRequest();
         }
 
-        const response = await fetch('https://uni-api.cstcloud.cn/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`  // 🔐 使用传入的 apiKey 参数
-            },
-            body: JSON.stringify({
-                model: 'deepseek-chat',
-                messages: [
-                    {
-                        role: 'system',
-                        content: '你是一个智慧的中文签语生成器，专门为用户生成每日励志签语。请用简洁优美的中文回复，格式为JSON：{"text":"签语内容","meaning":"含义解释","advice":"今日建议"}'
-                    },
-                    {
-                        role: 'user',
-                        content: prompt
-                    }
-                ],
-                temperature: 0.8,
-                max_tokens: 500
-            })
-        });
+        const requestBody = {
+            model: 'deepseek-chat',
+            messages: [
+                {
+                    role: 'system',
+                    content: '你是一个智慧的中文签语生成器，专门为用户生成每日励志签语。请用简洁优美的中文回复，格式为JSON：{"text":"签语内容","meaning":"含义解释","advice":"今日建议"}'
+                },
+                {
+                    role: 'user',
+                    content: prompt
+                }
+            ],
+            temperature: 0.8,
+            max_tokens: 500,
+            stream: false
+        };
+        const desktopResult = window.desktopWidget?.requestAI
+            ? await window.desktopWidget.requestAI({ apiKey, body: requestBody })
+            : null;
+        const response = desktopResult
+            ? {
+                ok: desktopResult.ok,
+                status: desktopResult.status,
+                statusText: desktopResult.statusText,
+                json: async () => JSON.parse(desktopResult.body || '{}')
+            }
+            : await fetch('https://uni-api.cstcloud.cn/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify(requestBody)
+            });
 
         if (!response.ok) {
             if (response.status === 401) {

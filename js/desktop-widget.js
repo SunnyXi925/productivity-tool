@@ -46,7 +46,7 @@
     }
 
     const pageMeta = {
-        list: { title: '任务', subtitle: '收集今天要完成的事', action: ['+', '新建任务', 'initial-add-btn'] },
+        list: { title: '任务', subtitle: '收集今天要完成的事' },
         quadrant: { title: '四象限', subtitle: '判断轻重缓急', action: ['+', '新建任务', 'initial-add-btn'] },
         dashboard: { title: '看板', subtitle: '看见进度与节奏' },
         review: { title: '复盘', subtitle: '回看并收束一天', action: ['保存', '保存复盘', 'save-review-btn'] },
@@ -55,7 +55,7 @@
         fortune: { title: '每日一签', subtitle: '为今天留一句提醒', child: true },
         pomodoro: { title: '番茄专注', subtitle: '把注意力留在当下', child: true },
         'habit-tracker': { title: '习惯打卡', subtitle: '让行动留下连续记录', child: true, action: ['+', '添加习惯', 'ht-addHabitBtn'] },
-        'time-tracker': { title: '时间记录', subtitle: '看见时间去了哪里', child: true, action: ['+', '添加时间记录', 'add-time-record-btn'] }
+        'time-tracker': { title: '时间记录', subtitle: '看见时间去了哪里', child: true }
     };
 
     function createViewHeader() {
@@ -92,6 +92,18 @@
 
         shell.append(back, copy, action);
         header.appendChild(shell);
+    }
+
+    function refineTaskCapture() {
+        const container = document.getElementById('initial-add-container');
+        const addButton = document.getElementById('initial-add-btn');
+        if (!container || !addButton || container.querySelector('.task-capture-copy')) return;
+        const copy = element('div', 'task-capture-copy');
+        copy.append(
+            element('strong', '', '把下一步放进来'),
+            element('span', '', '写清要做什么，再判断轻重缓急')
+        );
+        container.insertBefore(copy, addButton);
     }
 
     function normalizeViewHierarchy() {
@@ -185,37 +197,34 @@
         const bar = element('header', 'desktop-widget-bar');
         bar.setAttribute('aria-label', '桌面小组件控制栏');
         const dragArea = element('div', 'desktop-widget-drag');
-        const mark = element('span', 'desktop-widget-mark');
-        mark.setAttribute('aria-hidden', 'true');
+        const mark = element('button', 'desktop-widget-mark desktop-widget-launcher');
+        mark.type = 'button';
+        mark.setAttribute('aria-label', '打开完整面板');
         const identity = element('div', 'desktop-widget-identity');
         identity.append(element('strong', '', '今日工作台'), element('span', 'desktop-widget-clock', formatClock()));
         dragArea.append(mark, identity);
 
         const controls = element('div', 'desktop-widget-controls');
-        const ai = button('AI', 'desktop-widget-ai');
-        ai.title = '配置 AI';
-        ai.addEventListener('click', () => document.getElementById('header-ai-settings')?.click());
+        const settings = button('', 'desktop-widget-settings');
+        settings.appendChild(element('span', 'desktop-widget-settings-glyph'));
+        settings.title = '设置与 AI 配置';
+        settings.setAttribute('aria-label', '打开设置与 AI 配置');
+        settings.addEventListener('click', () => document.getElementById('header-ai-settings')?.click());
 
-        const place = button('桌面', 'desktop-widget-place');
-        place.title = '移到主屏幕左侧';
-        place.addEventListener('click', async () => {
-            await window.desktopWidget?.placeOnDesktop?.();
-        });
-
-        const collapse = button('—', 'desktop-widget-collapse');
-        collapse.title = '折叠小组件';
-        collapse.setAttribute('aria-label', '折叠小组件');
         const updateCollapsedState = collapsed => {
             document.body.classList.toggle('widget-collapsed', collapsed);
-            collapse.textContent = collapsed ? '+' : '—';
-            collapse.title = collapsed ? '展开小组件' : '折叠小组件';
-            collapse.setAttribute('aria-label', collapse.title);
+            mark.title = collapsed ? '打开完整面板' : '收起为桌面图标';
+            mark.setAttribute('aria-label', mark.title);
+            mark.setAttribute('aria-hidden', 'false');
         };
-        collapse.addEventListener('click', async () => {
+        mark.addEventListener('click', async event => {
+            event.preventDefault();
+            event.stopPropagation();
+            updateCollapsedState(!document.body.classList.contains('widget-collapsed'));
             const collapsed = await window.desktopWidget?.toggleCollapse?.();
             if (typeof collapsed === 'boolean') updateCollapsedState(collapsed);
         });
-        controls.append(ai, place, collapse);
+        controls.append(settings);
         bar.append(dragArea, controls);
         document.body.prepend(bar);
 
@@ -226,6 +235,7 @@
 
         relabelNavigation();
         createViewHeader();
+        refineTaskCapture();
         refineWidgetTypography();
         if (document.body) {
             new MutationObserver(records => {

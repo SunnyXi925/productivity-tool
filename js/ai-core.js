@@ -308,11 +308,13 @@ class AIServiceManager {
         });
 
         try {
-            const response = await fetch(service.endpoint, {
-                method: 'POST',
-                headers: requestHeaders,
-                body: JSON.stringify(requestBody)
-            });
+            const response = window.desktopWidget?.requestAI
+                ? await this.makeDesktopAIRequest(service, requestBody)
+                : await fetch(service.endpoint, {
+                    method: 'POST',
+                    headers: requestHeaders,
+                    body: JSON.stringify(requestBody)
+                });
 
             SafeLogger.debug('📥 API响应状态:', response.status, response.statusText);
 
@@ -338,7 +340,7 @@ class AIServiceManager {
                 });
 
                 // 提供更友好的错误信息
-                if (response.status === 400 && errorMessage.includes('Model Not Exist')) {
+                if ([400, 404].includes(response.status) && /model|模型/i.test(`${errorMessage} ${errorDetail}`)) {
                     throw new Error(`模型不存在: ${requestBody.model}。请检查模型名称是否正确。`);
                 } else if (response.status === 401) {
                     throw new Error('API Key无效或已过期，请检查配置');
@@ -362,6 +364,20 @@ class AIServiceManager {
             SafeLogger.error('❌ API请求异常:', error);
             throw error;
         }
+    }
+
+    async makeDesktopAIRequest(service, requestBody) {
+        const result = await window.desktopWidget.requestAI({
+            apiKey: service.apiKey,
+            body: requestBody
+        });
+        return {
+            ok: result.ok,
+            status: result.status,
+            statusText: result.statusText,
+            json: async () => JSON.parse(result.body || '{}'),
+            text: async () => result.body || ''
+        };
     }
 
     buildAIRequestBody(service, prompt, options = {}) {
@@ -769,6 +785,7 @@ class AIPersonalizedFortune {
 
 // 初始化AI服务
 const aiServiceManager = new AIServiceManager();
+window.aiServiceManager = aiServiceManager;
 const aiTaskAnalyzer = new AITaskAnalyzer(aiServiceManager);
 const aiPersonalizedFortune = new AIPersonalizedFortune(aiServiceManager);
 

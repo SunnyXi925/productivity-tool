@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, Tray, ipcMain, nativeImage, screen, shell } = require('electron');
+const { app, BrowserWindow, Menu, Tray, ipcMain, nativeImage, net, screen, shell } = require('electron');
 const fs = require('node:fs');
 const http = require('node:http');
 const path = require('node:path');
@@ -7,7 +7,9 @@ const APP_NAME = 'Productivity Tool';
 const DEFAULT_PORT = 47831;
 const WINDOW_WIDTH = 430;
 const WINDOW_HEIGHT = 720;
+const COLLAPSED_WIDTH = 62;
 const COLLAPSED_HEIGHT = 62;
+const AI_ENDPOINT = 'https://uni-api.cstcloud.cn/v1/chat/completions';
 const PRIVATE_ROOTS = new Set(['.git', 'desktop', 'dist', 'node_modules', 'test-results']);
 const MIME_TYPES = new Map([
     ['.css', 'text/css; charset=utf-8'],
@@ -32,7 +34,7 @@ let tray = null;
 let staticServer = null;
 let settings = {};
 let isQuitting = false;
-let isCollapsed = false;
+let isCollapsed = true;
 
 app.setName(APP_NAME);
 
@@ -49,6 +51,8 @@ function loadSettings() {
     } catch {
         settings = {};
     }
+    // Launch as a compact desktop icon every time; the icon itself opens the panel.
+    isCollapsed = true;
 }
 
 function persistSettings(nextSettings = {}) {
@@ -59,7 +63,7 @@ function persistSettings(nextSettings = {}) {
 
 function getDockedBounds(collapsed = false) {
     const { workArea } = screen.getPrimaryDisplay();
-    const width = Math.min(WINDOW_WIDTH, workArea.width - 16);
+    const width = collapsed ? COLLAPSED_WIDTH : Math.min(WINDOW_WIDTH, workArea.width - 16);
     const height = collapsed ? COLLAPSED_HEIGHT : Math.min(WINDOW_HEIGHT, workArea.height - 16);
     return {
         width,
@@ -142,8 +146,9 @@ function setCollapsed(collapsed) {
     return isCollapsed;
 }
 
-function showWidget() {
+function showWidget(expand = false) {
     if (!widgetWindow || widgetWindow.isDestroyed()) return;
+    if (expand) setCollapsed(false);
     placeOnDesktop();
     widgetWindow.show();
     widgetWindow.focus();
@@ -170,7 +175,7 @@ function rebuildTrayMenu() {
     if (!tray) return;
     const openAtLogin = getLoginItemSettings().openAtLogin;
     tray.setContextMenu(Menu.buildFromTemplate([
-        { label: '显示小组件', click: showWidget },
+        { label: '打开完整面板', click: () => showWidget(true) },
         { label: '移到主屏幕左侧', click: placeOnDesktop },
         {
             label: isCollapsed ? '展开小组件' : '折叠小组件',
@@ -197,14 +202,14 @@ function createTray() {
     trayImage.setTemplateImage(true);
     tray = new Tray(trayImage);
     tray.setToolTip(APP_NAME);
-    tray.on('click', showWidget);
+    tray.on('click', () => showWidget(true));
     rebuildTrayMenu();
 }
 
 async function createWindow() {
     const baseUrl = await createStaticServer();
     widgetWindow = new BrowserWindow({
-        ...getDockedBounds(),
+        ...getDockedBounds(isCollapsed),
         show: false,
         frame: false,
         transparent: true,
@@ -225,10 +230,13 @@ async function createWindow() {
     });
 
     placeOnDesktop();
-    widgetWindow.once('ready-to-show', showWidget);
-    widgetWindow.webContents.once('did-finish-load', showWidget);
+    widgetWindow.once('ready-to-show', () => showWidget(false));
+    widgetWindow.webContents.once('did-finish-load', () => {
+        widgetWindow.webContents.send('widget:state-changed', { collapsed: isCollapsed });
+        showWidget(false);
+    });
     widgetWindow.loadURL(`${baseUrl}/index.html?desktop=1&view=quadrant`);
-    setTimeout(showWidget, 1500);
+    setTimeout(() => showWidget(false), 1500);
     widgetWindow.on('close', event => {
         if (isQuitting) return;
         event.preventDefault();
@@ -254,11 +262,42 @@ ipcMain.handle('widget:place-on-desktop', () => {
     return true;
 });
 ipcMain.handle('widget:toggle-collapse', () => setCollapsed(!isCollapsed));
-ipcMain.on('widget:show', showWidget);
+ipcMain.handle('widget:request-ai', async (_event, payload = {}) => {
+    const apiKey = typeof payload.apiKey === 'string' ? payload.apiKey.trim() : '';
+    const body = payload.body;
+    if (!apiKey || apiKey.length > 1024) throw new Error('API Key 无效');
+    if (!body || typeof body !== 'object' || !Array.isArray(body.messages) || typeof body.model !== 'string') {
+        throw new Error('AI 请求格式无效');
+    }
 
-app.on('second-instance', showWidget);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30_000);
+    try {
+        const response = await net.fetch(AI_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+            signal: controller.signal
+        });
+        return {
+            ok: response.ok,
+            status: response.status,
+            statusText: response.statusText,
+            body: await response.text()
+        };
+    } finally {
+        clearTimeout(timeout);
+    }
+});
+ipcMain.on('widget:show', () => showWidget(true));
+
+app.on('second-instance', () => showWidget(true));
 app.on('before-quit', () => { isQuitting = true; });
-app.on('activate', showWidget);
+app.on('activate', () => showWidget(true));
 app.on('window-all-closed', () => {});
 
 app.whenReady().then(async () => {

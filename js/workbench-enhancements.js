@@ -118,16 +118,16 @@
 
         const header = element('header', 'local-ai-header');
         const titleWrap = element('div');
-        titleWrap.append(element('div', 'workbench-kicker', '本机 AI 配置'));
-        const title = element('h2', '', '连接 CSTCloud Uni-API');
+        titleWrap.append(element('div', 'workbench-kicker', '工作台设置'));
+        const title = element('h2', '', 'AI 连接');
         title.id = 'local-ai-title';
         titleWrap.appendChild(title);
         const close = actionButton('关闭', 'close', 'icon-only');
         close.id = 'local-ai-close';
-        close.setAttribute('aria-label', '关闭 AI 设置');
+        close.setAttribute('aria-label', '关闭设置');
         header.append(titleWrap, close);
 
-        const note = element('p', 'local-ai-note', 'API Key 仅加密保存在当前浏览器。调用 AI 时，请求会直接发送到 CSTCloud。');
+        const note = element('p', 'local-ai-note', 'API Key 仅加密保存在本机。桌面版通过本地进程连接 CSTCloud，避免浏览器跨域导致调用失败。');
         const endpoint = document.createElement('input');
         endpoint.type = 'url';
         endpoint.value = AI_ENDPOINT;
@@ -149,7 +149,7 @@
         status.id = 'local-ai-status';
         status.setAttribute('role', 'status');
         const footer = element('footer', 'local-ai-footer');
-        const save = actionButton('保存设置', 'check', 'primary');
+        const save = actionButton('保存并测试', 'check', 'primary');
         save.id = 'local-ai-save';
         footer.append(status, save);
 
@@ -207,7 +207,7 @@
             keyInput.value = '';
             keyInput.placeholder = service?.apiKey ? '已配置；留空则保持不变' : '输入 API Key';
         }
-        if (status) status.textContent = service?.apiKey ? '已配置，可直接使用 AI 功能' : '尚未配置';
+        if (status) status.textContent = service?.apiKey ? '已配置，保存后会验证连接' : '尚未配置';
     }
 
     function openAISettings() {
@@ -223,7 +223,7 @@
         if (!overlay) return;
         overlay.hidden = true;
         document.body.classList.remove('modal-open');
-        document.getElementById('workbench-ai-settings')?.focus();
+        (document.querySelector('.desktop-widget-settings') || document.getElementById('workbench-ai-settings'))?.focus();
     }
 
     async function saveAISettings() {
@@ -252,7 +252,8 @@
                 currentService: AI_SERVICE_ID,
                 [AI_SERVICE_ID]: { enabled: true, apiKey, model }
             };
-            await window.secureStorage.setSecure('aiConfig', config);
+            const stored = await window.secureStorage.setSecure('aiConfig', config);
+            if (!stored) throw new Error('配置未能写入本机存储');
             window.DataSyncStorage?.setRaw('aiFortuneEnabled', 'true');
             const manager = window.aiServiceManager;
             if (manager?._services?.[AI_SERVICE_ID]) {
@@ -265,10 +266,17 @@
                 keyInput.value = '';
                 keyInput.placeholder = '已配置；留空则保持不变';
             }
-            if (status) status.textContent = '已保存到当前浏览器';
+            if (status) status.textContent = '已保存，正在测试连接…';
             window.fortuneSystem?.loadAISettings?.();
+            if (!manager) throw new Error('AI 服务尚未初始化，请重新打开面板');
+            const reply = await manager.callAI('请只回复“连接成功”。', {
+                systemPrompt: '你是 API 连接测试助手，只需简短确认连接状态。',
+                temperature: 0,
+                maxTokens: 20
+            });
+            if (status) status.textContent = reply ? '连接成功，AI 功能可以使用' : '连接成功';
         } catch (error) {
-            if (status) status.textContent = error.message || '保存失败，请重试';
+            if (status) status.textContent = error.message || '连接失败，请检查 Key 与模型名称';
         } finally {
             if (button) button.disabled = false;
         }
