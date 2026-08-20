@@ -1,0 +1,40 @@
+index.html
+  s_ca0f6669f6bddc::t_f985d7d10a4514 102
+js/view-switch-core.js
+  s_ca0f6669f6bddc::t_f985d7d10a4514 213-216
+sw.js
+  s_ca0f6669f6bddc::t_f985d7d10a4514 67
+css/desktop-widget-pages.css
+  s_ca0f6669f6bddc::t_cb0f6363cd85d3 506,508-513
+  s_ca0f6669f6bddc::t_8e36fe133ab47e 1003-1018,1867-1899
+  s_ca0f6669f6bddc::t_d33084cdc9b464 286-301
+  s_ca0f6669f6bddc::t_a2babebefa4d81 503,505,736-740,867-871,1217-1221,1230-1241,1272-1275,1307-1321,1333-1358,1360,1378-1382,1385-1418,1430-1453,1467-1566,1569-1582,1646-1659,1671-1674,1682-1688,1698-1718,1720-1732
+  s_ca0f6669f6bddc::t_ca2258b3322f88 1-285,302-502,504,507,514-735,741-866,872-1002,1019-1216,1222-1229,1242-1271,1276-1306,1322-1332,1359,1361-1377,1383-1384,1419-1429,1454-1466,1567-1568,1583-1645,1660-1670,1675-1681,1689-1697,1719,1733-1866,1900-1921
+js/app-resilience-core.js
+  s_ca0f6669f6bddc::t_cb0f6363cd85d3 605-607
+js/desktop-widget.js
+  s_ca0f6669f6bddc::t_f985d7d10a4514 48-89,107-136,180-181,187-189
+  s_ca0f6669f6bddc::t_8e36fe133ab47e 90-106,138
+CHANGELOG.md
+  s_ca0f6669f6bddc::t_aae7ebd0049fd4 14-16
+README.md
+  s_ca0f6669f6bddc::t_aae7ebd0049fd4 19,42,76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.50",
+  "base_commit_sha": "e74b1662972174a4c91b748c438bb4f6f0a1008c",
+  "prompts": {},
+  "sessions": {
+    "s_ca0f6669f6bddc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a01789-88e9-7902-88bd-c4a36b5be290",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "fengxi.25 <fengxi.25@jd.com>",
+      "total_additions": 6,
+      "accepted_lines": 6
+    }
+  }
+}
