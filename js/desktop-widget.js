@@ -153,28 +153,33 @@
         ai.title = '配置 AI';
         ai.addEventListener('click', () => document.getElementById('header-ai-settings')?.click());
 
-        const pin = button('已固定', 'desktop-widget-pin');
-        pin.title = '切换是否固定在其他窗口前面';
-        pin.setAttribute('aria-pressed', 'true');
-        pin.addEventListener('click', async () => {
-            if (!window.desktopWidget?.togglePin) return;
-            const pinned = await window.desktopWidget.togglePin();
-            pin.textContent = pinned ? '已固定' : '固定';
-            pin.setAttribute('aria-pressed', String(pinned));
+        const place = button('桌面', 'desktop-widget-place');
+        place.title = '移到主屏幕左侧';
+        place.addEventListener('click', async () => {
+            await window.desktopWidget?.placeOnDesktop?.();
         });
 
-        const hide = button('—', 'desktop-widget-hide');
-        hide.title = '收起到菜单栏';
-        hide.setAttribute('aria-label', '收起到菜单栏');
-        hide.addEventListener('click', () => window.desktopWidget?.hide?.());
-        controls.append(ai, pin, hide);
+        const collapse = button('—', 'desktop-widget-collapse');
+        collapse.title = '折叠小组件';
+        collapse.setAttribute('aria-label', '折叠小组件');
+        const updateCollapsedState = collapsed => {
+            document.body.classList.toggle('widget-collapsed', collapsed);
+            collapse.textContent = collapsed ? '+' : '—';
+            collapse.title = collapsed ? '展开小组件' : '折叠小组件';
+            collapse.setAttribute('aria-label', collapse.title);
+        };
+        collapse.addEventListener('click', async () => {
+            const collapsed = await window.desktopWidget?.toggleCollapse?.();
+            if (typeof collapsed === 'boolean') updateCollapsedState(collapsed);
+        });
+        controls.append(ai, place, collapse);
         bar.append(dragArea, controls);
         document.body.prepend(bar);
 
         window.desktopWidget?.getState?.().then(state => {
-            pin.textContent = state.pinned ? '已固定' : '固定';
-            pin.setAttribute('aria-pressed', String(state.pinned));
+            updateCollapsedState(Boolean(state.collapsed));
         });
+        window.desktopWidget?.onStateChanged?.(state => updateCollapsedState(Boolean(state.collapsed)));
 
         relabelNavigation();
         createViewHeader();

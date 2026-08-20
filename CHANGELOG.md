@@ -9,7 +9,7 @@ The project follows pragmatic release notes rather than strict semantic versioni
 ### Desktop widget
 
 - Added an independent macOS Electron widget with a compact four-quadrant layout.
-- Added always-on-top control, remembered window bounds, menu-bar restore, and launch-at-login support.
+- Added desktop-left placement, a non-topmost window level, a visible collapsed strip, menu-bar recovery, and launch-at-login support.
 - Added macOS `.app` and DMG packaging commands with a neutral Productivity Tool app icon.
 - Unified every primary and secondary feature into the 430×720 widget shell with a shared page header, single-column scrolling content, and persistent bottom navigation.
 - Fixed deferred dashboard, review, template, fortune, countdown, and habit views rendering outside the desktop widget container.
@@ -26,13 +26,15 @@ The project follows pragmatic release notes rather than strict semantic versioni
 - Expanded AI task analysis providers to DeepSeek, OpenAI, Claude, Kimi, Qwen, GLM/Z.ai, and MiniMax.
 - Expanded Daily Fortune AI to use the shared multi-provider AI service configuration.
 - Added Anthropic Messages protocol support for Claude alongside OpenAI-compatible chat completions providers.
-- Added a voluntary "随喜赞赏" support modal with a WeChat reward QR code and a fixed entry in the More Features page.
-
 ### Changed
 
 - Renamed the admin "AI 签语配置" entry to "AI 配置" because the page now manages both Daily Fortune AI and AI service capabilities.
 - Reordered the admin AI configuration page to show service configuration before status, actions, and Daily Fortune AI switches.
 - Consolidated the AI configuration page into one visible save action that saves the selected service API Key and Daily Fortune AI switches together.
+
+### Removed
+
+- Removed the donation entry, automatic support prompt, related script, and QR asset.
 
 ## [v1.0.2] - 2026-06-28
 

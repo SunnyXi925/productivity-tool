@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'productivity-tool-v2.0.0';
+const CACHE_VERSION = 'productivity-tool-v2.0.1';
 const APP_SHELL = [
   './',
   './index.html',
@@ -56,7 +56,6 @@ const APP_SHELL = [
   './js/smart-schedule-system.js',
   './js/task-decomposition-system.js',
   './js/smart-health-system.js',
-  './js/reward-support.js',
   './i18n-auto.js',
   './calendar-sync-tasks.js',
   './js/page-event-bindings.js',
@@ -65,7 +64,6 @@ const APP_SHELL = [
   './js/desktop-widget.js',
   './css/desktop-widget.css',
   './css/desktop-widget-pages.css',
-  './assets/images/reward-wechat.png',
   './favicon.svg'
 ];
 

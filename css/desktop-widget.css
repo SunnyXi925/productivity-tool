@@ -43,7 +43,7 @@ body.desktop-widget::before {
     border-radius: 18px 18px 10px 10px;
     background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 14px 40px rgba(29, 42, 68, 0.13);
-    -webkit-app-region: drag;
+    -webkit-app-region: no-drag;
 }
 
 .desktop-widget-drag {
@@ -114,10 +114,22 @@ body.desktop-widget::before {
     outline: none;
 }
 
-.desktop-widget-pin[aria-pressed="true"] {
+.desktop-widget-place {
     border-color: rgba(49, 92, 234, 0.22);
     background: rgba(49, 92, 234, 0.09);
     color: var(--widget-blue);
+}
+
+body.desktop-widget.widget-collapsed {
+    height: 62px !important;
+}
+
+body.desktop-widget.local-workspace.widget-collapsed > .container {
+    display: none !important;
+}
+
+body.desktop-widget.widget-collapsed .desktop-widget-bar {
+    border-radius: 18px;
 }
 
 body.desktop-widget.local-workspace > .container {
@@ -397,14 +409,14 @@ body.desktop-widget.dark-mode .desktop-widget-control {
 }
 
 @media (max-width: 390px) {
-    .desktop-widget-pin {
+    .desktop-widget-place {
         width: 30px;
         padding: 0;
         overflow: hidden;
         color: transparent !important;
     }
 
-    .desktop-widget-pin::after {
+    .desktop-widget-place::after {
         content: "●";
         color: var(--widget-blue);
     }

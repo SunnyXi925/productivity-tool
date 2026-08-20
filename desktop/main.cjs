@@ -7,6 +7,7 @@ const APP_NAME = 'Productivity Tool';
 const DEFAULT_PORT = 47831;
 const WINDOW_WIDTH = 430;
 const WINDOW_HEIGHT = 720;
+const COLLAPSED_HEIGHT = 62;
 const PRIVATE_ROOTS = new Set(['.git', 'desktop', 'dist', 'node_modules', 'test-results']);
 const MIME_TYPES = new Map([
     ['.css', 'text/css; charset=utf-8'],
@@ -31,7 +32,7 @@ let tray = null;
 let staticServer = null;
 let settings = {};
 let isQuitting = false;
-let saveTimer = null;
+let isCollapsed = false;
 
 app.setName(APP_NAME);
 
@@ -56,23 +57,15 @@ function persistSettings(nextSettings = {}) {
     fs.writeFileSync(settingsPath(), JSON.stringify(settings, null, 2));
 }
 
-function scheduleBoundsSave() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => {
-        if (!widgetWindow || widgetWindow.isDestroyed()) return;
-        persistSettings({ bounds: widgetWindow.getBounds() });
-    }, 220);
-}
-
-function getInitialBounds() {
-    const saved = settings.bounds;
-    if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) return saved;
+function getDockedBounds(collapsed = false) {
     const { workArea } = screen.getPrimaryDisplay();
+    const width = Math.min(WINDOW_WIDTH, workArea.width - 16);
+    const height = collapsed ? COLLAPSED_HEIGHT : Math.min(WINDOW_HEIGHT, workArea.height - 16);
     return {
-        width: WINDOW_WIDTH,
-        height: WINDOW_HEIGHT,
-        x: workArea.x + workArea.width - WINDOW_WIDTH - 18,
-        y: workArea.y + 24
+        width,
+        height,
+        x: workArea.x + 8,
+        y: workArea.y + 8
     };
 }
 
@@ -134,19 +127,24 @@ function createStaticServer(port = settings.port || DEFAULT_PORT) {
     });
 }
 
-function setPinned(pinned) {
-    const nextPinned = Boolean(pinned);
-    if (widgetWindow && !widgetWindow.isDestroyed()) {
-        widgetWindow.setAlwaysOnTop(nextPinned, nextPinned ? 'floating' : 'normal');
-        widgetWindow.setVisibleOnAllWorkspaces(nextPinned, { visibleOnFullScreen: true });
-    }
-    persistSettings({ pinned: nextPinned });
+function placeOnDesktop() {
+    if (!widgetWindow || widgetWindow.isDestroyed()) return;
+    widgetWindow.setAlwaysOnTop(false);
+    widgetWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: false });
+    widgetWindow.setBounds(getDockedBounds(isCollapsed), true);
+}
+
+function setCollapsed(collapsed) {
+    isCollapsed = Boolean(collapsed);
+    placeOnDesktop();
+    widgetWindow?.webContents.send('widget:state-changed', { collapsed: isCollapsed });
     rebuildTrayMenu();
-    return nextPinned;
+    return isCollapsed;
 }
 
 function showWidget() {
     if (!widgetWindow || widgetWindow.isDestroyed()) return;
+    placeOnDesktop();
     widgetWindow.show();
     widgetWindow.focus();
 }
@@ -173,13 +171,12 @@ function rebuildTrayMenu() {
     const openAtLogin = getLoginItemSettings().openAtLogin;
     tray.setContextMenu(Menu.buildFromTemplate([
         { label: '显示小组件', click: showWidget },
-        { type: 'separator' },
+        { label: '移到主屏幕左侧', click: placeOnDesktop },
         {
-            label: '固定在最前面',
-            type: 'checkbox',
-            checked: settings.pinned !== false,
-            click: item => setPinned(item.checked)
+            label: isCollapsed ? '展开小组件' : '折叠小组件',
+            click: () => setCollapsed(!isCollapsed)
         },
+        { type: 'separator' },
         {
             label: '登录 Mac 后自动启动',
             type: 'checkbox',
@@ -206,18 +203,18 @@ function createTray() {
 
 async function createWindow() {
     const baseUrl = await createStaticServer();
-    const pinned = settings.pinned !== false;
     widgetWindow = new BrowserWindow({
-        ...getInitialBounds(),
-        minWidth: 370,
-        minHeight: 560,
+        ...getDockedBounds(),
         show: false,
         frame: false,
         transparent: true,
         hasShadow: true,
-        resizable: true,
+        movable: false,
+        resizable: false,
         fullscreenable: false,
         maximizable: false,
+        alwaysOnTop: false,
+        skipTaskbar: true,
         backgroundColor: '#00000000',
         webPreferences: {
             contextIsolation: true,
@@ -227,17 +224,15 @@ async function createWindow() {
         }
     });
 
-    setPinned(pinned);
+    placeOnDesktop();
     widgetWindow.once('ready-to-show', showWidget);
     widgetWindow.webContents.once('did-finish-load', showWidget);
     widgetWindow.loadURL(`${baseUrl}/index.html?desktop=1&view=quadrant`);
     setTimeout(showWidget, 1500);
-    widgetWindow.on('move', scheduleBoundsSave);
-    widgetWindow.on('resize', scheduleBoundsSave);
     widgetWindow.on('close', event => {
         if (isQuitting) return;
         event.preventDefault();
-        widgetWindow.hide();
+        setCollapsed(true);
     });
     widgetWindow.webContents.setWindowOpenHandler(({ url }) => {
         if (url.startsWith('https://')) shell.openExternal(url);
@@ -249,11 +244,16 @@ async function createWindow() {
 }
 
 ipcMain.handle('widget:get-state', () => ({
-    pinned: settings.pinned !== false,
+    collapsed: isCollapsed,
+    desktopMode: true,
+    alwaysOnTop: widgetWindow?.isAlwaysOnTop() || false,
     openAtLogin: getLoginItemSettings().openAtLogin
 }));
-ipcMain.handle('widget:toggle-pin', () => setPinned(settings.pinned === false));
-ipcMain.on('widget:hide', () => widgetWindow?.hide());
+ipcMain.handle('widget:place-on-desktop', () => {
+    placeOnDesktop();
+    return true;
+});
+ipcMain.handle('widget:toggle-collapse', () => setCollapsed(!isCollapsed));
 ipcMain.on('widget:show', showWidget);
 
 app.on('second-instance', showWidget);
@@ -270,6 +270,5 @@ app.whenReady().then(async () => {
 });
 
 app.on('quit', () => {
-    clearTimeout(saveTimer);
     staticServer?.close();
 });

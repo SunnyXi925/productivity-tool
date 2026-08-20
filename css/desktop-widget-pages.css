@@ -1823,8 +1823,7 @@ body.desktop-widget #fortune-view .fortune-btn {
 body.desktop-widget .time-tracker-modal,
 body.desktop-widget .countdown-modal,
 body.desktop-widget .ht-modal,
-body.desktop-widget .notification-permission-modal,
-body.desktop-widget .reward-modal {
+body.desktop-widget .notification-permission-modal {
     position: fixed !important;
     inset: 8px !important;
     z-index: 100100 !important;
@@ -1834,8 +1833,7 @@ body.desktop-widget .reward-modal {
 
 body.desktop-widget .time-tracker-modal .modal-content,
 body.desktop-widget .countdown-modal .modal-content,
-body.desktop-widget .ht-modal .modal-content,
-body.desktop-widget .reward-modal .modal-content {
+body.desktop-widget .ht-modal .modal-content {
     position: absolute !important;
     inset: 8px !important;
     width: auto !important;
