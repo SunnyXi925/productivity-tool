@@ -93,7 +93,7 @@ npm run desktop:build
 当前机器会生成 Apple 芯片版安装包：
 
 ```text
-dist/Productivity Tool-2.0.0-arm64.dmg
+dist/Productivity Tool-2.0.1-arm64.dmg
 ```
 
 将这个 DMG 发给使用 M1/M2/M3/M4 Mac 的用户即可。Intel Mac 需要单独构建：

@@ -981,6 +981,11 @@ class PomodoroTimer {
         bars.className = 'pomodoro-trend-bars';
         bars.style.setProperty('--trend-days', days);
 
+        const dateFormatter = new Intl.DateTimeFormat('zh-CN', {
+            month: 'numeric',
+            day: 'numeric'
+        });
+
         entries.forEach(([date, count], index) => {
             const day = document.createElement('div');
             day.className = 'pomodoro-trend-day';
@@ -995,9 +1000,12 @@ class PomodoroTimer {
 
             const label = document.createElement('span');
             label.className = 'pomodoro-trend-label';
-            label.textContent = index === 0 || index === entries.length - 1 || index % labelStep === 0
-                ? date.slice(4, 10)
-                : '';
+            const parsedDate = new Date(date);
+            const shouldShowLabel = index === 0 || index === entries.length - 1 || index % labelStep === 0;
+            const fullDate = Number.isNaN(parsedDate.getTime()) ? date : dateFormatter.format(parsedDate);
+            label.textContent = shouldShowLabel ? fullDate : '';
+            label.title = fullDate;
+            label.classList.toggle('is-visible', shouldShowLabel);
 
             day.append(countEl, bar, label);
             bars.appendChild(day);

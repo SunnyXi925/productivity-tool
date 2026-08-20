@@ -427,27 +427,33 @@ function initTemplateSystem() {
     const templatesGrid = document.getElementById('templates-grid');
     const templateTasksList = document.getElementById('template-tasks-list');
 
-    if (createTemplateBtn) {
+    if (createTemplateBtn && createTemplateBtn.dataset.templateBound !== 'true') {
+        createTemplateBtn.dataset.templateBound = 'true';
         createTemplateBtn.addEventListener('click', showCreateTemplateModal);
     }
 
-    if (templateSaveBtn) {
+    if (templateSaveBtn && templateSaveBtn.dataset.templateBound !== 'true') {
+        templateSaveBtn.dataset.templateBound = 'true';
         templateSaveBtn.addEventListener('click', saveTemplate);
     }
 
-    if (templateCancelBtn) {
+    if (templateCancelBtn && templateCancelBtn.dataset.templateBound !== 'true') {
+        templateCancelBtn.dataset.templateBound = 'true';
         templateCancelBtn.addEventListener('click', closeTemplateModal);
     }
 
-    if (addTemplateTaskBtn) {
+    if (addTemplateTaskBtn && addTemplateTaskBtn.dataset.templateBound !== 'true') {
+        addTemplateTaskBtn.dataset.templateBound = 'true';
         addTemplateTaskBtn.addEventListener('click', () => addTemplateTaskItem());
     }
 
-    if (templatePriorityFilter) {
+    if (templatePriorityFilter && templatePriorityFilter.dataset.templateBound !== 'true') {
+        templatePriorityFilter.dataset.templateBound = 'true';
         templatePriorityFilter.addEventListener('change', filterTemplates);
     }
 
-    if (templateSearch) {
+    if (templateSearch && templateSearch.dataset.templateBound !== 'true') {
+        templateSearch.dataset.templateBound = 'true';
         templateSearch.addEventListener('input', filterTemplates);
     }
 
@@ -482,7 +488,8 @@ function initTemplateSystem() {
 
     // 模态框关闭事件
     const templateModal = document.getElementById('template-modal');
-    if (templateModal) {
+    if (templateModal && templateModal.dataset.templateModalBound !== 'true') {
+        templateModal.dataset.templateModalBound = 'true';
         templateModal.addEventListener('click', (e) => {
             if (e.target === templateModal) {
                 closeTemplateModal();

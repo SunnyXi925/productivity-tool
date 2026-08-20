@@ -192,7 +192,7 @@ function rebuildTrayMenu() {
 }
 
 function createTray() {
-    const traySvg = '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><rect x="5" y="4" width="4" height="28" rx="2" fill="black"/><path d="M14 7h7c6 0 10 3 10 8.5S27 24 21 24h-3v8h-4V7Zm4 4v9h3c3.7 0 5.7-1.5 5.7-4.5S24.7 11 21 11h-3Z" fill="black"/></svg>';
+    const traySvg = '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><rect x="5" y="5" width="11" height="11" rx="2" fill="black"/><rect x="20" y="5" width="11" height="11" rx="2" fill="black"/><rect x="5" y="20" width="11" height="11" rx="2" fill="black"/><rect x="20" y="20" width="11" height="11" rx="2" fill="black"/><circle cx="18" cy="18" r="4" fill="white" stroke="black" stroke-width="2"/></svg>';
     const trayImage = nativeImage.createFromDataURL(`data:image/svg+xml;base64,${Buffer.from(traySvg).toString('base64')}`).resize({ width: 18, height: 18 });
     trayImage.setTemplateImage(true);
     tray = new Tray(trayImage);

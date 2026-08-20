@@ -1,5 +1,22 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#172033"/>
-  <rect x="13" y="13" width="6" height="38" rx="3" fill="#315CEA"/>
-  <path d="M27 16h10.5C46 16 51 20.7 51 28.3S46 41 37.5 41H33v10h-6V16Zm6 5.5v14h4.2c4.9 0 7.6-2.4 7.6-7s-2.7-7-7.6-7H33Z" fill="#FFFFFF"/>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shell" x1="156" y1="96" x2="858" y2="928" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#263753"/>
+      <stop offset="1" stop-color="#111A2A"/>
+    </linearGradient>
+    <filter id="shadow" x="96" y="106" width="832" height="832" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#07101E" flood-opacity=".32"/>
+    </filter>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="236" fill="url(#shell)"/>
+  <rect x="54" y="54" width="916" height="916" rx="216" fill="none" stroke="#FFFFFF" stroke-opacity=".09" stroke-width="8"/>
+  <g filter="url(#shadow)">
+    <path d="M188 226c0-38 31-69 69-69h193v293H188V226Z" fill="#E3695C"/>
+    <path d="M574 157h193c38 0 69 31 69 69v224H574V157Z" fill="#D99B35"/>
+    <path d="M188 574h262v293H257c-38 0-69-31-69-69V574Z" fill="#4472E4"/>
+    <path d="M574 574h262v224c0 38-31 69-69 69H574V574Z" fill="#35A180"/>
+  </g>
+  <circle cx="512" cy="512" r="106" fill="#F8FAFD"/>
+  <circle cx="512" cy="512" r="56" fill="#182436"/>
+  <path d="m486 512 18 18 38-42" fill="none" stroke="#F8FAFD" stroke-linecap="round" stroke-linejoin="round" stroke-width="22"/>
 </svg>

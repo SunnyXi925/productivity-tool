@@ -66,7 +66,11 @@
         const back = button('‹', 'widget-view-back');
         back.setAttribute('aria-label', '返回工具');
         back.hidden = true;
-        back.addEventListener('click', () => window.switchView?.('more-features'));
+        back.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.switchView?.('more-features');
+        });
 
         const copy = element('div', 'widget-view-copy');
         const title = element('strong', 'widget-view-title', '四象限');
@@ -75,8 +79,13 @@
 
         const action = button('+', 'widget-view-action');
         action.hidden = true;
-        action.addEventListener('click', () => {
+        action.addEventListener('click', event => {
+            // The desktop header lives inside the legacy clickable logo wrapper.
+            // Keep header actions from bubbling into its "return to tasks" handler.
+            event.preventDefault();
+            event.stopPropagation();
             const target = action.dataset.target;
+            if (!target) return;
             if (target === 'initial-add-btn') window.switchView?.('list');
             window.setTimeout(() => document.getElementById(target)?.click(), 0);
         });
@@ -176,7 +185,8 @@
         const bar = element('header', 'desktop-widget-bar');
         bar.setAttribute('aria-label', '桌面小组件控制栏');
         const dragArea = element('div', 'desktop-widget-drag');
-        const mark = element('span', 'desktop-widget-mark', 'P');
+        const mark = element('span', 'desktop-widget-mark');
+        mark.setAttribute('aria-hidden', 'true');
         const identity = element('div', 'desktop-widget-identity');
         identity.append(element('strong', '', '今日工作台'), element('span', 'desktop-widget-clock', formatClock()));
         dragArea.append(mark, identity);
