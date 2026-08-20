@@ -61,7 +61,7 @@ let isLoggedIn = false;
 
 const LOCAL_WORKSPACE_PERMISSIONS = [
     'add-task', 'quadrant-view', 'fortune', 'pomodoro',
-    'habit-tracker', 'countdown', 'time-tracker', 'calendar',
+    'habit-tracker', 'time-tracker',
     'dashboard', 'review', 'templates', 'more-features', 'backup', 'api-sync'
 ];
 
@@ -385,9 +385,7 @@ function updateMenuVisibility() {
         'fortune': 'fortune-feature-card',           // 每日一签
         'pomodoro': 'pomodoro-feature-card',         // 番茄专注
         'habit-tracker': 'habit-tracker-feature-card', // 习惯打卡
-        'countdown': 'countdown-feature-card',        // 倒数日
-        'time-tracker': 'time-tracker-feature-card',  // 时间管理可视化看板
-        'calendar': 'calendar-feature-card'           // 沉浸式日历
+        'time-tracker': 'time-tracker-feature-card'   // 时间记录
     };
 
     console.log('🔧 主导航栏菜单映射:', mainMenuItems);
@@ -527,7 +525,7 @@ function updateMenuVisibility() {
     // 🔧 强制刷新更多功能菜单显示
     setTimeout(() => {
         if (typeof currentUser !== 'undefined' && currentUser && currentUser.permissions &&
-            currentUser.permissions.some(p => ['fortune', 'pomodoro', 'habit-tracker', 'countdown', 'time-tracker', 'calendar'].includes(p))) {
+            currentUser.permissions.some(p => ['fortune', 'pomodoro', 'habit-tracker', 'time-tracker'].includes(p))) {
             const moreFeaturesTabBtn = document.getElementById('more-features-tab-btn');
             if (moreFeaturesTabBtn) {
                 moreFeaturesTabBtn.style.display = '';
@@ -1376,10 +1374,8 @@ function initDomCache() {
         templatesView: document.getElementById('templates-view'),
         moreFeaturesView: document.getElementById('more-features-view'),
         pomodoroView: document.getElementById('pomodoro-view'),
-        countdownView: document.getElementById('countdown-view'),
         habitTrackerView: document.getElementById('habit-tracker-view'),
-        timeTrackerView: document.getElementById('time-tracker-view'),
-        calendarProView: document.getElementById('calendar-pro-view')
+        timeTrackerView: document.getElementById('time-tracker-view')
     };
 
     domCache.tabButtons = document.querySelectorAll('.tab-button');
@@ -1752,7 +1748,7 @@ function ensureUserPermissions(user) {
         // 管理员应该拥有所有功能的完整权限
         const adminFullPermissions = [
             'add-task', 'quadrant-view', 'fortune', 'pomodoro',
-            'habit-tracker', 'countdown', 'time-tracker', 'calendar',
+            'habit-tracker', 'time-tracker',
             'dashboard', 'review', 'templates', 'more-features', 'backup'
         ];
 
@@ -1780,7 +1776,7 @@ function ensureUserPermissions(user) {
             // 为没有权限的普通用户添加默认权限
             const defaultPermissions = [
                 'add-task', 'quadrant-view', 'fortune', 'pomodoro',
-                'habit-tracker', 'countdown', 'time-tracker', 'calendar', 'more-features'
+                'habit-tracker', 'time-tracker', 'more-features'
             ];
             user.permissions = [...defaultPermissions];
             console.log('🔧 普通用户设置默认权限:', user.permissions);
@@ -5808,7 +5804,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // 绑定更多功能视图中的功能按钮事件
     const fortuneFeatureBtn = document.getElementById('fortune-feature-btn');
     const pomodoroFeatureBtn = document.getElementById('pomodoro-feature-btn');
-    const countdownFeatureBtn = document.getElementById('countdown-feature-btn');
 
     if (fortuneFeatureBtn) {
         fortuneFeatureBtn.addEventListener('click', () => {
@@ -5824,14 +5819,6 @@ document.addEventListener('DOMContentLoaded', function () {
             switchView('pomodoro');
         });
         console.log('番茄专注功能按钮事件已绑定');
-    }
-
-    if (countdownFeatureBtn) {
-        countdownFeatureBtn.addEventListener('click', () => {
-            console.log('进入倒数纪念日');
-            switchView('countdown');
-        });
-        console.log('倒数纪念日功能按钮事件已绑定');
     }
 
     // 绑定习惯打卡功能按钮事件
@@ -5852,15 +5839,6 @@ document.addEventListener('DOMContentLoaded', function () {
             switchView('time-tracker');
         });
         console.log('时间管理可视化看板功能按钮事件已绑定');
-    }
-
-    const calendarFeatureBtn = document.getElementById('calendar-feature-btn');
-    if (calendarFeatureBtn) {
-        calendarFeatureBtn.addEventListener('click', () => {
-            console.log('进入沉浸式自然日历');
-            switchView('calendar');
-        });
-        console.log('沉浸式自然日历功能按钮事件已绑定');
     }
 
     // 绑定时间管理相关事件

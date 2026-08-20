@@ -51,13 +51,11 @@
         dashboard: { title: '看板', subtitle: '看见进度与节奏' },
         review: { title: '复盘', subtitle: '回看并收束一天', action: ['保存', '保存复盘', 'save-review-btn'] },
         templates: { title: '模板', subtitle: '重复工作，一次设置', action: ['+', '创建模板', 'create-template-btn'] },
-        'more-features': { title: '工具', subtitle: '专注、习惯与日程' },
+        'more-features': { title: '工具', subtitle: '四种节奏，随取随用' },
         fortune: { title: '每日一签', subtitle: '为今天留一句提醒', child: true },
         pomodoro: { title: '番茄专注', subtitle: '把注意力留在当下', child: true },
         'habit-tracker': { title: '习惯打卡', subtitle: '让行动留下连续记录', child: true, action: ['+', '添加习惯', 'ht-addHabitBtn'] },
-        countdown: { title: '倒数日', subtitle: '记住值得等待的日子', child: true, action: ['+', '添加纪念日', 'add-countdown-btn'] },
-        'time-tracker': { title: '时间记录', subtitle: '看见时间去了哪里', child: true, action: ['+', '添加时间记录', 'add-time-record-btn'] },
-        calendar: { title: '日历', subtitle: '安排接下来的时间', child: true, action: ['+', '创建日程', 'calendar-sidebar-create'] }
+        'time-tracker': { title: '时间记录', subtitle: '看见时间去了哪里', child: true, action: ['+', '添加时间记录', 'add-time-record-btn'] }
     };
 
     function createViewHeader() {
@@ -94,13 +92,51 @@
         [
             'fortune-view',
             'habit-tracker-view',
-            'countdown-view',
             'dashboard-view',
             'review-view',
             'templates-view'
         ].forEach(id => {
             const view = document.getElementById(id);
             if (view && view.parentElement !== main) main.appendChild(view);
+        });
+    }
+
+    function refineWidgetTypography(root = document) {
+        const emojiPattern = /[\p{Extended_Pictographic}\uFE0F\u200D]/gu;
+        const isElement = root.nodeType === Node.ELEMENT_NODE;
+        const targets = isElement && root.closest?.('.view:not(#quadrant-view)')
+            ? [root]
+            : Array.from(root.querySelectorAll?.('.view:not(#quadrant-view)') || []);
+
+        const materialIcons = [
+            ...(root.matches?.('.material-icons') ? [root] : []),
+            ...Array.from(root.querySelectorAll?.('.material-icons') || [])
+        ];
+        materialIcons.forEach(icon => {
+            const iconName = icon.textContent.trim();
+            if (iconName && !icon.dataset.icon) icon.dataset.icon = iconName;
+            if (icon.textContent) icon.replaceChildren();
+            icon.setAttribute('aria-hidden', 'true');
+        });
+
+        targets.forEach(target => {
+            const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT);
+            const textNodes = [];
+            while (walker.nextNode()) textNodes.push(walker.currentNode);
+            textNodes.forEach(node => {
+                const parent = node.parentElement;
+                if (!parent || parent.closest('svg, script, style, .material-icons')) return;
+                const refined = node.textContent.replace(emojiPattern, '').replace(/\s{2,}/g, ' ');
+                if (refined !== node.textContent) node.textContent = refined;
+            });
+        });
+
+        document.querySelectorAll('#review-view .mood-btn').forEach((item, index) => {
+            const label = String(index + 1);
+            if (item.textContent !== label) item.textContent = label;
+        });
+        document.querySelectorAll('#review-view .rating-stars .star').forEach(item => {
+            if (item.textContent !== '·') item.textContent = '·';
         });
     }
 
@@ -126,15 +162,12 @@
             }
         }
 
-        if (view === 'calendar' && !document.body.dataset.widgetCalendarPrepared) {
-            document.body.dataset.widgetCalendarPrepared = 'true';
-            window.setTimeout(() => document.querySelector('[data-calendar-view="month"]')?.click(), 120);
-        }
-
         document.querySelector('.container > main')?.scrollTo({ top: 0, behavior: 'instant' });
     }
 
     function init() {
+        document.getElementById('calendar-pro-view')?.remove();
+        document.querySelectorAll('#countdown-feature-card, #calendar-feature-card').forEach(node => node.remove());
         normalizeViewHierarchy();
         document.documentElement.classList.add('desktop-widget-shell');
         document.body.classList.add('desktop-widget');
@@ -183,6 +216,21 @@
 
         relabelNavigation();
         createViewHeader();
+        refineWidgetTypography();
+        if (document.body) {
+            new MutationObserver(records => {
+                records.forEach(record => {
+                    const candidates = record.addedNodes.length
+                        ? Array.from(record.addedNodes)
+                        : [record.target];
+                    candidates.forEach(node => {
+                        const target = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+                        if (!target) return;
+                        refineWidgetTypography(target);
+                    });
+                });
+            }).observe(document.body, { childList: true, characterData: true, subtree: true });
+        }
         window.addEventListener('productivity:viewchange', event => updateViewHeader(event.detail?.view));
         setInterval(() => {
             const clock = document.querySelector('.desktop-widget-clock');

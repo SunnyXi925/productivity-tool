@@ -1,0 +1,1491 @@
+/*
+ * Desktop workbench redesign
+ * A compact Mac-side utility: cool paper, ink typography and a four-colour index rail.
+ * Quadrant layout is intentionally left untouched.
+ */
+
+body.desktop-widget {
+    --desk-canvas: #eef2f6;
+    --desk-paper: #fbfcfe;
+    --desk-paper-strong: #ffffff;
+    --desk-ink: #182436;
+    --desk-copy: #465469;
+    --desk-muted: #7a8798;
+    --desk-line: #d9e0e8;
+    --desk-line-soft: #e8edf2;
+    --desk-blue: #3264d7;
+    --desk-blue-soft: #e9effd;
+    --desk-red: #df6658;
+    --desk-amber: #d4932d;
+    --desk-green: #2d9878;
+    --desk-shadow: 0 8px 22px rgba(31, 46, 69, 0.055);
+    --desk-title-font: "Avenir Next", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    --desk-body-font: "PingFang SC", "SF Pro Text", "Hiragino Sans GB", sans-serif;
+    --desk-data-font: "SF Mono", "Roboto Mono", Menlo, monospace;
+    color: var(--desk-ink);
+    font-family: var(--desk-body-font);
+}
+
+body.desktop-widget .desktop-widget-bar,
+body.desktop-widget .local-workspace > .container {
+    border-color: rgba(255, 255, 255, 0.82) !important;
+    background: rgba(251, 252, 254, 0.96) !important;
+}
+
+body.desktop-widget .desktop-widget-bar {
+    box-shadow: 0 12px 34px rgba(31, 46, 69, 0.13);
+}
+
+body.desktop-widget .desktop-widget-mark {
+    border-radius: 7px;
+    background: var(--desk-ink);
+    box-shadow:
+        inset 3px 0 0 var(--desk-red),
+        inset 6px 0 0 var(--desk-amber),
+        inset 9px 0 0 var(--desk-blue),
+        inset 12px 0 0 var(--desk-green);
+    font-family: var(--desk-data-font);
+}
+
+body.desktop-widget .desktop-widget-identity strong,
+body.desktop-widget .widget-view-title {
+    font-family: var(--desk-title-font) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em;
+}
+
+body.desktop-widget .desktop-widget-clock,
+body.desktop-widget .stat-number,
+body.desktop-widget .stat-value,
+body.desktop-widget .metric-value,
+body.desktop-widget .summary-value,
+body.desktop-widget .timer-text,
+body.desktop-widget .record-duration {
+    font-family: var(--desk-data-font) !important;
+    font-variant-numeric: tabular-nums;
+}
+
+body.desktop-widget.local-workspace .container > main {
+    background-color: var(--desk-canvas) !important;
+    background-image: linear-gradient(rgba(122, 135, 152, 0.045) 1px, transparent 1px) !important;
+    background-size: 100% 28px !important;
+}
+
+body.desktop-widget.local-workspace .tabs {
+    border-top-color: var(--desk-line) !important;
+    background: rgba(251, 252, 254, 0.97) !important;
+}
+
+body.desktop-widget.local-workspace .tab-button {
+    color: #738095 !important;
+    font-family: var(--desk-body-font) !important;
+}
+
+body.desktop-widget.local-workspace .tab-button .tab-icon {
+    font-size: 18px !important;
+    font-weight: 400 !important;
+}
+
+body.desktop-widget.local-workspace .tab-button.active {
+    background: var(--desk-blue-soft) !important;
+    color: var(--desk-blue) !important;
+}
+
+body.desktop-widget .widget-view-action,
+body.desktop-widget .widget-view-back {
+    border-color: var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-blue) !important;
+    font-family: var(--desk-body-font) !important;
+}
+
+body.desktop-widget .widget-view-subtitle {
+    color: var(--desk-muted) !important;
+    font-family: var(--desk-body-font) !important;
+}
+
+body.desktop-widget :is(
+    #list-view,
+    #dashboard-view,
+    #review-view,
+    #templates-view,
+    #more-features-view,
+    #fortune-view,
+    #pomodoro-view,
+    #habit-tracker-view,
+    #time-tracker-view
+) {
+    color: var(--desk-copy) !important;
+    font-family: var(--desk-body-font) !important;
+}
+
+body.desktop-widget :is(
+    #list-view,
+    #dashboard-view,
+    #review-view,
+    #templates-view,
+    #more-features-view,
+    #fortune-view,
+    #pomodoro-view,
+    #habit-tracker-view,
+    #time-tracker-view
+) :is(h1, h2, h3, h4, h5, strong) {
+    color: var(--desk-ink) !important;
+    font-family: var(--desk-title-font) !important;
+    letter-spacing: 0 !important;
+}
+
+body.desktop-widget :is(
+    #list-view,
+    #dashboard-view,
+    #review-view,
+    #templates-view,
+    #more-features-view,
+    #fortune-view,
+    #pomodoro-view,
+    #habit-tracker-view,
+    #time-tracker-view
+) :is(button, input, select, textarea) {
+    font-family: var(--desk-body-font) !important;
+}
+
+body.desktop-widget :is(
+    #list-view,
+    #dashboard-view,
+    #review-view,
+    #templates-view,
+    #more-features-view,
+    #fortune-view,
+    #pomodoro-view,
+    #habit-tracker-view,
+    #time-tracker-view
+) :is(input, select, textarea) {
+    border-color: var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: var(--desk-paper-strong) !important;
+}
+
+body.desktop-widget :is(
+    #list-view,
+    #dashboard-view,
+    #review-view,
+    #templates-view,
+    #more-features-view,
+    #fortune-view,
+    #pomodoro-view,
+    #habit-tracker-view,
+    #time-tracker-view
+) :is(button, [role="button"]):focus-visible {
+    outline: 2px solid rgba(50, 100, 215, 0.28) !important;
+    outline-offset: 2px !important;
+}
+
+/* Task inbox */
+body.desktop-widget.local-workspace #list-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #initial-add-container {
+    min-height: 72px !important;
+}
+
+body.desktop-widget #initial-add-btn {
+    justify-content: flex-start !important;
+    min-height: 46px !important;
+    padding: 0 14px !important;
+    border: 1px dashed #b9c5d5 !important;
+    border-left: 3px solid var(--desk-blue) !important;
+    border-radius: 9px !important;
+    background: rgba(251, 252, 254, 0.9) !important;
+    color: var(--desk-blue) !important;
+    box-shadow: none !important;
+    font-size: 12px !important;
+}
+
+body.desktop-widget #task-actions {
+    border-color: var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #task-list .task-item {
+    position: relative;
+    padding: 10px 10px 10px 13px !important;
+    overflow: hidden;
+    border-color: var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #task-list .task-item::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--desk-blue);
+    content: "";
+}
+
+/* Tool index */
+body.desktop-widget #more-features-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #more-features-view .more-features-container {
+    display: grid !important;
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 12px !important;
+}
+
+body.desktop-widget #more-features-view .more-features-header {
+    display: block !important;
+    margin: 0 !important;
+    padding: 3px 2px 5px !important;
+    text-align: left !important;
+}
+
+body.desktop-widget #more-features-view .header-badge {
+    display: inline-flex !important;
+    width: auto !important;
+    margin: 0 0 7px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+body.desktop-widget #more-features-view .header-badge .badge-text {
+    color: var(--desk-blue) !important;
+    font: 700 9px/1.2 var(--desk-data-font) !important;
+    letter-spacing: 0.1em !important;
+}
+
+body.desktop-widget #more-features-view .more-features-title {
+    margin: 0 0 4px !important;
+    font-size: 21px !important;
+    line-height: 1.25 !important;
+    text-align: left !important;
+}
+
+body.desktop-widget #more-features-view .title-gradient {
+    background: none !important;
+    color: var(--desk-ink) !important;
+    -webkit-text-fill-color: currentColor !important;
+}
+
+body.desktop-widget #more-features-view .more-features-subtitle {
+    margin: 0 !important;
+    color: var(--desk-muted) !important;
+    font-size: 10px !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+}
+
+body.desktop-widget #more-features-view .features-grid {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+}
+
+body.desktop-widget #more-features-view .feature-card {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 82px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 10px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+    transform: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-card[hidden] {
+    display: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--tool-accent, var(--desk-blue));
+    content: "";
+}
+
+body.desktop-widget #fortune-feature-card { --tool-accent: var(--desk-amber); --tool-tint: #fbf2e2; }
+body.desktop-widget #pomodoro-feature-card { --tool-accent: var(--desk-red); --tool-tint: #fbeceb; }
+body.desktop-widget #habit-tracker-feature-card { --tool-accent: var(--desk-green); --tool-tint: #e6f3ef; }
+body.desktop-widget #time-tracker-feature-card { --tool-accent: var(--desk-blue); --tool-tint: var(--desk-blue-soft); }
+
+body.desktop-widget #more-features-view .feature-card .card-content {
+    display: grid !important;
+    min-height: 80px !important;
+    padding: 12px 11px 12px 15px !important;
+    grid-template-columns: 38px minmax(0, 1fr) 28px !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+body.desktop-widget #more-features-view .feature-icon-wrapper {
+    display: grid !important;
+    width: 38px !important;
+    height: 38px !important;
+    place-items: center !important;
+    border: 0 !important;
+    border-radius: 9px !important;
+    background: var(--tool-tint) !important;
+}
+
+body.desktop-widget #more-features-view .feature-icon {
+    display: grid !important;
+    width: 22px !important;
+    height: 22px !important;
+    place-items: center !important;
+    color: var(--tool-accent) !important;
+    font-size: 0 !important;
+}
+
+body.desktop-widget #more-features-view .feature-icon svg {
+    width: 22px;
+    height: 22px;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+}
+
+body.desktop-widget #more-features-view .feature-info {
+    display: grid !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    gap: 3px !important;
+}
+
+body.desktop-widget #more-features-view .feature-title {
+    margin: 0 !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+}
+
+body.desktop-widget #more-features-view .feature-description {
+    display: block !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    color: var(--desk-muted) !important;
+    font-size: 9px !important;
+    line-height: 1.45 !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+body.desktop-widget #more-features-view :is(.feature-stats, .card-glow, .icon-bg) {
+    display: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-btn {
+    display: grid !important;
+    width: 28px !important;
+    min-width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    place-items: center !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 50% !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--tool-accent) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-btn .btn-text {
+    display: none !important;
+}
+
+body.desktop-widget #more-features-view .feature-btn .btn-icon {
+    font: 600 14px/1 var(--desk-body-font) !important;
+}
+
+body.desktop-widget #more-features-view .feature-card:hover {
+    border-color: color-mix(in srgb, var(--tool-accent) 40%, var(--desk-line)) !important;
+    transform: translateX(2px) !important;
+}
+
+/* Dashboard */
+body.desktop-widget #dashboard-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats {
+    margin-bottom: 9px !important;
+    gap: 7px !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item {
+    position: relative;
+    padding: 11px 6px 9px !important;
+    overflow: hidden;
+    border: 1px solid var(--desk-line) !important;
+    border-top: 0 !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--stat-accent, var(--desk-blue));
+    content: "";
+}
+
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item:nth-child(1) { --stat-accent: var(--desk-red); }
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item:nth-child(2) { --stat-accent: var(--desk-green); }
+body.desktop-widget #dashboard-view .dashboard-stats .stat-item:nth-child(3) { --stat-accent: var(--desk-blue); }
+
+body.desktop-widget #dashboard-view .stat-number {
+    color: var(--desk-ink) !important;
+    font-size: 18px !important;
+}
+
+body.desktop-widget #dashboard-view :is(
+    .dashboard-card,
+    .chart-card,
+    .behavior-card,
+    .recommendations-section,
+    .smart-health-section,
+    .smart-decomposition-section,
+    .smart-reminder-section,
+    .smart-schedule-section
+) {
+    position: relative !important;
+    padding: 11px 11px 11px 14px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #dashboard-view :is(
+    .dashboard-card,
+    .chart-card,
+    .behavior-card,
+    .recommendations-section,
+    .smart-health-section,
+    .smart-decomposition-section,
+    .smart-reminder-section,
+    .smart-schedule-section
+)::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--desk-blue);
+    content: "";
+}
+
+body.desktop-widget #dashboard-view :is(.behavior-card, .smart-health-section, .smart-reminder-section)::before {
+    background: var(--desk-green);
+}
+
+body.desktop-widget #dashboard-view :is(.smart-decomposition-section, .smart-schedule-section)::before {
+    background: var(--desk-amber);
+}
+
+body.desktop-widget #dashboard-view :is(.behavior-icon, .status-icon, .recommendation-icon, .decomposition-icon, .timeline-icon, .history-icon) {
+    display: inline-grid !important;
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 18px !important;
+    place-items: center !important;
+    border-radius: 50% !important;
+    background: var(--desk-blue-soft) !important;
+    color: transparent !important;
+    font-size: 0 !important;
+}
+
+body.desktop-widget #dashboard-view :is(.behavior-icon, .status-icon, .recommendation-icon, .decomposition-icon, .timeline-icon, .history-icon)::after {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--desk-blue);
+    content: "";
+}
+
+body.desktop-widget #dashboard-view :is(.dashboard-title, .chart-title, h3, h4, h5) {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+}
+
+body.desktop-widget #dashboard-view :is(button, select) {
+    border: 1px solid var(--desk-line) !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+}
+
+body.desktop-widget #dashboard-view .chart-container {
+    height: 156px !important;
+    min-height: 156px !important;
+}
+
+body.desktop-widget #dashboard-view .chart-container canvas {
+    height: 156px !important;
+}
+
+body.desktop-widget #dashboard-view .chart-footer {
+    display: none !important;
+}
+
+/* Review as a stack of writing slips */
+body.desktop-widget #review-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #review-view .review-container {
+    gap: 9px !important;
+}
+
+body.desktop-widget #review-view .review-type-selector {
+    padding: 4px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: rgba(251, 252, 254, 0.9) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #review-view .review-type-btn {
+    min-height: 31px !important;
+    border: 0 !important;
+    border-radius: 7px !important;
+    background: transparent !important;
+    color: var(--desk-muted) !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #review-view .review-type-btn.active {
+    background: var(--desk-blue-soft) !important;
+    color: var(--desk-blue) !important;
+}
+
+body.desktop-widget #review-view .review-date-selector {
+    padding: 7px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+}
+
+body.desktop-widget #review-view .review-date-display {
+    color: var(--desk-ink) !important;
+}
+
+body.desktop-widget #review-view .review-grid {
+    gap: 8px !important;
+}
+
+body.desktop-widget #review-view .review-card {
+    position: relative !important;
+    padding: 10px 10px 10px 14px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-left: 0 !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+    height: auto !important;
+}
+
+body.desktop-widget #review-view .review-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--review-accent, var(--desk-blue));
+    content: "";
+}
+
+body.desktop-widget #review-view .review-card:nth-child(4n + 1) { --review-accent: var(--desk-red); }
+body.desktop-widget #review-view .review-card:nth-child(4n + 2) { --review-accent: var(--desk-amber); }
+body.desktop-widget #review-view .review-card:nth-child(4n + 3) { --review-accent: var(--desk-blue); }
+body.desktop-widget #review-view .review-card:nth-child(4n + 4) { --review-accent: var(--desk-green); }
+
+body.desktop-widget #review-view .review-card-header {
+    min-height: 22px !important;
+    margin-bottom: 5px !important;
+}
+
+body.desktop-widget #review-view .review-card-header h3 {
+    font-size: 11px !important;
+}
+
+body.desktop-widget #review-view .review-card-header .material-icons {
+    color: var(--review-accent) !important;
+    font-size: 15px !important;
+}
+
+body.desktop-widget #review-view textarea {
+    width: 100% !important;
+    height: 88px !important;
+    min-height: 74px !important;
+    padding: 8px 6px !important;
+    border: 0 !important;
+    border-top: 1px solid var(--desk-line-soft) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: var(--desk-copy) !important;
+    font-size: 10px !important;
+    line-height: 1.65 !important;
+    resize: vertical !important;
+}
+
+body.desktop-widget #review-view .review-actions {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 8px 0 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #review-view .review-btn {
+    min-height: 34px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+    box-shadow: none !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #review-view .review-btn.primary,
+body.desktop-widget #review-view #save-review-btn {
+    border-color: var(--desk-blue) !important;
+    background: var(--desk-blue) !important;
+    color: white !important;
+}
+
+body.desktop-widget #review-view .mood-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+}
+
+body.desktop-widget #review-view .mood-btn {
+    width: 100% !important;
+    aspect-ratio: 1 !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 50% !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+    font: 700 10px/1 var(--desk-data-font) !important;
+}
+
+body.desktop-widget #review-view .mood-btn.selected {
+    border-color: var(--desk-blue) !important;
+    background: var(--desk-blue) !important;
+    color: white !important;
+}
+
+body.desktop-widget #review-view .mood-text {
+    font-size: 8px !important;
+}
+
+body.desktop-widget #review-view .rating-stars .star {
+    color: var(--desk-amber) !important;
+    font: 800 16px/1 var(--desk-data-font) !important;
+}
+
+/* Templates */
+body.desktop-widget #templates-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #templates-view .templates-container,
+body.desktop-widget #templates-view .templates-content {
+    gap: 9px !important;
+}
+
+body.desktop-widget #templates-view .templates-header {
+    display: none !important;
+    padding: 12px 12px 12px 15px !important;
+    gap: 4px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-left: 3px solid var(--desk-blue) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #templates-view .templates-header h2 {
+    margin: 0 !important;
+    font-size: 14px !important;
+}
+
+body.desktop-widget #templates-view .templates-header p {
+    margin: 0 !important;
+    color: var(--desk-muted) !important;
+    font-size: 9px !important;
+    line-height: 1.5 !important;
+}
+
+body.desktop-widget #templates-view #create-template-btn {
+    display: none !important;
+}
+
+body.desktop-widget #templates-view .templates-filters {
+    display: grid !important;
+    padding: 9px !important;
+    grid-template-columns: 1fr 1.2fr !important;
+    gap: 7px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+}
+
+body.desktop-widget #templates-view .filter-group {
+    display: grid !important;
+    gap: 4px !important;
+}
+
+body.desktop-widget #templates-view .filter-group label {
+    color: var(--desk-muted) !important;
+    font-size: 8px !important;
+}
+
+body.desktop-widget #templates-view .filter-group :is(input, select) {
+    width: 100% !important;
+    min-height: 34px !important;
+    padding: 6px 8px !important;
+    font-size: 9px !important;
+}
+
+body.desktop-widget #templates-view .templates-grid {
+    gap: 8px !important;
+}
+
+body.desktop-widget #templates-view .template-card {
+    position: relative !important;
+    padding: 11px 11px 11px 14px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #templates-view .template-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--desk-blue);
+    content: "";
+}
+
+body.desktop-widget #templates-view .templates-empty {
+    min-height: 210px !important;
+    padding: 18px !important;
+    border: 1px dashed #b9c5d5 !important;
+    border-radius: 9px !important;
+    background: rgba(251, 252, 254, 0.72) !important;
+}
+
+/* Daily note */
+body.desktop-widget #fortune-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #fortune-view .fortune-container {
+    display: grid !important;
+    gap: 9px !important;
+}
+
+body.desktop-widget #fortune-view .fortune-header {
+    display: flex !important;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+    padding: 0 2px !important;
+    gap: 8px !important;
+}
+
+body.desktop-widget #fortune-view .fortune-header :is(.header-badge, .fortune-title, .fortune-subtitle) {
+    display: none !important;
+}
+
+body.desktop-widget #fortune-view .date-display {
+    display: flex !important;
+    width: 100% !important;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+    color: var(--desk-muted) !important;
+}
+
+body.desktop-widget #fortune-view :is(.date-main, .date-lunar) {
+    color: var(--desk-muted) !important;
+    font: 600 9px/1.3 var(--desk-data-font) !important;
+}
+
+body.desktop-widget #fortune-view .fortune-main-card {
+    position: relative !important;
+    display: grid !important;
+    min-height: 292px !important;
+    padding: 18px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-top: 0 !important;
+    border-radius: 10px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #fortune-view .fortune-main-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--desk-amber);
+    content: "";
+}
+
+body.desktop-widget #fortune-view .fortune-left-section,
+body.desktop-widget #fortune-view .fortune-right-section {
+    padding: 0 !important;
+}
+
+body.desktop-widget #fortune-view .fortune-envelope {
+    display: grid !important;
+    min-height: 248px !important;
+    place-items: center !important;
+    border: 1px dashed #c9b58f !important;
+    border-radius: 8px !important;
+    background: #f8f5ef !important;
+    box-shadow: inset 0 0 0 6px rgba(212, 147, 45, 0.035) !important;
+}
+
+body.desktop-widget #fortune-view .envelope-front {
+    display: grid !important;
+    place-items: center !important;
+    gap: 12px !important;
+    color: var(--desk-copy) !important;
+    transform: none !important;
+}
+
+body.desktop-widget #fortune-view :is(.envelope-icon, .envelope-seal) {
+    display: none !important;
+}
+
+body.desktop-widget #fortune-view .envelope-text {
+    color: var(--desk-copy) !important;
+    font: 650 12px/1.5 var(--desk-title-font) !important;
+}
+
+body.desktop-widget #fortune-view .envelope-text::before {
+    display: block;
+    width: 26px;
+    height: 2px;
+    margin: 0 auto 15px;
+    background: var(--desk-amber);
+    content: "";
+}
+
+body.desktop-widget #fortune-view .fortune-text-wrapper {
+    display: grid;
+    min-height: 248px;
+    align-content: center;
+    padding: 18px;
+    gap: 12px;
+}
+
+body.desktop-widget #fortune-view .fortune-text {
+    color: var(--desk-ink) !important;
+    font: 700 19px/1.7 var(--desk-title-font) !important;
+    text-align: left !important;
+}
+
+body.desktop-widget #fortune-view .fortune-content-inner {
+    display: grid !important;
+    padding-top: 12px !important;
+    gap: 10px !important;
+    border-top: 1px solid var(--desk-line-soft) !important;
+}
+
+body.desktop-widget #fortune-view .fortune-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+}
+
+body.desktop-widget #fortune-view .section-icon {
+    display: none !important;
+}
+
+body.desktop-widget #fortune-view .section-title {
+    color: var(--desk-muted) !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+}
+
+body.desktop-widget #fortune-view :is(.fortune-meaning, .fortune-advice) {
+    color: var(--desk-copy) !important;
+    font-size: 10px !important;
+    line-height: 1.65 !important;
+}
+
+body.desktop-widget #fortune-view .fortune-type-selector {
+    padding: 5px !important;
+    border-color: var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+}
+
+body.desktop-widget #fortune-view .option-content {
+    border: 0 !important;
+    border-radius: 7px !important;
+    background: transparent !important;
+    color: var(--desk-muted) !important;
+}
+
+body.desktop-widget #fortune-view .type-option input:checked + .option-content {
+    background: #f8f1e5 !important;
+    color: #9a681e !important;
+}
+
+body.desktop-widget #fortune-view .option-icon,
+body.desktop-widget #fortune-view .fortune-btn .btn-icon,
+body.desktop-widget #fortune-view .fortune-btn .btn-arrow {
+    display: none !important;
+}
+
+body.desktop-widget #fortune-view .fortune-btn {
+    min-height: 38px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+}
+
+body.desktop-widget #fortune-view .fortune-btn.primary,
+body.desktop-widget #fortune-view .fortune-btn.ai {
+    border-color: var(--desk-amber) !important;
+    background: var(--desk-amber) !important;
+    color: white !important;
+}
+
+/* Pomodoro */
+body.desktop-widget #pomodoro-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #pomodoro-view .pomodoro-container,
+body.desktop-widget #pomodoro-view .pomodoro-main,
+body.desktop-widget #pomodoro-view .pomodoro-stats-section {
+    gap: 9px !important;
+}
+
+body.desktop-widget #pomodoro-view .pomodoro-header {
+    display: none !important;
+}
+
+body.desktop-widget #pomodoro-view :is(.timer-card, .stat-card, .trends-card, .records-card) {
+    position: relative !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 10px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-card {
+    border-top: 0 !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--desk-red);
+    content: "";
+}
+
+body.desktop-widget #pomodoro-view .timer-card > .card-content {
+    padding: 13px !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-mode-selector {
+    padding: 4px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: #f3f5f8 !important;
+}
+
+body.desktop-widget #pomodoro-view .mode-btn {
+    min-height: 30px !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    color: var(--desk-muted) !important;
+}
+
+body.desktop-widget #pomodoro-view .mode-btn.active {
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-red) !important;
+    box-shadow: 0 2px 6px rgba(31, 46, 69, 0.08) !important;
+}
+
+body.desktop-widget #pomodoro-view :is(.mode-icon, .btn-icon, .stat-icon, .chart-icon, .empty-icon) {
+    display: none !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-display {
+    padding: 6px 0 !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-circle,
+body.desktop-widget #pomodoro-view .timer-svg {
+    width: 178px !important;
+    height: 178px !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-bg {
+    stroke: #e7ebf0 !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-progress {
+    stroke: var(--desk-red) !important;
+}
+
+body.desktop-widget #pomodoro-view .timer-text span {
+    color: var(--desk-ink) !important;
+    font-size: 30px !important;
+    letter-spacing: -0.04em !important;
+}
+
+body.desktop-widget #pomodoro-view :is(.timer-controls, .timer-settings) {
+    gap: 6px !important;
+}
+
+body.desktop-widget #pomodoro-view :is(.control-btn, .settings-btn) {
+    min-height: 36px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #pomodoro-view .control-btn.start {
+    border-color: var(--desk-red) !important;
+    background: var(--desk-red) !important;
+    color: white !important;
+}
+
+body.desktop-widget #pomodoro-view .focus-task-section {
+    padding: 8px !important;
+    border: 1px solid var(--desk-line-soft) !important;
+    border-radius: 8px !important;
+    background: #f7f8fa !important;
+}
+
+body.desktop-widget #pomodoro-view .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-card > .card-content {
+    min-height: 64px !important;
+    padding: 9px 4px !important;
+    text-align: center !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-value {
+    color: var(--desk-ink) !important;
+    font-size: 13px !important;
+}
+
+body.desktop-widget #pomodoro-view .stat-label {
+    color: var(--desk-muted) !important;
+    font-size: 8px !important;
+}
+
+/* Habit tracker */
+body.desktop-widget #habit-tracker-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-main-page,
+body.desktop-widget #habit-tracker-view .ht-page {
+    background: transparent !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-container {
+    padding: 0 !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-navbar {
+    margin-bottom: 8px !important;
+    padding: 6px 8px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-nav-brand {
+    color: var(--desk-ink) !important;
+    font-family: var(--desk-title-font) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-nav-logo {
+    display: none !important;
+}
+
+body.desktop-widget #habit-tracker-view :is(.ht-nav-btn, .ht-back-btn, .ht-month-nav) {
+    border: 1px solid var(--desk-line) !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+}
+
+body.desktop-widget #habit-tracker-view :is(
+    .ht-welcome-card,
+    .ht-progress-card,
+    .ht-habits-container,
+    .ht-calendar-wrapper,
+    .ht-chart-container,
+    .ht-achievement-section,
+    .ht-ranking-section,
+    .ht-settings-section
+) {
+    position: relative !important;
+    padding: 11px 11px 11px 14px !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #habit-tracker-view :is(
+    .ht-welcome-card,
+    .ht-progress-card,
+    .ht-habits-container,
+    .ht-calendar-wrapper,
+    .ht-chart-container,
+    .ht-achievement-section,
+    .ht-ranking-section,
+    .ht-settings-section
+)::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--desk-green);
+    content: "";
+}
+
+body.desktop-widget #habit-tracker-view .ht-welcome-card {
+    display: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-bar {
+    background: #e5ece9 !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-progress-fill {
+    background: var(--desk-green) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-action-btn {
+    border: 1px solid var(--desk-line) !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-copy) !important;
+}
+
+body.desktop-widget #habit-tracker-view #ht-addHabitBtn {
+    border-color: var(--desk-green) !important;
+    background: var(--desk-green) !important;
+    color: white !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-habit-card {
+    position: relative !important;
+    padding: 10px 10px 10px 13px !important;
+    overflow: hidden !important;
+    border-color: var(--desk-line) !important;
+    border-radius: 9px !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-habit-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--desk-green);
+    content: "";
+}
+
+body.desktop-widget #habit-tracker-view :is(.ht-stat-value, .ht-progress-percent) {
+    font-family: var(--desk-data-font) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-modal-dialog {
+    border-color: var(--desk-line) !important;
+    border-radius: 11px !important;
+    background: var(--desk-paper) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-btn-primary {
+    border-color: var(--desk-green) !important;
+    background: var(--desk-green) !important;
+}
+
+body.desktop-widget #habit-tracker-view .ht-icon-option.selected {
+    border-color: var(--desk-green) !important;
+    background: #e6f3ef !important;
+    color: var(--desk-green) !important;
+}
+
+/* Time ledger */
+body.desktop-widget #time-tracker-view {
+    padding: 12px !important;
+}
+
+body.desktop-widget #time-tracker-view .time-tracker-container {
+    display: grid !important;
+    padding: 0 !important;
+    gap: 9px !important;
+}
+
+body.desktop-widget #time-tracker-view .time-tracker-header {
+    display: none !important;
+}
+
+body.desktop-widget #time-tracker-view .time-tracker-date-controls {
+    padding: 6px !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+}
+
+body.desktop-widget #time-tracker-view .date-selector {
+    gap: 5px !important;
+}
+
+body.desktop-widget #time-tracker-view .current-date-display {
+    color: var(--desk-ink) !important;
+    font: 650 10px/1.2 var(--desk-data-font) !important;
+    background: #f3f5f8 !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #time-tracker-view :is(.date-nav-btn, .add-record-btn) {
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 8px !important;
+    background: var(--desk-paper-strong) !important;
+    color: var(--desk-blue) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #time-tracker-view .time-tracker-main,
+body.desktop-widget #time-tracker-view :is(.time-tracker-left, .time-tracker-right) {
+    gap: 8px !important;
+}
+
+body.desktop-widget #time-tracker-view :is(.time-record-card, .category-manage-card, .chart-card, .goal-tracker-card) {
+    position: relative !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 1px solid var(--desk-line) !important;
+    border-radius: 9px !important;
+    background: var(--desk-paper) !important;
+    box-shadow: var(--desk-shadow) !important;
+}
+
+body.desktop-widget #time-tracker-view :is(.time-record-card, .category-manage-card, .chart-card, .goal-tracker-card)::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 1;
+    width: 3px;
+    background: var(--desk-blue);
+    content: "";
+}
+
+body.desktop-widget #time-tracker-view .card-content {
+    padding: 11px 11px 11px 14px !important;
+}
+
+body.desktop-widget #time-tracker-view .card-title {
+    font-size: 12px !important;
+}
+
+body.desktop-widget #time-tracker-view .time-record-item,
+body.desktop-widget #time-tracker-view .category-item,
+body.desktop-widget #time-tracker-view .goal-item {
+    min-height: 0 !important;
+    padding: 9px !important;
+    border-color: var(--desk-line-soft) !important;
+    background: var(--desk-paper-strong) !important;
+    box-shadow: none !important;
+}
+
+body.desktop-widget #time-tracker-view .time-record-item {
+    grid-template-columns: 34px minmax(0, 1fr) auto 30px !important;
+    gap: 8px !important;
+}
+
+body.desktop-widget #time-tracker-view .record-icon {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 8px !important;
+}
+
+body.desktop-widget #time-tracker-view .record-name {
+    color: var(--desk-ink) !important;
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+}
+
+body.desktop-widget #time-tracker-view .record-category {
+    color: var(--desk-muted) !important;
+    font-size: 8px !important;
+}
+
+body.desktop-widget #time-tracker-view .record-duration {
+    color: var(--desk-ink) !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #time-tracker-view .record-action-btn {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    border: 1px solid #f1c6c1 !important;
+    border-radius: 8px !important;
+    background: #fcecea !important;
+    color: var(--desk-red) !important;
+}
+
+body.desktop-widget #time-tracker-view .record-icon {
+    font-size: 0 !important;
+}
+
+body.desktop-widget #time-tracker-view .record-icon::after {
+    width: 7px;
+    height: 7px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    content: "";
+}
+
+body.desktop-widget #time-tracker-view .category-name,
+body.desktop-widget #time-tracker-view .goal-name {
+    color: var(--desk-copy) !important;
+    font-size: 10px !important;
+}
+
+body.desktop-widget #time-tracker-view .time-summary {
+    border-top-color: var(--desk-line-soft) !important;
+}
+
+body.desktop-widget #time-tracker-view .summary-value {
+    color: var(--desk-ink) !important;
+}
+
+body.desktop-widget #time-tracker-view :is(.chart-tab.active, .add-category-btn, .add-goal-btn) {
+    border-color: var(--desk-blue) !important;
+    background: var(--desk-blue) !important;
+    color: white !important;
+}
+
+body.desktop-widget #time-tracker-view .chart-container {
+    height: 170px !important;
+    min-height: 170px !important;
+}
+
+/* Shared dialogs and compact utility controls */
+body.desktop-widget :is(.time-tracker-modal, .ht-modal) .modal-content,
+body.desktop-widget .ht-modal-dialog {
+    border: 1px solid var(--desk-line) !important;
+    background: var(--desk-paper) !important;
+    box-shadow: 0 20px 55px rgba(31, 46, 69, 0.22) !important;
+}
+
+body.desktop-widget :is(.time-tracker-modal, .ht-modal) :is(.modal-header, .modal-footer, .ht-modal-header, .ht-modal-footer) {
+    border-color: var(--desk-line) !important;
+}
+
+body.desktop-widget .view :is(.material-icons, .fas, .far) {
+    text-rendering: geometricPrecision;
+}
+
+/* Local line-symbol fallback. Material icon ligatures never leak as words offline. */
+body.desktop-widget .material-icons[data-icon] {
+    display: inline-grid !important;
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 18px !important;
+    place-items: center !important;
+    overflow: hidden !important;
+    color: currentColor !important;
+    font-family: var(--desk-body-font) !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+}
+
+body.desktop-widget .material-icons[data-icon]::before {
+    color: currentColor;
+    content: "·";
+    font: 700 16px/1 var(--desk-data-font);
+}
+
+body.desktop-widget .material-icons[data-icon="chevron_left"]::before { content: "‹"; font-size: 26px; font-weight: 500; }
+body.desktop-widget .material-icons[data-icon="chevron_right"]::before { content: "›"; font-size: 26px; font-weight: 500; }
+body.desktop-widget .material-icons[data-icon="add"]::before,
+body.desktop-widget .material-icons[data-icon="add_task"]::before,
+body.desktop-widget .material-icons[data-icon="add_circle"]::before { content: "+"; font-size: 20px; font-weight: 500; }
+body.desktop-widget .material-icons[data-icon="delete"]::before { content: "×"; font-size: 20px; font-weight: 500; }
+body.desktop-widget .material-icons[data-icon="download"]::before { content: "↓"; font-size: 17px; }
+body.desktop-widget .material-icons[data-icon="restore"]::before { content: "↶"; font-size: 18px; }
+body.desktop-widget .material-icons[data-icon="tune"]::before { content: "≡"; font-size: 17px; }
+body.desktop-widget .material-icons[data-icon="fullscreen"]::before { content: "⌗"; font-size: 15px; }
+body.desktop-widget .material-icons[data-icon="today"]::before,
+body.desktop-widget .material-icons[data-icon="calendar_month"]::before,
+body.desktop-widget .material-icons[data-icon="calendar_today"]::before,
+body.desktop-widget .material-icons[data-icon="calendar_view_year"]::before { content: "□"; font-size: 17px; }
+body.desktop-widget .material-icons[data-icon="view_week"]::before,
+body.desktop-widget .material-icons[data-icon="view_list"]::before { content: "≡"; font-size: 18px; }
+body.desktop-widget .material-icons[data-icon="rate_review"]::before { content: "／"; font-size: 18px; }
+
+body.desktop-widget.local-workspace .tab-button .tab-icon[data-icon] {
+    width: 19px !important;
+    height: 19px !important;
+}
+
+body.desktop-widget.local-workspace .tab-button .tab-icon[data-icon]::before {
+    font-size: 17px;
+}
+
+body.desktop-widget #list-tab-btn .tab-icon::before { content: "+"; }
+body.desktop-widget #quadrant-tab-btn .tab-icon::before { content: "▦"; }
+body.desktop-widget #dashboard-tab-btn .tab-icon::before { content: "▥"; }
+body.desktop-widget #review-tab-btn .tab-icon::before { content: "／"; }
+body.desktop-widget #templates-tab-btn .tab-icon::before { content: "≡"; }
+body.desktop-widget #more-features-tab-btn .tab-icon::before { content: "∷"; }
+
+body.desktop-widget #review-view .review-card-header .material-icons[data-icon]::before {
+    content: "◆";
+    font-size: 10px;
+}
+
+body.desktop-widget [hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.desktop-widget #more-features-view .feature-card {
+        transition: none !important;
+    }
+}

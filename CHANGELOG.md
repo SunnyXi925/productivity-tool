@@ -8,12 +8,16 @@ The project follows pragmatic release notes rather than strict semantic versioni
 
 ### Desktop widget
 
+- Redesigned every non-quadrant page as one compact Mac-side workbench using cool paper surfaces, four-colour index rails, local line-symbol fallbacks, and consistent typography.
+- Rebuilt the More page as a four-tool launcher for Daily Fortune, Pomodoro, Habit Tracker, and Time Tracker.
+- Removed Countdown Anniversary and Immersive Nature Calendar from the interface, view routing, script loading, and offline app shell.
+- Added offline-safe icon rendering so Material Icon ligature names never appear when the external font is unavailable.
 - Added an independent macOS Electron widget with a compact four-quadrant layout.
 - Added desktop-left placement, a non-topmost window level, a visible collapsed strip, menu-bar recovery, and launch-at-login support.
 - Added macOS `.app` and DMG packaging commands with a neutral Productivity Tool app icon.
 - Unified every primary and secondary feature into the 430×720 widget shell with a shared page header, single-column scrolling content, and persistent bottom navigation.
-- Fixed deferred dashboard, review, template, fortune, countdown, and habit views rendering outside the desktop widget container.
-- Added compact layouts for charts, review forms, templates, Pomodoro, habits, countdowns, time records, the month calendar, Daily Fortune, and their dialogs.
+- Fixed deferred dashboard, review, template, fortune, and habit views rendering outside the desktop widget container.
+- Added compact layouts for charts, review forms, templates, Pomodoro, habits, time records, Daily Fortune, and their dialogs.
 
 ### Documentation
 

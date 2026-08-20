@@ -159,28 +159,6 @@ function switchView(view) {
 
         // 初始化番茄专注功能
         initPomodoroTimer();
-    } else if (view === 'countdown') {
-        if (views.countdownView) views.countdownView.style.display = 'block';
-        // 倒数纪念日没有对应的导航栏标签页，保持"更多功能"为active
-        if (moreFeaturesTabBtn) moreFeaturesTabBtn.classList.add('active');
-
-        if (taskActions) {
-            taskActions.style.display = 'none';
-        }
-
-        // 初始化倒数纪念日功能
-        initCountdownSystem();
-    } else if (view === 'calendar') {
-        if (views.calendarProView) views.calendarProView.style.display = 'block';
-        // 沉浸式自然日历没有对应的导航栏标签页，保持"更多功能"为active
-        if (moreFeaturesTabBtn) moreFeaturesTabBtn.classList.add('active');
-
-        if (taskActions) {
-            taskActions.style.display = 'none';
-        }
-
-        initCalendarModule();
-        renderCalendar();
     } else if (view === 'habit-tracker') {
         if (views.habitTrackerView) views.habitTrackerView.style.display = 'block';
         // 习惯打卡没有对应的导航栏标签页，保持"更多功能"为active

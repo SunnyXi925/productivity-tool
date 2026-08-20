@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'productivity-tool-v2.0.1';
+const CACHE_VERSION = 'productivity-tool-v2.1.0';
 const APP_SHELL = [
   './',
   './index.html',
@@ -47,10 +47,8 @@ const APP_SHELL = [
   './js/export-feature-core.js',
   './js/notification-system.js',
   './js/task-template-system.js',
-  './js/countdown-system.js',
   './js/habit-tracker-app.js',
   './js/time-tracker-system.js',
-  './js/calendar-module.js',
   './js/permission-manager.js',
   './js/smart-reminder-system.js',
   './js/smart-schedule-system.js',
@@ -64,6 +62,7 @@ const APP_SHELL = [
   './js/desktop-widget.js',
   './css/desktop-widget.css',
   './css/desktop-widget-pages.css',
+  './css/desktop-widget-redesign.css',
   './favicon.svg'
 ];
 

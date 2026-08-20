@@ -62,7 +62,6 @@
     <link href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- 倒数纪念日页面样式 -->
-    <link rel="stylesheet" href="css/countdown-page.css?v=1.0.0">
     <!-- 引入 SortableJS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
@@ -100,6 +99,7 @@
 </style>
     <link rel="stylesheet" href="css/desktop-widget.css?v=1.0.0">
     <link rel="stylesheet" href="css/desktop-widget-pages.css?v=1.0.0">
+    <link rel="stylesheet" href="css/desktop-widget-redesign.css?v=1.0.0">
 </head>
 
 <body>
@@ -305,24 +305,15 @@
             <!-- 更多功能视图 -->
             <div id="more-features-view" class="view" style="display: none;">
                 <div class="more-features-container">
-                    <!-- 背景装饰 -->
-                    <div class="features-bg-decoration">
-                        <div class="floating-shape shape-1"></div>
-                        <div class="floating-shape shape-2"></div>
-                        <div class="floating-shape shape-3"></div>
-                        <div class="floating-shape shape-4"></div>
-                    </div>
-
                     <!-- 页面标题 -->
                     <div class="more-features-header">
                         <div class="header-badge">
-                            <span class="badge-icon">✨</span>
-                            <span class="badge-text">精选功能</span>
+                            <span class="badge-text">FOCUS KIT · 04</span>
                         </div>
                         <h1 class="more-features-title">
-                            <span class="title-gradient">探索更多可能</span>
+                            <span class="title-gradient">今天需要哪种节奏？</span>
                         </h1>
-                        <p class="more-features-subtitle">提升您的时间管理效率，开启高效人生</p>
+                        <p class="more-features-subtitle">四个轻量工具，随取随用，不打断当前工作。</p>
                     </div>
 
                     <!-- 功能卡片网格 -->
@@ -333,11 +324,13 @@
                             <div class="card-content">
                                 <div class="feature-icon-wrapper">
                                     <div class="icon-bg goal-gradient"></div>
-                                    <div class="feature-icon">🎯</div>
+                                    <div class="feature-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><path d="M6.5 4.5h11v15h-11zM9 8h6M9 11h6M9 14h4"/></svg>
+                                    </div>
                                 </div>
                                 <div class="feature-info">
                                     <h3 class="feature-title">每日一签</h3>
-                                    <p class="feature-description">每日抽取一张幸运签，为您的一天带来正能量</p>
+                                    <p class="feature-description">抽取一句简短提醒，为今天确定一个念头。</p>
                                 </div>
                                 <div class="feature-stats">
                                     <div class="stat-item">
@@ -362,11 +355,13 @@
                             <div class="card-content">
                                 <div class="feature-icon-wrapper">
                                     <div class="icon-bg pomodoro-gradient"></div>
-                                    <div class="feature-icon">🍅</div>
+                                    <div class="feature-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 5.5V3M9.5 3h5M12 13l3-2"/></svg>
+                                    </div>
                                 </div>
                                 <div class="feature-info">
                                     <h3 class="feature-title">番茄专注</h3>
-                                    <p class="feature-description">使用番茄工作法，提高专注力，提升工作效率</p>
+                                    <p class="feature-description">用清晰的工作与休息周期，守住注意力。</p>
                                 </div>
                                 <div class="feature-stats">
                                     <div class="stat-item">
@@ -391,11 +386,13 @@
                             <div class="card-content">
                                 <div class="feature-icon-wrapper">
                                     <div class="icon-bg habit-gradient"></div>
-                                    <div class="feature-icon">📅</div>
+                                    <div class="feature-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><path d="M5 4.5h14v15H5zM8 2.5v4M16 2.5v4M5 9h14"/><path d="m8.5 14 2 2 5-5"/></svg>
+                                    </div>
                                 </div>
                                 <div class="feature-info">
                                     <h3 class="feature-title">习惯打卡</h3>
-                                    <p class="feature-description">建立良好习惯，每日打卡记录，让坚持变得简单</p>
+                                    <p class="feature-description">用连续记录培养习惯，看见每次小进步。</p>
                                 </div>
                                 <div class="feature-stats">
                                     <div class="stat-item">
@@ -415,7 +412,7 @@
                         </div>
 
                         <!-- 倒数纪念日卡片 -->
-                        <div class="feature-card" id="countdown-feature-card" data-category="reminder">
+                        <div class="feature-card" id="countdown-feature-card" data-category="reminder" hidden>
                             <div class="card-glow"></div>
                             <div class="card-content">
                                 <div class="feature-icon-wrapper">
@@ -449,11 +446,13 @@
                             <div class="card-content">
                                 <div class="feature-icon-wrapper">
                                     <div class="icon-bg time-tracker-gradient"></div>
-                                    <div class="feature-icon">⏱️</div>
+                                    <div class="feature-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24"><path d="M4 19.5h16M6.5 17V11M12 17V6M17.5 17V9"/></svg>
+                                    </div>
                                 </div>
                                 <div class="feature-info">
-                                    <h3 class="feature-title">时间管理可视化看板</h3>
-                                    <p class="feature-description">记录每日时间分配，通过图表直观查看时间使用情况</p>
+                                    <h3 class="feature-title">时间记录</h3>
+                                    <p class="feature-description">记录时间去向，用图表回看一天的投入。</p>
                                 </div>
                                 <div class="feature-stats">
                                     <div class="stat-item">
@@ -473,7 +472,7 @@
                         </div>
 
                         <!-- 沉浸式山景日历功能卡片 -->
-                        <div class="feature-card" id="calendar-feature-card" data-category="productivity">
+                        <div class="feature-card" id="calendar-feature-card" data-category="productivity" hidden>
                             <div class="card-glow"></div>
                             <div class="card-content">
                                 <div class="feature-icon-wrapper">
@@ -2773,10 +2772,8 @@
 <script src="script.js?v=3.0.21" defer></script>
     <script src="js/notification-system.js?v=1.0.0" defer></script>
     <script src="js/task-template-system.js?v=1.0.0" defer></script>
-    <script src="js/countdown-system.js?v=1.0.0" defer></script>
     <script src="js/habit-tracker-app.js?v=1.0.0" defer></script>
     <script src="js/time-tracker-system.js?v=1.0.0" defer></script>
-    <script src="js/calendar-module.js?v=1.0.0" defer></script>
     <script src="js/permission-manager.js?v=1.0.0" defer></script>
     <script src="js/smart-reminder-system.js?v=1.0.0" defer></script>
     <script src="js/smart-schedule-system.js?v=1.0.0" defer></script>

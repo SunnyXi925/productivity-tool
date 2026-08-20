@@ -20,7 +20,7 @@
 
     const doc = new DOMParser().parseFromString(request.responseText, 'text/html');
     const fragment = document.createDocumentFragment();
-    Array.from(doc.body.children).forEach(node => {
+    Array.from(doc.body.children).filter(node => node.id !== 'countdown-view').forEach(node => {
         fragment.appendChild(document.importNode(node, true));
     });
     anchor.replaceWith(fragment);

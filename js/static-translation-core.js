@@ -25,54 +25,8 @@ function setTranslatedAttribute(selector, attribute, key, root = document) {
     }
 }
 
-function setTranslatedButtonText(selector, key, root = document) {
-    const element = root.querySelector(selector);
-    const value = getStaticTranslations()[getStaticLanguage()][key];
-    if (!element || !value) return;
-
-    const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
-    if (textNode) {
-        textNode.textContent = ` ${value}`;
-        return;
-    }
-
-    let label = element.querySelector('.btn-text, .label-text, .calendar-label');
-    if (!label) {
-        label = document.createElement('span');
-        label.className = 'calendar-label';
-        element.appendChild(label);
-    }
-    label.textContent = value;
-}
-
 function applyKnownStaticTranslations() {
-    const featureCards = [
-        ['#fortune-feature-card', 'fortuneFeatureTitle', 'fortuneFeatureDesc', ['wisdomFortune', 'aiGenerated'], 'enterExperience'],
-        ['#pomodoro-feature-card', 'pomodoroFeatureTitle', 'pomodoroFeatureDesc', ['scientificTiming', 'dataStats'], 'enterExperience'],
-        ['#habit-tracker-feature-card', 'habitFeatureTitle', 'habitFeatureDesc', ['dailyCheckIn', 'streakRecord'], 'enterExperience'],
-        ['#countdown-feature-card', 'countdownFeatureTitle', 'countdownFeatureDesc', ['smartReminder', 'importantDates'], 'enterExperience'],
-        ['#time-tracker-feature-card', 'timeTrackerFeatureTitle', 'timeTrackerFeatureDesc', ['dataVisualization', 'trendAnalysis'], 'enterExperience'],
-        ['#calendar-feature-card', 'calendarFeatureTitle', 'calendarFeatureDesc', ['weeklyPlanning', 'aiMusicCompanion'], 'enterExperience']
-    ];
-
     setTranslatedText('#more-features-tab-btn .tab-label', 'moreFeaturesTab');
-    setTranslatedText('#more-features-view .header-badge .badge-text', 'featuredFeatures');
-    setTranslatedText('#more-features-view .more-features-title .title-gradient', 'exploreMore');
-    setTranslatedText('#more-features-view .more-features-subtitle', 'moreFeaturesSubtitle');
-
-    featureCards.forEach(([selector, titleKey, descKey, statKeys, buttonKey]) => {
-        const card = document.querySelector(selector);
-        if (!card) return;
-        setTranslatedText('.feature-title', titleKey, card);
-        setTranslatedText('.feature-description', descKey, card);
-        card.querySelectorAll('.stat-text').forEach((item, index) => {
-            const key = statKeys[index];
-            if (key && getStaticTranslations()[getStaticLanguage()][key]) {
-                item.textContent = getStaticTranslations()[getStaticLanguage()][key];
-            }
-        });
-        setTranslatedText('.feature-btn .btn-text', buttonKey, card);
-    });
 
     setTranslatedText('#pomodoro-view .header-badge .badge-text', 'productiveFocus');
     setTranslatedText('#pomodoro-view .pomodoro-title .title-gradient', 'pomodoroTitle');
@@ -117,19 +71,6 @@ function applyKnownStaticTranslations() {
     setTranslatedText('#time-tracker-view .chart-tab[data-trend="all"]', 'allPeriod');
     setTranslatedText('#time-tracker-view .chart-card:nth-child(2) .card-title', 'trendAnalysis');
     setTranslatedText('#time-tracker-view .goal-tracker-card .card-title', 'goalTracking');
-
-    setTranslatedText('#calendar-pro-view .calendar-title', 'calendarTitle');
-    setTranslatedAttribute('#calendar-search-input', 'placeholder', 'searchEvents');
-    setTranslatedButtonText('#calendar-quick-create', 'createEvent');
-    setTranslatedAttribute('#calendar-setting-btn', 'title', 'calendarSettings');
-    setTranslatedAttribute('#calendar-profile-chip', 'title', 'profileCenter');
-    setTranslatedButtonText('#calendar-sidebar-create', 'quickCreate');
-    setTranslatedText('#calendar-pro-view .my-calendars h4', 'myCalendars');
-    setTranslatedText('#calendar-today-btn', 'today');
-    setTranslatedButtonText('#calendar-sync-tasks-btn', 'taskSync');
-    setTranslatedText('#calendar-pro-view [data-calendar-view="day"]', 'dayView');
-    setTranslatedText('#calendar-pro-view [data-calendar-view="week"]', 'weekView');
-    setTranslatedText('#calendar-pro-view [data-calendar-view="month"]', 'monthView');
 
     setTranslatedText('#habit-tracker-view .ht-welcome-badge span', 'dailyPersistence');
     setTranslatedText('#habit-tracker-view .ht-page-title', 'habitPageTitle');
